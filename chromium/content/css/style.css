@@ -1,0 +1,127 @@
+
+
+#keyboardDiv{
+	position: fixed !important;
+  box-sizing: border-box;
+	right: 50px;
+	bottom: 50px;
+	width: 466px;
+	z-index: 1000000000000;
+	color: #fff;
+	
+}
+#aftan-keyboard{
+	margin: 0;
+	padding-top: 1px;
+	height: 157px;
+	background-color: #000;
+	width: 100%;
+	box-sizing: border-box;
+	
+	font-size: 15px;
+	font-family: Droid Sans;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+#keyboardDragger{
+  box-sizing: border-box;
+	background: #111;
+	height: 25px;
+	cursor: pointer;
+	position: relative;
+}
+
+#keyboardDragger > #languageTitle{
+  box-sizing: border-box;
+	height: 100%;
+	display: inline-block;
+	width: 43px;
+}
+
+#keyboardDragger #controlsDiv{
+	display: inline-block;
+	width: 50px;
+	position: absolute;
+	right: 0;
+	height:  100%;
+	background: #000;
+}
+
+#keyboardDragger > #controlsDiv > #minimize, #keyboardDragger > #controlsDiv > #close{
+  box-sizing: border-box;
+	display: inline-block;
+	width: 25px;
+	height:  100%;
+}
+
+#keyboardDragger > #controlsDiv > #minimize{
+	background: #00c9c9;
+}
+
+#keyboardDragger > #controlsDiv > #close{
+	background: #b23223;
+}
+
+.aftan-keyboard-line{
+  margin-top: 1px;
+  margin-left: 1px;
+}
+
+
+.aftan-keyboard-key{
+  box-sizing: border-box;
+  background-color: rgb(83, 83, 83);
+	margin-left: 1px;
+	width: 30px;
+	height: 30px;
+	line-height: 27px;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+	vertical-align: middle;
+
+}
+.aftan-keyboard-key[clicked = 'true'] {
+	/*box-shadow: inset 1px 1px 0px  #000, inset -1px -1px 0px #000  ;*/
+  background-color: #B5B5B5;
+  color: #000;
+}
+
+.aftan-keyboard-key:first-child{
+  margin-left: 0;
+}
+
+#keyboardDiv[minimized = 'true'] > #aftan-keyboard{
+	display: none;
+}
+
+#keyboardDiv[minimized = 'true'] > #keyboardDragger > #controlsDiv > #minimize {
+	background: #078585;
+}
+
+
+.keyCaps, .keyBackspace, .keyDelete{
+	width: 61px;
+}
+
+.keyNextLanguage{
+	width: 92px;
+}
+.keySpace{
+	width: 217px;
+}
+.keyAddit, .keyAdditLong{
+	width: 76px;
+}
+.keyEnter{
+	width: 61px;
+}
+.keyShiftEnter{
+	width: 76px;
+}
+.keyShift{
+	width: 77px;
+}

@@ -1,0 +1,43 @@
+{
+  "manifest_version": 2,
+
+  "name": "Virtual Keyboard",
+  "description": "Developing",
+  "version": "0.0.3",
+  "browser_action": {
+    "default_icon": "popup/images/icon.png",
+    "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "scripts": ["background/background.js"]
+  },
+  "content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": [
+				"content/libs/jquery.js",
+        "content/libs/jquery-ui.js",
+				"objects.js",
+				"content/scripts/setup.js",
+				"content/scripts/KeyVisual.js",
+				"content/scripts/Key.js",
+				"content/scripts/Field.js",
+				"content/scripts/HotKey.js",
+				"content/scripts/KeyboardVisual.js",
+				"content/scripts/KeyboardLogic.js",
+				"content/scripts/Keyboard.js",
+				"content/scripts/connect_extention.js"
+			],
+			"css": [
+				"content/css/style.css",
+				"content/libs/jquery-ui.css"
+			],
+			"all_frames": true,
+      "run_at": "document_end"
+		}
+	],
+	 "web_accessible_resources": [
+    "*"
+  ]
+
+}

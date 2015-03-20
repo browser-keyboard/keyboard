@@ -1,0 +1,28 @@
+[ {
+    "id": 1,
+    "name" : "English",
+    "shortName": "en"
+  }
+  , 
+  {
+    "id": 2,
+    "name" : "Башҡорт",
+    "shortName": "bash"
+  }, 
+  {
+    "id": 3,
+    "name" : "Русский",
+    "shortName": "ru"
+  }, 
+  {
+    "id": 4,
+    "name" : "Чӑвашла",
+    "shortName": "chv"
+  }, 
+  {
+    "id": 5,
+    "name" : "Татар",
+    "shortName": "tat"
+  }
+  
+ ]

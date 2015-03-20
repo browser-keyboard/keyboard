@@ -1,0 +1,72 @@
+<!doctype html>
+<html ng-app="optionApp">
+<head>
+  <title>Настройка языка</title>
+  <meta charset="utf-8">
+  <script src="libs/angular.min.js"></script>
+  <script src="libs/angular.min.js.map"></script>
+  <script src="script.js"></script>
+  <link href="libs/bootstrap/css/paper.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+  <body>
+
+  <div class="container" ng-controller="OptionController">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Настройка языка</div>
+	<div class="panel-body" style="padding-top:0; padding-bottom: 0px;">
+  
+  
+  <div class="row bg-primary" style="color: white">
+    <div class="col-xs-5">Add</div>
+    <div class="col-xs-1" ></div>
+    <div class="col-xs-5">Selected</div>
+    <div class="col-xs-1" ></div>
+  </div>  
+    
+  <div class="row" id="mytable" style="height: 360px">
+    <div class="col-xs-5">      
+    <input type="text" class="search-input" placeholder="search" ng-model="searchEnable">
+     <div id='radiobox-div' ng-repeat="layout in layoutsEnable = (layoutsAll | filter : {$: searchEnable, toUse: false} | orderBy : 'shortName': reverse)">
+	<label class='radiobox'><input type="radio" name="selectedIdEneble" ng-model="$parent.selectedIdEneble" ng-value="{{layout.id}}"><span>{{layout.name}}</span></label>
+     </div>
+     
+    </div>
+    <div class="col-xs-1">
+      <div class="btn-group-vertical" role="group" aria-label="...">
+	<button type="button" class="btn btn-primary" ng-click="removeFromUsed()"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
+	<button type="button" class="btn btn-primary" ng-click="addToUsed()"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+      </div>
+    </div>
+    <div class="col-xs-5" style="padding: 0;  height: 100%">
+     <div id='radiobox-div' ng-repeat="layout in layoutsUsed  = (layoutsAll | filter : {toUse: true} | orderBy : 'order': reverse)">
+	<label class='radiobox'><input type="radio" name="selectedIdUsed" ng-model="$parent.selectedIdUsed" ng-value="{{layout.id}}"><span>{{layout.name}}</span></label>
+     </div>     
+    </div>
+    <div class="col-xs-1" style="text-align: center;  height: 100%"">
+      <div class="btn-group-vertical" role="group" aria-label="...">
+	<button type="button" class="btn btn-primary" ng-click="orderUp()"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+	<button type="button" class="btn btn-primary" ng-click="orderDown()"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </div>
+  {{}}
+  
+ 
+  </div>
+
+  
+      <div class="panel-footer">
+      <div class="btn-group" role="group" aria-label="...">
+	<button type="button" class="btn btn-success" ng-click="reset()">Cansel</button>
+	<button type="button" class="btn btn-success" ng-click="save()">Save</button>
+	
+      </div></div>
+	</div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
