@@ -103,7 +103,7 @@ In Firefox at wrinting mail on gmail.com physical key press can't be detected
 2) Chrome and Firefox:
 
 * make able to turn on/off keyboard capturing
-* make able to configure languages. Option page preview
+* make able to configure languages. [Option page preview](http://browser-keyboard.github.io/languages/index.html)
 
 3) redesign 
 
@@ -125,7 +125,7 @@ In Firefox at wrinting mail on gmail.com physical key press can't be detected
 2) Chrome and Firefox:
 
 * сделать возможным вкл/выкл перехвата нажатий физических клавиш
-* сделать возможным настраивать языки. Превью страницы настроек
+* сделать возможным настраивать языки. [Превью страницы настроек](http://browser-keyboard.github.io/languages/index.html)
 
 3) редизайн
 
