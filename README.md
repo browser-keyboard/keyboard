@@ -3,7 +3,7 @@ Virtual keyboard extensoin for Firefox and Chrome
 
 Расширение виртуальная клавитура для Firefox и Chrome
 
-# View Demo | Посмотреть демо
+[View Demo | Посмотреть демо](browser-keyboard.github.io/demo/index.html)
 
 
 # Features 
@@ -21,22 +21,22 @@ Virtual keyboard extensoin for Firefox and Chrome
 3. change current language
 * hot keys:
 
-1. ctrl+k - - - switching on/off virtual keyboard
+1. ctrl+k — switching on/off virtual keyboard
 2. shift
 3. caps lock
-4. ctrl + alt - - - shift-like switch symbols set to additional letters
-5. ctrl + alt + space - - - caps-like switch symbols set to additional letters
-6. shift + space - - - change language layout to next
+4. ctrl + alt — shift-like switch symbols set to additional letters
+5. ctrl + alt + space — caps-like switch symbols set to additional letters
+6. shift + space — change language layout to next
 
-* also able to combinate hot keys, ex: shift + ctrl + alt - - - switch symbols set to additional uppercase letters
+* also able to combinate hot keys, ex: shift + ctrl + alt — switch symbols set to additional uppercase letters
 
 1. functional buttons on on-screen keyboard:
-2. close - - - turn off virtual keyboard
-3. minimize - - - hide on-screen keyboard
+2. close — turn off virtual keyboard
+3. minimize — hide on-screen keyboard
 4. shift
 5. caps lock
-6. addit - - - shift-like switch symbols set to additional letters
-7. additLong - - - caps-like switch symbols set to additional letters
+6. addit — shift-like switch symbols set to additional letters
+7. additLong — caps-like switch symbols set to additional letters
 8. space
 9. backspace
 10. delete
@@ -61,22 +61,22 @@ Virtual keyboard extensoin for Firefox and Chrome
 
 * горячие клавиши:
 
-1. ctrl+k - - - - - - - вкл/выкл виртуальной клавиаты
+1. ctrl+k — — - вкл/выкл виртуальной клавиаты
 2. shift
 3. caps lock
-4. ctrl + alt - - - shift-подобное переключение на дополнительные символы
-5. ctrl + alt + пробел - - - caps-подобное переключение на дополнительные символы
-6. shift + пробел - - - переключить язык на следующий
+4. ctrl + alt — shift-подобное переключение на дополнительные символы
+5. ctrl + alt + пробел — caps-подобное переключение на дополнительные символы
+6. shift + пробел — переключить язык на следующий
 
-* также возможна комбинация горячих клашив, пример: shift + ctrl + alt - - - переключение на дополнительные прописные символы
+* также возможна комбинация горячих клашив, пример: shift + ctrl + alt — переключение на дополнительные прописные символы
 
 1. функциональные клавиши на наэкранной клавиатуре:
-2. close - - - отключить виртуальную клавиатуру
-3. minimize - - - скрыть наэкранную клавитуру
+2. close — отключить виртуальную клавиатуру
+3. minimize — скрыть наэкранную клавитуру
 4. shift
 5. caps lock
-6. addit - - - shift-подобное переключение на дополнительные символы
-7. additLong - - - caps-подобное переключение на дополнительные символы
+6. addit — shift-подобное переключение на дополнительные символы
+7. additLong — caps-подобное переключение на дополнительные символы
 8. пробел
 9. backspace
 10. delete
@@ -90,22 +90,30 @@ After Firefox updates event.keyCode is not supperted any more. So some keys pres
 
 In Firefox at wrinting mail on gmail.com physical key press can't be detected
 
-# Текущие проблемы. Требуется помошь.
+# Текущие проблемы. Требуется помошь
 После обновлений Firefox'а свойство event.keyCode больше не работает с некотырыми клавишами. Я [описал](https://forums.mozilla.org/viewtopic.php?f=27&t=23447) эту проблему на английском на форуме Firefox. Свойство event.keyCode возвращает код нажатой клавиши. Например: если ввести 'q', то свойство возвращает 81 и если ввести 'й', то опять будет 81, что мне и надо. Но если ввести '[', то свойство возрватит 219, а если ввести русскую 'х', то будет возвращано 0.
 
-В Firefox`е при написании письлма на gmail.com нажатия физических клавиш не определяются.
+В Firefox`е при написании письма на gmail.com нажатия физических клавиш не определяются.
 
 # TODO
 1) Chrome:
 * add pupup menu
 * saving keyboard setting: current language, is showed on-screen keyboard, is turned
+
 2) Chrome and Firefox:
+
 * make able to turn on/off keyboard capturing
 * make able to configure languages. Option page preview
+
 3) redesign 
+
 4) start beta-test
+
 5) make localization for English, Russian, Bashkir and else languages if somebody ask
-6) convert Chrome extinsion to Opera and Yandex Browser
+
+6) debug
+
+7) convert Chrome extinsion to Opera and Yandex Browser
 
 
 # Список задач
@@ -120,6 +128,11 @@ In Firefox at wrinting mail on gmail.com physical key press can't be detected
 * сделать возможным настраивать языки. Превью страницы настроек
 
 3) редизайн
+
 4) начать бета-тест
+
 5) сделать локализации на английский, русский, башкирский и другии языки, если кто-нибудь попросит
-6) конфертировать расширение для Chrome на Opera и Яндекс Браузер
+
+6) дебаг
+
+7) конвертировать расширение для Chrome на Opera и Яндекс Браузер
