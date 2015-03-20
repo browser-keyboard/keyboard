@@ -20,13 +20,16 @@ Virtual keyboard extensoin for Firefox and Chrome
 2. hide/show on-screen keyboard
 3. change current language
 * hot keys:
+
 1. ctrl+k - - - switching on/off virtual keyboard
 2. shift
 3. caps lock
 4. ctrl + alt - - - shift-like switch symbols set to additional letters
 5. ctrl + alt + space - - - caps-like switch symbols set to additional letters
 6. shift + space - - - change language layout to next
+
 * also able to combinate hot keys, ex: shift + ctrl + alt - - - switch symbols set to additional uppercase letters
+
 1. functional buttons on on-screen keyboard:
 2. close - - - turn off virtual keyboard
 3. minimize - - - hide on-screen keyboard
@@ -39,6 +42,7 @@ Virtual keyboard extensoin for Firefox and Chrome
 10. delete
 11. enter
 12. next language
+
 * on-screen keyboard is dragable
 
 # Возможности
@@ -50,17 +54,22 @@ Virtual keyboard extensoin for Firefox and Chrome
 * при перенастройки раскладки, список языков скачивается из сервера через AJAX
 * прописные, строчные, дополнительные прописные и дополнительные строчные наборы символов
 * меню на строке браузера: 
+
 1. вкл/выкл виртуальной клавиаты
 2. вкл/выкл наэкранной клавиатуры
 3. изменить текуший язык
+
 * горячие клавиши:
+
 1. ctrl+k - - - - - - - вкл/выкл виртуальной клавиаты
 2. shift
 3. caps lock
 4. ctrl + alt - - - shift-подобное переключение на дополнительные символы
 5. ctrl + alt + пробел - - - caps-подобное переключение на дополнительные символы
 6. shift + пробел - - - переключить язык на следующий
+
 * также возможна комбинация горячих клашив, пример: shift + ctrl + alt - - - переключение на дополнительные прописные символы
+
 1. функциональные клавиши на наэкранной клавиатуре:
 2. close - - - отключить виртуальную клавиатуру
 3. minimize - - - скрыть наэкранную клавитуру
@@ -73,6 +82,7 @@ Virtual keyboard extensoin for Firefox and Chrome
 10. delete
 11. enter
 12. следующий язык
+
 * наэкранная клавиатура перетаскиваемая
 
 # Current Problems. Needs Help
@@ -87,11 +97,15 @@ In Firefox at wrinting mail on gmail.com physical key press can't be detected
 
 # TODO
 1. Chrome:
+
 * add pupup menu
 * saving keyboard setting: current language, is showed on-screen keyboard, is turned
+
 2. Chrome and Firefox:
+
 * make able to turn on/off keyboard capturing
 * make able to configure languages. Option page preview
+
 3. Redesign 
 4. Start beta-test
 5. Make localization for English, Russian, Bashkir and else languages if somebody ask
@@ -100,11 +114,15 @@ In Firefox at wrinting mail on gmail.com physical key press can't be detected
 
 # Список задачь
 1. Chrome:
+
 * добавить меню на строке браузера
 * сохрание настроек клавиатуры: текущий язык, показана ли наэкранная клавиатура, включена ли клавиатура
+
 2. Chrome and Firefox:
+
 * сделать возможным вкл/выкл перехвата нажатий физических клавиш
 * сделать возможным настраивать языки. Превью страницы настроек
+
 3. Редизайн
 4. Начать бета-тест
 5. Сделать локализации на английский, русский, башкирский и другии языки, если кто-нибудь попросит
