@@ -3,7 +3,7 @@ Virtual keyboard extensoin for Firefox and Chrome
 
 Расширение виртуальная клавитура для Firefox и Chrome
 
-[View Demo | Посмотреть демо](browser-keyboard.github.io/demo/index.html)
+[View Demo | Посмотреть демо](http://browser-keyboard.github.io/demo/index.html)
 
 
 # Features 
