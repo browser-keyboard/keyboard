@@ -96,34 +96,30 @@ In Firefox at wrinting mail on gmail.com physical key press can't be detected
 В Firefox`е при написании письлма на gmail.com нажатия физических клавиш не определяются.
 
 # TODO
-1. Chrome:
-
+1) Chrome:
 * add pupup menu
 * saving keyboard setting: current language, is showed on-screen keyboard, is turned
-
-2. Chrome and Firefox:
-
+2) Chrome and Firefox:
 * make able to turn on/off keyboard capturing
 * make able to configure languages. Option page preview
+3) redesign 
+4) start beta-test
+5) make localization for English, Russian, Bashkir and else languages if somebody ask
+6) convert Chrome extinsion to Opera and Yandex Browser
 
-3. Redesign 
-4. Start beta-test
-5. Make localization for English, Russian, Bashkir and else languages if somebody ask
-6. Convert Chrome extinsion to Opera and Yandex Browser
 
-
-# Список задачь
-1. Chrome:
+# Список задач
+1) Chrome:
 
 * добавить меню на строке браузера
 * сохрание настроек клавиатуры: текущий язык, показана ли наэкранная клавиатура, включена ли клавиатура
 
-2. Chrome and Firefox:
+2) Chrome and Firefox:
 
 * сделать возможным вкл/выкл перехвата нажатий физических клавиш
 * сделать возможным настраивать языки. Превью страницы настроек
 
-3. Редизайн
-4. Начать бета-тест
-5. Сделать локализации на английский, русский, башкирский и другии языки, если кто-нибудь попросит
-6. Конфертировать расширение для Chrome на Opera и Яндекс Браузер
+3) редизайн
+4) начать бета-тест
+5) сделать локализации на английский, русский, башкирский и другии языки, если кто-нибудь попросит
+6) конфертировать расширение для Chrome на Opera и Яндекс Браузер
