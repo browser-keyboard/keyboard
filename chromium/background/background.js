@@ -1,81 +1,68 @@
- var currentTab;
- var kStatus = {
-  shift:{
-    physical: false,
-    active: false
-  },
-  caps: {
-    active: false
-    },
-  addit: {
-    physical: false,
-    active: false    		
-  },
-  additLong: {
-    active: false
-  },
-  language: {
-    value: 0,
-    count: 2
+chrome.storage.local.get("isActive", function(data){
+  var isActive = data.isActive;
+  if(isActive === undefined){
+    chrome.storage.local.set({'isActive': true}, function(){
+      console.log("x-frame saved");      
+    });
   }
-};
-
- chrome.tabs.onActivated.addListener(function(info){
-  console.log('tabActivate');
-  currentTab = info.tabId;
-  var data = {
-    eve: "tabActivate",
-    kStatus: kStatus
-  };  
-  chrome.tabs.sendMessage(currentTab, data);
 });
 
- chrome.tabs.onUpdated.addListener(function(info){
-  console.log('pageCreate');
-  var data = {
-    eve: "create",
-    kStatus: kStatus
-  };
-  
-  chrome.tabs.sendMessage(info, data);
+
+chrome.storage.local.get("isShow", function(data){
+  var isShow = data.isShow;
+  if(isShow === undefined){
+    chrome.storage.local.set({'isShow': true}, function(){});
+  }
+});
+
+
+chrome.storage.local.get("kStatus", function(data){
+  var kStatus = data.kStatus;
+  if(kStatus === undefined){
+    var kStatus = {
+      shift:{
+	physical: false,
+	active: false
+      },
+      caps: {
+	active: false
+	},
+      addit: {
+	physical: false,
+	active: false    		
+      },
+      additLong: {
+	active: false
+      },
+      language: {
+	value: 0,
+	count: 2
+      }
+    };
+    chrome.storage.local.set({'kStatus': kStatus}, function(){});
+  }
+});
+
+chrome.tabs.onActivated.addListener(function(info){
+  f_sendKStatusOnActivate(info.tabId);
+});
+
+chrome.tabs.onUpdated.addListener(function(info){
+  f_sendKStatusOnActivate(info);
 });
 
  
-chrome.runtime.onMessage.addListener(function(data){
+chrome.runtime.onMessage.addListener(function(data, sender){
   switch(data.eve){
     case 'changeKStutus':
-      kStatus = data.kStatus;
+//       chrome.storage.local.set({'kStatus': data.kStatus}, function() {});
+      f_updateKStatus(sender.tab.id, data.kStatus);
+      break;
+    case 'activision':
+      f_activision(data.status);
+      break;
+    case 'showing':
+      f_showen(data.status);
       break;
   };
-})
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- /*
- 
- 
- 
- chrome.tabs.query({}, function(tabs) {
-    var message = {foo: bar};
-    for (var i=0; i<tabs.length; ++i) {
-        chrome.tabs.sendMessage(tabs[i].id, message);
-    }
 });
-
-
-*/

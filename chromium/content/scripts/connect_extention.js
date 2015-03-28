@@ -3,12 +3,11 @@ var created = false;
 if(self==window.top){
   chrome.runtime.onMessage.addListener(function(data){
     switch(data.eve){
-      case 'create':
-	onPageCreateTop();
+      case "kStatus":
 	tabActivate(data.kStatus);
 	break;
-      case "tabActivate":
-	tabActivate(data.kStatus);
+      case "active":
+	activision(data.status);
 	break;
     }
   })
@@ -42,9 +41,13 @@ keyboardConnection = function(virtualKeyboard){
     });
 
     $('html').on('keydown', "body", function(e){
+      if(!virtualKeyboard.turnOn)
+	return;
       virtualKeyboard.keyDown(e);
     });
     $('html').on('keyup', "body", function(e){
+      if(!virtualKeyboard.turnOn)
+	return;
       virtualKeyboard.keyUp(e);
     });
     $(window).blur(function(){
@@ -58,6 +61,8 @@ keyboardConnection = function(virtualKeyboard){
 };
 
 onPageCreateTop = function(){  
+  if(created)
+    return;
   window.virtualKeyboard = new Keyboard(keyboardOption);
   keyboardConnection(window.virtualKeyboard);
   /*
@@ -122,6 +127,13 @@ var onPageCreateChild = function(){
 
 var tabActivate = function(newKStatus){
   if(!created)
-    return;
+    onPageCreateTop();
   window.virtualKeyboard.changeKStutus(newKStatus);
+}
+
+
+var activision = function(status){
+  if(!created)
+    return;
+  window.virtualKeyboard.reverse(status);
 }

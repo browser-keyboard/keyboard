@@ -5,6 +5,7 @@ $(function(){
     this.logic = new KeyboardLogic(this, this.field, options);
     this.keyCodes = options.keyCodes;
     this.active = true;
+    this.turnOn = true;
     
     
   // create hotkey combinations
@@ -77,9 +78,9 @@ $(function(){
     this.field.focus(newField, newWindow);
   };
   
-  Keyboard.prototype.reverse = function(){
-    this.active = !this.active;
-    if(this.active){
+  Keyboard.prototype.reverse = function(status){
+    this.turnOn = status;
+    if(this.turnOn){
       this.visual.show();
     }else{
       this.visual.hide();
@@ -179,7 +180,6 @@ $(function(){
         this.visualKeyFunct('keyShift', this.logic.kStatus.shift.active);  
         break;
     }
-    console.log(this.logic.kStatus);
     chrome.runtime.sendMessage({eve: "changeKStutus", kStatus: this.logic.kStatus});
   }
   

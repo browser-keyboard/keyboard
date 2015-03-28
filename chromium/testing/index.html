@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<link rel='stylesheet' href='../content/css/style.css'>
+<link rel='stylesheet' href='../content/libs/jquery-ui.css'>
+<style>
+   body{
+       background-color: #555;
+       font-family: 'Droid Sans';
+       color: #555;
+   }
+   .card{
+       padding: 15px;
+       margin: 15px;
+       min-height: 50px;
+       width: 75%;
+       min-width: 300px;
+       background-color: #FEFEFE;
+       border-radius: 5px;
+   }
+   label{
+       display: block;
+       margin-bottom: 15px;
+   }
+	iframe{
+		display: block;
+	}
+</style>
+<title>Тестовая страница</title>
+</head>
+
+<body>
+<div class='card'>
+	<label>Input text</label>
+	<input type='text'>
+</div>
+
+<div class='card'>
+	<label>Input without type</label>
+	<input type='bomba'>
+</div>
+
+<div class='card'>
+	<label>disabled text</label>
+	<input type='Password' disabled>
+</div>
+
+<div class='card'>
+	<label>Password</label>
+	<input type='Password'>
+</div>
+
+<div class='card'>
+	<label>Textarea</label>
+	<textarea></textarea>
+</div>
+
+<div class='card'>
+	<label contenteditable>Contenteditable</label>
+	<div contenteditable="true"> Text Text Text</div>
+</div>
+
+<div class='card'>
+	<label contenteditable>Contenteditable Div with inner ellements</label>
+	<!-- <div contenteditable="true"> <p>Paragraph</p><p>Paragraph</p></div> -->
+	<div contenteditable="true">
+		<p>1</p>
+		<p>2</p>
+		<p>3<br>3.5<br>3.6</p>
+		<p>4</p>
+		<p>5</p>
+	</div>
+</div>
+
+<div class='card'>
+	<label contenteditable=false>non - Contenteditable</label>
+	<div contenteditable="false"> Text Text Text</div>
+</div>
+
+<div class='card'>
+	<label id="afterLoadText">Text below can be created by script</label>
+    <input type='button'id='generateText' value="Genarate text">
+</div>
+
+<div class='card'>
+	<label>Iframe with &lt;body contenteditable&gt;</label>
+	<iframe height="400" width="400" src="iframe.html"></iframe>
+</div>
+
+<div class='card'>
+	<label >Iframe with &lt;div contenteditable&gt;</label>
+	<iframe height="400" width="400" src="iframe2.html"></iframe>
+</div>
+
+<div class='card'>
+	<label id="afterLoadIframe">Iframe with &lt;body contenteditable&gt; below can be created by script</label>
+    <input type='button'id='generateFrame' value="Genarate iframe">
+</div>
+
+<div class='card'>
+	<label id="afterLoadIframe2">Iframe with &lt;div contenteditable&gt; below can be created by script</label>
+    <input type='button'id='generateFrame2' value="Genarate iframe">
+</div>
+<div class='card'>
+	<label id="afterLoadIframe3">Iframe with &lt;!@#$%^&*&gt; below can be created by script</label>
+    <input type='button'id='generateFrame3' value="Genarate iframe">
+</div>
+
+<script src="../content/libs/jquery.js"></script>
+<script src="../content/libs/jquery-ui.js"></script>
+<script src="../objects.js"></script>
+<script src="../content/scripts/setup.js"></script>
+<script src="../content/scripts/KeyVisual.js"></script>
+<script src="../content/scripts/Key.js"></script>
+<script src="../content/scripts/Field.js"></script>
+<script src="../content/scripts/HotKey.js"></script>
+<script src="../content/scripts/KeyboardVisual.js"></script>
+<script src="../content/scripts/KeyboardLogic.js"></script>
+<script src="../content/scripts/Keyboard.js"></script>
+<script src="../content/scripts/connect.js"></script>
+<script>
+  (function($){
+    $('#generateText').click(function(){
+      $('#afterLoadText').append('<div contenteditable>Text created by script</div>');
+    });
+    $('#generateFrame').click(function(){
+      $('#afterLoadIframe').append('<iframe height="400" width="400" src="iframe.html"></iframe>');
+    });
+    $('#generateFrame2').click(function(){
+      $('#afterLoadIframe2').append('<iframe height="400" width="400" src="iframe2.html"></iframe>');
+    });
+    $('#generateFrame3').click(function(){
+      $('#afterLoadIframe3').append('<iframe height="400" width="400" src="index.html"></iframe>');
+    });
+  })(jQuery);
+
+
+</script>
+</body>
+
+</html>

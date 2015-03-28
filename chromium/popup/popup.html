@@ -1,20 +1,19 @@
-<!doctype html>
 <html>
-  <head>
-    <title>Hi there</title>
-    <style>
-      body {
-        min-width: 357px;
-        background-color: #D9FFB8;
-        overflow-x: hidden;
-      }
-  }
-    </style>
+<head>
+  <meta charset='utf-8'>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="block"><label><p class='momon'>Клавиатура</p><input type="checkbox" class="ios-switch"  id='isActive' checked /></label></div>
+  <div class="block"><label><p class='momon'>Показать</p><input type="checkbox" class="ios-switch" id='isVisual' checked /></label></div>
 
-<h1>Hello world</h1>
-    <script src="popup.js"></script>
-  </head>
-  <body>
-  </body>
+  <div class="block">
+    <ul id='lang'>
+    </ul>
+  </div>
+  <script src="jquery.js"></script>
+  <script src="../synca.js"></script>
+  <script src="../objects.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
-

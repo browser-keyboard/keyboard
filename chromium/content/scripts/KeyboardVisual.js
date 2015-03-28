@@ -21,10 +21,12 @@ $(function(){
     var minimControl = $('<div id=\'minimize\'></div>');
     var closeControl = $('<div id=\'close\'></div>');
     minimControl.click(function(){
-    	that.minimize();
+    	//that.minimize();
+      chrome.runtime.sendMessage({eve: "showen", status: false});
     });
     closeControl.click(function(){
-    	that.kb.reverse();
+    	//that.kb.reverse();
+      chrome.runtime.sendMessage({eve: "activision", status: false});
     });
     controlsDiv.append(minimControl);
     controlsDiv.append(closeControl);
