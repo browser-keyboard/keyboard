@@ -85,25 +85,29 @@ Virtual keyboard extensoin for Firefox and Chrome
 
 * наэкранная клавиатура перетаскиваемая
 
-# Current Problems. Needs Help
-After Firefox updates event.keyCode is not supperted any more. So some keys pressing can't be identificated. I have [discribed](https://forums.mozilla.org/viewtopic.php?f=27&t=23447) this promlem of firefox forum
+# Firefox extinsion will ba able only after Firefox 38 release
+event.keyCode is not work correctly with some keys. So some keys pressing can't be identificated. 
+event.code, which is event.keyCode alternative, is realeasing on Firefox 38 on 15 May
 
+# Расширение для Firefox будет только после релиза Firefox 38
+event.keyCode не работает правильно с некотырыми клавишами. Поэтому эти клавиши не мог быть распознаны.
+Альтернатива event.keyCode event.code выйдет на Firefox 38 15-го мая
+
+
+# Current Problems. Needs Help
 In Firefox at wrinting mail on gmail.com physical key press can't be detected
 
 # Текущие проблемы. Требуется помошь
-После обновлений Firefox'а свойство event.keyCode больше не работает с некотырыми клавишами. Я [описал](https://forums.mozilla.org/viewtopic.php?f=27&t=23447) эту проблему на английском на форуме Firefox. Свойство event.keyCode возвращает код нажатой клавиши. Например: если ввести 'q', то свойство возвращает 81 и если ввести 'й', то опять будет 81, что мне и надо. Но если ввести '[', то свойство возрватит 219, а если ввести русскую 'х', то будет возвращано 0.
-
 В Firefox`е при написании письма на gmail.com нажатия физических клавиш не определяются.
 
 # TODO
-1) Chrome:
-* add pupup menu
-* saving keyboard setting: current language, is showed on-screen keyboard, is turned
-
-2) Chrome and Firefox:
+1) Chrome and Firefox:
 
 * make able to turn on/off keyboard capturing
+* make able to set on-screen keyboard showing only on active text field
 * make able to configure languages. [Option page preview](http://browser-keyboard.github.io/languages/index.html)
+
+2) add languages
 
 3) redesign 
 
@@ -117,15 +121,13 @@ In Firefox at wrinting mail on gmail.com physical key press can't be detected
 
 
 # Список задач
-1) Chrome:
-
-* добавить меню на строке браузера
-* сохрание настроек клавиатуры: текущий язык, показана ли наэкранная клавиатура, включена ли клавиатура
-
-2) Chrome and Firefox:
+1) Chrome and Firefox:
 
 * сделать возможным вкл/выкл перехвата нажатий физических клавиш
+* сделать возможным опция появление на-экранной клавиатуры только при акивном текстовом поле
 * сделать возможным настраивать языки. [Превью страницы настроек](http://browser-keyboard.github.io/languages/index.html)
+
+2) добавить языки
 
 3) редизайн
 
