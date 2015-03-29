@@ -1,5 +1,4 @@
 var KeyboardVisual;
-$(function(){
 	KeyboardVisual = function(kb, options){
 		this.kb = kb;		
 		
@@ -82,31 +81,29 @@ $(function(){
     
     this.setLanguageTitles(0);
   	
-	}
-	
-	KeyboardVisual.prototype.setLanguageTitles = function(num){
-		this.languageTitle.text(this.languageNames[num]);
+}
 
-  	for(var i = this.kb.keyFunctionals.length-1; i > -1 ; i--){
-  		if( this.kb.keyFunctionals[i].func == 'keyNextLanguage' ){
-  			this.kb.keyFunctionals[i].visual.setDisplayKeyText(this.languageShortNames[num]);
-  		};
-  	}
-	}
-	
-	KeyboardVisual.prototype.minimize = function(){
-		if(this.container.attr("minimized") == "true"){
-			this.container.attr("minimized", "false");
-		}else{
-			this.container.attr("minimized", "true");
-		}
-	}
-	
-	KeyboardVisual.prototype.show = function(){
-		this.container.show();
-	}
-	KeyboardVisual.prototype.hide = function(){
-		this.container.hide();
-	}
+KeyboardVisual.prototype.setLanguageTitles = function(num){
+	this.languageTitle.text(this.languageNames[num]);
 
-});
+for(var i = this.kb.keyFunctionals.length-1; i > -1 ; i--){
+	if( this.kb.keyFunctionals[i].func == 'keyNextLanguage' ){
+		this.kb.keyFunctionals[i].visual.setDisplayKeyText(this.languageShortNames[num]);
+	};
+}
+}
+
+KeyboardVisual.prototype.minimize = function(){
+	if(this.container.attr("minimized") == "true"){
+		this.container.attr("minimized", "false");
+	}else{
+		this.container.attr("minimized", "true");
+	}
+}
+
+KeyboardVisual.prototype.show = function(){
+	this.container.show();
+}
+KeyboardVisual.prototype.hide = function(){
+	this.container.hide();
+}

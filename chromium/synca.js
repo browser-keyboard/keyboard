@@ -1,11 +1,13 @@
 f_active = function(bool){  
   var isActive = bool;   
-  var data = {eve: "active", status: isActive}
   chrome.storage.local.set({'isActive': isActive}, function() {});  
-  chrome.tabs.query({}, function(tabs) {
-    for (var i=0; i<tabs.length; ++i) {
-        chrome.tabs.sendMessage(tabs[i].id, data);
-    }
+  chrome.storage.local.get('kStatus', function (result) {
+    var data = {eve: "active", status: isActive, kStatus: result.kStatus}
+    chrome.tabs.query({}, function(tabs) {
+      for (var i=0; i<tabs.length; ++i) {
+	  chrome.tabs.sendMessage(tabs[i].id, data);
+      }
+    });
   });
 }
 

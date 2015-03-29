@@ -15,6 +15,14 @@ chrome.storage.local.get("isShow", function(data){
   }
 });
 
+chrome.storage.local.get("languageList", function(data){
+  var languageList = data.languageList;
+  if(languageList === undefined){
+    languageList = [ENGISHLAYOUT];    
+    chrome.storage.local.set({'languageList': languageList}, function(){});
+  }
+});
+
 
 chrome.storage.local.get("kStatus", function(data){
   var kStatus = data.kStatus;
@@ -36,7 +44,7 @@ chrome.storage.local.get("kStatus", function(data){
       },
       language: {
 	value: 0,
-	count: 2
+	count: 1
       }
     };
     chrome.storage.local.set({'kStatus': kStatus}, function(){});
@@ -45,10 +53,12 @@ chrome.storage.local.get("kStatus", function(data){
 
 chrome.tabs.onActivated.addListener(function(info){
   f_sendKStatusOnActivate(info.tabId);
+  console.log('banana');
 });
 
 chrome.tabs.onUpdated.addListener(function(info){
   f_sendKStatusOnActivate(info);
+  console.log('yea');
 });
 
  
@@ -63,6 +73,12 @@ chrome.runtime.onMessage.addListener(function(data, sender){
       break;
     case 'showing':
       f_showen(data.status);
+      break;
+    case 'to_create_child':
+      chrome.tabs.sendMessage(sender.tab.id, {eve: 'to_create_child'});
+      break;
+    case 'to_destroy_child':
+      chrome.tabs.sendMessage(sender.tab.id, {eve: 'to_destroy_child'});
       break;
   };
 });
