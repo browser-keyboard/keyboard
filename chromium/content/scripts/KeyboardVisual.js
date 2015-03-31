@@ -1,8 +1,8 @@
 var KeyboardVisual;
-	KeyboardVisual = function(kb, options){
-		this.kb = kb;		
-		
-		var that = this;
+KeyboardVisual = function(kb, options){
+    this.kb = kb;		
+    
+    var that = this;
 		
     this.container = $('<div id=\'keyboardDiv\'></div>');
 
@@ -50,34 +50,34 @@ var KeyboardVisual;
 
   	//keyboardOption.keySet по строкам 
   	for (var i1 = 0; i1 < options.keySet.length; i1++) {
-  		var line = $('<div class="aftan-keyboard-line"></div>');
-  		attr.sideIn = "left";
-			//keyboardOption.keySet по элементам
-			for (var i2 = 0; i2 < options.keySet[i1].length; i2++) {
-	  		attr.width = undefined;
-	  		attr.title = undefined;
-				if(options.keySet[i1][i2] == 'layout'){					
-					// по колличеству элементов в первой расскладке
-					for (var i3 = 0; i3 < options.languageSet[0].letterSet[i1].length; i3++) {
-		      	var key = this.kb.keyLetters[keyWordCount].createVisual(attr);
-						line.append(key);
-						keyWordCount++;						
-					}
-					attr.sideIn = "right";
-				}else{
-					attr.width = options.keySet[i1][i2].width;
-					attr.title = options.keySet[i1][i2].title;
-					var key = this.kb.keyFunctionals[keyFunctionalCount].createVisual(attr);
-					line.append(key);
-					if(this.kb.keyFunctionals[keyFunctionalCount].func == "keySpace")
-						attr.sideIn = "right";
-					keyFunctionalCount++;
-				}
-			}			
-			this.visual.append(line);
-		}
-		this.container.append(this.visual);
-    this.container.appendTo('body');	
+	  var line = $('<div class="aftan-keyboard-line"></div>');
+	  attr.sideIn = "left";
+		  //keyboardOption.keySet по элементам
+		  for (var i2 = 0; i2 < options.keySet[i1].length; i2++) {
+		  attr.width = undefined;
+		  attr.title = undefined;
+			  if(options.keySet[i1][i2] == 'layout'){					
+				  // по колличеству элементов в первой расскладке
+				  for (var i3 = 0; i3 < options.languageSet[0].letterSet[i1].length; i3++) {
+		  var key = this.kb.keyLetters[keyWordCount].createVisual(attr);
+					  line.append(key);
+					  keyWordCount++;						
+				  }
+				  attr.sideIn = "right";
+			  }else{
+				  attr.width = options.keySet[i1][i2].width;
+				  attr.title = options.keySet[i1][i2].title;
+				  var key = this.kb.keyFunctionals[keyFunctionalCount].createVisual(attr);
+				  line.append(key);
+				  if(this.kb.keyFunctionals[keyFunctionalCount].func == "keySpace")
+					  attr.sideIn = "right";
+				  keyFunctionalCount++;
+			  }
+		  }			
+		  this.visual.append(line);
+	  }
+	  this.container.append(this.visual);
+    this.container.appendTo('html');	
     
     this.setLanguageTitles(0);
   	

@@ -12,17 +12,23 @@ var languageNames = [];
 var ul = $('#lang');
 var list = [];
 
-chrome.storage.local.get(["languageList"], function(data){
+chrome.storage.local.get(["languageList", "kStatus"], function(data){
   lSet = data.languageList;
+  var cur_active = data.kStatus.language.value;
   for (var i = 0; i < lSet.length; i++) {
     languageNames[i] = lSet[i].name;
-    var li = $('<li data-value = "' + i + '">' + languageNames[i] + '</li>');
+    var boll = cur_active == i;
+    var li = $('<li data-value = "' + i + '" active="' + boll +'">' + languageNames[i] + '</li>');
     li.click(function(){
       f_changeLanguage( $(this).data('value'));
+      $('#lang li').attr('active', 'false');
+      list[$(this).data('value')].attr('active', 'true');
     });
     list.push(li);
     ul.append(li);
   }
+  
+  
 });
 
 chrome.storage.local.get(["isShow", "isActive"], function(data){

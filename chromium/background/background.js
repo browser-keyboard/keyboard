@@ -15,14 +15,20 @@ chrome.storage.local.get("isShow", function(data){
   }
 });
 
+var langNamesList;
 chrome.storage.local.get("languageList", function(data){
-  var languageList = data.languageList;
+  languageList = data.languageList;
   if(languageList === undefined){
     languageList = [ENGISHLAYOUT];    
     chrome.storage.local.set({'languageList': languageList}, function(){});
   }
 });
 
+function updateLangList(arr){
+  langNamesList = [];
+  for(var i=0; i < arr.length; i++)
+    langNamesList.push(arr[i].shortName);
+};
 
 chrome.storage.local.get("kStatus", function(data){
   var kStatus = data.kStatus;
@@ -80,5 +86,6 @@ chrome.runtime.onMessage.addListener(function(data, sender){
     case 'to_destroy_child':
       chrome.tabs.sendMessage(sender.tab.id, {eve: 'to_destroy_child'});
       break;
+    
   };
 });

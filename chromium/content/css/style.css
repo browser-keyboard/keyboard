@@ -7,13 +7,13 @@
 	bottom: 50px;
 	width: 466px;
 	z-index: 1000000000000;
-	color: #fff;
+	color: #fcfcfc;
 	
 }
 #aftan-keyboard{
 	margin: 0;
 	padding-top: 1px;
-	height: 157px;
+	height: 156px;
 	background-color: #000;
 	width: 100%;
 	box-sizing: border-box;
@@ -28,10 +28,13 @@
 
 #keyboardDragger{
   box-sizing: border-box;
-	background: #111;
-	height: 25px;
-	cursor: pointer;
-	position: relative;
+  background: #444;
+  height: 25px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #000;
+  border-bottom: 0px;
+      
 }
 
 #keyboardDragger > #languageTitle{
@@ -69,25 +72,29 @@
   margin-top: 1px;
   margin-left: 1px;
 }
-
+.aftan-keyboard-line:first-child{
+  margin-top: 0px;
+}
 
 .aftan-keyboard-key{
   box-sizing: border-box;
-  background-color: rgb(83, 83, 83);
-	margin-left: 1px;
-	width: 30px;
-	height: 30px;
-	line-height: 27px;
-	text-align: center;
-	display: inline-block;
-	cursor: pointer;
-	vertical-align: middle;
+  background-color: #444;
+  margin-left: 1px;
+  width: 30px;
+  height: 30px;
+  line-height: 27px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+  /*transition: font-size 0.4s, box-shadow 0.4s;*/
 
 }
 .aftan-keyboard-key[clicked = 'true'] {
-	/*box-shadow: inset 1px 1px 0px  #000, inset -1px -1px 0px #000  ;*/
-  background-color: #B5B5B5;
-  color: #000;
+  box-shadow: inset 1px 1px 2px #323232, inset -1px -1px 2px #323232;
+/*  background-color: rgb(94, 94, 94);*/
+  color: #fff;
+  font-size: 14px;
 }
 
 .aftan-keyboard-key:first-child{

@@ -137,7 +137,7 @@ var tabActivate = function(newKStatus){
     createTop();
     setTimeout(function(){
       window.virtualKeyboard.changeKStutus(newKStatus);
-    },12);
+    },120);
   }
   else
     window.virtualKeyboard.changeKStutus(newKStatus);
@@ -166,7 +166,6 @@ if(self==window.top){
     switch(data.eve){
       case "kStatus":
 	tabActivate(data.kStatus);
-	console.log('kStatus', data.kStatus);
 	break;
       case "active":
 	activision(data.status, data.kStatus);

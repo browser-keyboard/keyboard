@@ -16,31 +16,30 @@
   ],
   "options_page": "options/index.html",
   "content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": [
-				"content/libs/jquery.js",
-				"content/libs/drag.js",
-				"objects.js",
-				"content/scripts/setup.js",
-				"content/scripts/KeyVisual.js",
-				"content/scripts/Key.js",
-				"content/scripts/Field.js",
-				"content/scripts/HotKey.js",
-				"content/scripts/KeyboardVisual.js",
-				"content/scripts/KeyboardLogic.js",
-				"content/scripts/Keyboard.js",
-				"content/scripts/connect_extention.js"
-			],
-			"css": [
-				"content/css/style.css",
-				"content/libs/jquery-ui.css"
-			],
-			"all_frames": true,
-      "run_at": "document_end"
-		}
-	],
-	 "web_accessible_resources": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+	      "content/libs/jquery.js",
+	      "content/libs/drag.js",
+	      "objects.js",
+	      "content/scripts/KeyVisual.js",
+	      "content/scripts/Key.js",
+	      "content/scripts/Field.js",
+	      "content/scripts/HotKey.js",
+	      "content/scripts/KeyboardVisual.js",
+	      "content/scripts/KeyboardLogic.js",
+	      "content/scripts/Keyboard.js",
+	      "content/scripts/connect_extention.js"
+      ],
+      "css": [
+	      "content/css/style.css",
+	      "content/libs/jquery-ui.css"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
     "*"
   ]
 
