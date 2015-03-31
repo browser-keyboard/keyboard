@@ -49,6 +49,7 @@ keyboardConnectionOff = function(){
 createTop = function(){  
   if(created)
     return;
+  created = true;
     chrome.storage.local.get(['languageList'], function (result) {
       keyboardOption.languageSet = result.languageList;
       window.virtualKeyboard = new Keyboard(keyboardOption);
@@ -109,10 +110,8 @@ createTop = function(){
 	  return false;
 	}
 	virtualKeyboard.setField(document.activeElement, self);    
-      }
-      
-      created = true;
-      chrome.runtime.sendMessage({eve: "to_create_child"});
+      }      
+//      chrome.runtime.sendMessage({eve: "to_create_child"});
     });
 }
 

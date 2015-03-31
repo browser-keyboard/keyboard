@@ -75,7 +75,7 @@ chrome.runtime.onMessage.addListener(function(data, sender){
       f_updateKStatus(sender.tab.id, data.kStatus);
       break;
     case 'activision':
-      f_activision(data.status);
+      f_active(data.status);
       break;
     case 'showing':
       f_showen(data.status);
