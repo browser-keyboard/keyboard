@@ -77,7 +77,7 @@ chrome.runtime.onMessage.addListener(function(data, sender){
     case 'activision':
       f_active(data.status);
       break;
-    case 'showing':
+    case 'showen':
       f_showen(data.status);
       break;
     case 'to_create_child':
@@ -85,7 +85,6 @@ chrome.runtime.onMessage.addListener(function(data, sender){
       break;
     case 'to_destroy_child':
       chrome.tabs.sendMessage(sender.tab.id, {eve: 'to_destroy_child'});
-      break;
-    
+      break;   
   };
 });

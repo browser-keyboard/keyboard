@@ -1,3 +1,8 @@
+$('html').keydown(function(event){
+  if(event.ctrlKey && (event.keyCode == 75))
+    chrome.runtime.sendMessage({eve: "activision", status: !created});
+})
+
 var created = false;
 
 var selector = 'textarea, input, [contentEditable]';
@@ -159,6 +164,15 @@ var rebult = function(kStatus){
   tabActivate(kStatus);
 }
 
+var showing = function(status){
+  if(!created)
+    return;
+  if(status)
+    window.virtualKeyboard.visual.show();
+  else
+    window.virtualKeyboard.visual.hide();
+}
+
 
 if(self==window.top){
   chrome.runtime.onMessage.addListener(function(data){
@@ -171,6 +185,9 @@ if(self==window.top){
 	break;
       case "rebult":
 	rebult(data.kStatus);
+	break;
+      case "showen":
+	showing(data.status);
 	break;
     }
   })

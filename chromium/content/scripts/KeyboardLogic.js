@@ -96,28 +96,28 @@ KeyboardLogic.prototype.keySpace = function(){
 }
 
 KeyboardLogic.prototype.keyShift = function(param){
-      var status = this.kStatus.shift;
-	      switch (param.from) {
-	      case "virtual":
-		      if(status.active){
-		      status.active = false;
-		      status.physical = false;
-	      }else{
-		      status.active = true;
-	      }
-	      break;
-	      case "physical":
-		      switch (param.status) {
-		      case "down":
-		      status.active = true;
-		      status.physical = true;
-			      break;
-		      case "up":
-		      status.active = false;
-		      status.physical = false;				
-			      break;
-		      }
-	      };
+  var status = this.kStatus.shift;
+  switch (param.from) {
+  case "virtual":
+    if(status.active){
+    status.active = false;
+    status.physical = false;
+  }else{
+    status.active = true;
+  }
+  break;
+  case "physical":
+    switch (param.status) {
+    case "down":
+    status.active = true;
+    status.physical = true;
+	    break;
+    case "up":
+    status.active = false;
+    status.physical = false;				
+	    break;
+    }
+  };
 }
 
 KeyboardLogic.prototype.additObserve = function(){
