@@ -5,6 +5,8 @@ KeyboardVisual = function(kb, options){
     var that = this;
 		
     this.container = $('<div id=\'keyboardDiv\'></div>');
+    if(this.kb.visualOption == 'on-active')
+      this.container.css({display: 'none'});
 
     var dragger = $('<div id=\'keyboardDragger\'></div>');
     this.languageTitle = $('<div id=\'languageTitle\'></div>');

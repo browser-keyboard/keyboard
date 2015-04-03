@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <script src="libs/angular.min.js"></script>
   <script src="libs/angular.min.js.map"></script>
+  <script src="../synca.js"></script>
   <script src="script.js"></script>
   <link href="libs/bootstrap/css/paper.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
@@ -12,15 +13,59 @@
   <body>
 
   <div class="container" ng-controller="OptionController">
+  
+  <div class="alert alert-dismissible alert-danger" ng-if="alertLangCount">
+    <button type="button" class="close" data-dismiss="alert" ng-click="alertLangCountClose()">×</button>
+    <strong>Выбирете хотя бы один язык</strong>
+  </div>
+
+  <div class="form-horizontal row" style="margin:auto">
+    <div class="col-lg-6">
+      <div class="form-group">
+	<div class="checkbox">
+	  <label><input type="checkbox"  ng-model="isActive">Включен</label>
+	</div>
+	
+	<div class="checkbox">
+	  <label><input type="checkbox" ng-model="userOptions.capture">Перехват клавиш</label>
+	</div>
+      </div>
+    </div>
+    
+    <div class="col-lg-6">
+     <div class="form-group">
+      <div class="radio">
+	<label>
+	  <input name="optionsRadios" ng-model="userOptions.show" type="radio" value="always">
+	  Всегда показывать экраную клавиатуру
+	</label>
+      </div>
+      <div class="radio">
+	<label>
+	  <input name="optionsRadios" ng-model="userOptions.show" type="radio" value="on-active">
+	  Показывать экраную клавиатуру только при активном текстовом поле
+	</label>
+      </div>
+      <div class="radio">
+          <label>
+            <input name="optionsRadios" ng-model="userOptions.show" type="radio" value="newer">
+            Скрыть экраную клавиатуру
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
     <div class="panel panel-primary">
       <div class="panel-heading">Настройка языка</div>
 	<div class="panel-body" style="padding-top:0; padding-bottom: 0px;">
   
   
   <div class="row bg-primary" style="color: white">
-    <div class="col-xs-5">Add</div>
+    <div class="col-xs-5">Доступные языки</div>
     <div class="col-xs-1" ></div>
-    <div class="col-xs-5">Selected</div>
+    <div class="col-xs-5">Добавленные</div>
     <div class="col-xs-1" ></div>
   </div>  
     

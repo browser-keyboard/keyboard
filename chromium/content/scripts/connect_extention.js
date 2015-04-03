@@ -54,11 +54,13 @@ keyboardConnectionOff = function(){
 createTop = function(){  
   if(created)
     return;
-  created = true;
-    chrome.storage.local.get(['languageList'], function (result) {
+  created = 1;
+    chrome.storage.local.get(['languageList', 'userOptions', "kStatus"], function (result) {	
       keyboardOption.languageSet = result.languageList;
-      window.virtualKeyboard = new Keyboard(keyboardOption);
+      window.virtualKeyboard = new Keyboard(keyboardOption, result.userOptions);
+      window.virtualKeyboard.changeKStutus(result.kStatus);
       keyboardConnectionOn();
+      created = true;
       
       // если скрипт не запустился в iframe (костыль для ckeditor)
       setTimeout(function(){
@@ -115,8 +117,7 @@ createTop = function(){
 	  return false;
 	}
 	virtualKeyboard.setField(document.activeElement, self);    
-      }      
-//      chrome.runtime.sendMessage({eve: "to_create_child"});
+      }
     });
 }
 
@@ -137,57 +138,52 @@ var childActive = function(){
 }
 
 var tabActivate = function(newKStatus){
+  if(created === 1)
+    return;
   if(!created){
     createTop();
-    setTimeout(function(){
-      window.virtualKeyboard.changeKStutus(newKStatus);
-    },120);
   }
-  else
-    window.virtualKeyboard.changeKStutus(newKStatus);
+  else{
+    chrome.storage.local.get(["kStatus"], function (result) {	
+      window.virtualKeyboard.changeKStutus(result.kStatus);
+    });
+  }    
+}
+
+var turnOff = function(){
+  keyboardConnectionOff();
+  window.virtualKeyboard.destroy();
+  delete window.virtualKeyboard;
+  created = false;
+  chrome.runtime.sendMessage({eve: "to_destroy_child"});
+}
+
+var activision = function(){
+  chrome.storage.local.get(["isActive"], function (result) {	
+    if(!result.isActive){
+      turnOff();
+    }else
+      tabActivate();
+  });
 }
 
 
-var activision = function(status, kStatus){
-  if(!status){
-    keyboardConnectionOff();
-    window.virtualKeyboard.destroy();
-    delete window.virtualKeyboard;
-    created = false;
-    chrome.runtime.sendMessage({eve: "to_destroy_child"});
-  }else
-    tabActivate(kStatus);
+var rebult = function(){
+  turnOff();
+  tabActivate();
 }
-
-var rebult = function(kStatus){
-  activision(false);
-  tabActivate(kStatus);
-}
-
-var showing = function(status){
-  if(!created)
-    return;
-  if(status)
-    window.virtualKeyboard.visual.show();
-  else
-    window.virtualKeyboard.visual.hide();
-}
-
 
 if(self==window.top){
   chrome.runtime.onMessage.addListener(function(data){
     switch(data.eve){
       case "kStatus":
-	tabActivate(data.kStatus);
+	tabActivate();
 	break;
       case "active":
-	activision(data.status, data.kStatus);
+	activision();
 	break;
       case "rebult":
-	rebult(data.kStatus);
-	break;
-      case "showen":
-	showing(data.status);
+	rebult();
 	break;
     }
   })
@@ -195,9 +191,6 @@ if(self==window.top){
   childActive();
   chrome.runtime.onMessage.addListener(function(data){
     switch(data.eve){
-      case 'to_create_child':
-	createChild();
-	break;
       case 'to_destroy_child':
         destroyChild();
 	break;

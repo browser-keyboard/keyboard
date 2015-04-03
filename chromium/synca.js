@@ -1,48 +1,45 @@
-f_active = function(bool){  
-  var isActive = bool;   
-  chrome.storage.local.set({'isActive': isActive}, function() {});  
-  chrome.storage.local.get('kStatus', function (result) {
-    var data = {eve: "active", status: isActive, kStatus: result.kStatus}
-    chrome.tabs.query({}, function(tabs) {
-      for (var i=0; i<tabs.length; ++i) {
-	  chrome.tabs.sendMessage(tabs[i].id, data);
-      }
-    });
+var langNamesList;
+f_updateBadgeList = function(){
+  langNamesList = [];
+  chrome.storage.local.get('languageList', function(data){
+  for(var i=0; i < data.languageList.length; i++)
+    langNamesList.push(data.languageList[i].shortName);
+  chrome.browserAction.setBadgeText({text: langNamesList[0]});
+  });
+};
+f_updateBadge = function(){
+  chrome.storage.local.get('kStatus', function(data){
+    chrome.browserAction.setBadgeText({text: langNamesList[data.kStatus.language.value]});
   });
 }
 
-f_showen = function(bool){  
-  var isShow = bool;   
-  chrome.storage.local.set({'isShow': isShow}, function() {});  
-  chrome.storage.local.get('isActive', function (result) {
-    if(!result.isActive)
-      return;
-    var data = {eve: "showen", status: isShow}
-    chrome.tabs.query({}, function(tabs) {
-      for (var i=0; i<tabs.length; ++i)
-	  chrome.tabs.sendMessage(tabs[i].id, data);
-    });
-  }); 
-  
+f_active = function(bool){  
+  var isActive = bool;   
+  chrome.storage.local.set({'isActive': isActive});  
+  var data = {eve: "active"}
+  chrome.tabs.query({}, function(tabs) {
+    for (var i=0; i<tabs.length; ++i) {
+	chrome.tabs.sendMessage(tabs[i].id, data);
+    }
+  });
 }
 
 f_sendKStatusOnActivate = function(id){
-  chrome.storage.local.get(['kStatus', 'isActive'], function (result) {
+  chrome.storage.local.get(['isActive'], function (result) {
     if(!result.isActive)
       return;
     var data = {
-      eve: "kStatus",
-      kStatus:  result.kStatus
+      eve: "kStatus"
     };    
     chrome.tabs.sendMessage(id, data);  
   });
 }
 
 f_updateKStatus = function(idTab, newStatus){
-  chrome.storage.local.set({'kStatus': newStatus}, function() {});
+  chrome.storage.local.set({'kStatus': newStatus});
+  f_updateBadge();
   data = {
-    eve: 'kStatus',
-    kStatus: newStatus
+    eve: 'kStatus'
   };
   chrome.tabs.query({active: true}, function(tabs) {
     for (var i=0; i<tabs.length; ++i)
@@ -55,16 +52,18 @@ f_changeLanguage = function(num){
   chrome.storage.local.get(['kStatus', 'isActive'], function (result) {
     var kStatus = result.kStatus;
     kStatus.language.value = num;
-    chrome.storage.local.set({'kStatus': kStatus}, function(){});
+    chrome.storage.local.set({'kStatus': kStatus});
     if(!result.isActive)
       return;
     var data = {
-      eve: "kStatus",
-      kStatus:  kStatus
+      eve: "kStatus"
     };    
     chrome.tabs.query({active: true}, function(tabs) {
       for (var i=0; i<tabs.length; ++i)
 	  chrome.tabs.sendMessage(tabs[i].id, data);
     });
+    f_updateBadgeList();
+    f_updateBadge();
   });
 }
+

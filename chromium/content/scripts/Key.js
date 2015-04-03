@@ -41,53 +41,55 @@ KeyLetter = function(kb, physicalKeyCode, symbols, options){
 KeyLetter.prototype = Object.create(Key.prototype);
 
 KeyLetter.prototype.changeStatus = function(options){
-      if(this.symbols[this.currentLayout].options.caps){
-      if(!options.shift ^ !options.caps){// shift XOR caps 
-	      this.status = options.addit ? "upperAdd" : "upperCase" ;
-      }else{ 
-	      this.status = options.addit ? "lowerAdd" : "lowerCase" ;
-      };
-      }else{
-      if(options.shift){// shift XOR caps 
-	      this.status = options.addit ? "upperAdd" : "upperCase" ;
-      }else{ 
-	      this.status = options.addit ? "lowerAdd" : "lowerCase" ;
-      };
-      }
+  if(this.symbols[this.currentLayout].options.caps){
+    if(!options.shift ^ !options.caps){// shift XOR caps 
+	    this.status = options.addit ? "upperAdd" : "upperCase" ;
+    }else{ 
+	    this.status = options.addit ? "lowerAdd" : "lowerCase" ;
+    };
+    }else{
+    if(options.shift){// shift XOR caps 
+      this.status = options.addit ? "upperAdd" : "upperCase" ;
+    }else{ 
+      this.status = options.addit ? "lowerAdd" : "lowerCase" ;
+    };
+  }
   switch (this.status) {
-	      case "lowerCase":
-		      this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
-		      break;
-	      case "upperCase":
-		      this.currentSymbol = this.symbols[this.currentLayout].upperCase;
-		      break;
-	      case "lowerAdd":
-		      this.currentSymbol = this.symbols[this.currentLayout].lowerAdd;
-		      break;
-	      case "upperAdd":
-		      this.currentSymbol = this.symbols[this.currentLayout].upperAdd;
-		      break;
-	      }
-  this.visual.setDisplayKeyText(this.currentSymbol);
+    case "lowerCase":
+      this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
+      break;
+    case "upperCase":
+      this.currentSymbol = this.symbols[this.currentLayout].upperCase;
+      break;
+    case "lowerAdd":
+      this.currentSymbol = this.symbols[this.currentLayout].lowerAdd;
+      break;
+    case "upperAdd":
+      this.currentSymbol = this.symbols[this.currentLayout].upperAdd;
+      break;
+    }
+    
+  if(this.kb.visualOption != 'newer')
+    this.visual.setDisplayKeyText(this.currentSymbol);
 }
 
 KeyLetter.prototype.changeLayout = function(num, status){
   this.currentLayout = num;
   this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
   switch (this.status) {
-	      case "lowerCase":
-		      this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
-		      break;
-	      case "upperCase":
-		      this.currentSymbol = this.symbols[this.currentLayout].upperCase;
-		      break;
-	      case "lowerAdd":
-		      this.currentSymbol = this.symbols[this.currentLayout].lowerAdd;
-		      break;
-	      case "upperAdd":
-		      this.currentSymbol = this.symbols[this.currentLayout].upperAdd;
-		      break;
-	      }
+    case "lowerCase":
+	    this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
+	    break;
+    case "upperCase":
+	    this.currentSymbol = this.symbols[this.currentLayout].upperCase;
+	    break;
+    case "lowerAdd":
+	    this.currentSymbol = this.symbols[this.currentLayout].lowerAdd;
+	    break;
+    case "upperAdd":
+	    this.currentSymbol = this.symbols[this.currentLayout].upperAdd;
+	    break;
+    }
   this.changeStatus(status);
 }
 
@@ -98,9 +100,9 @@ KeyLetter.prototype.action = function(){
 }
 
 KeyLetter.prototype.createVisual = function(params){
-      params.title = this.currentSymbol;
-      this.visual = new VirtualKeyLetter(this, params);
-      return this.visual.visual;
+  params.title = this.currentSymbol;
+  this.visual = new VirtualKeyLetter(this, params);
+  return this.visual.visual;
 }
 
 KeyFunctional = function(kb, options){
@@ -117,8 +119,8 @@ KeyFunctional = function(kb, options){
 KeyFunctional.prototype = Object.create(Key.prototype);
 
 KeyFunctional.prototype.createVisual = function(params){
-      this.visual = new VirtualKeyFuncts(this, this.func, params);
-      return this.visual.visual;
+  this.visual = new VirtualKeyFuncts(this, this.func, params);
+  return this.visual.visual;
 }
 
 

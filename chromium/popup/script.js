@@ -31,16 +31,16 @@ chrome.storage.local.get(["languageList", "kStatus"], function(data){
   
 });
 
-chrome.storage.local.get(["isShow", "isActive"], function(data){
+chrome.storage.local.get(["isActive"], function(data){
   $('#isActive').prop('checked', data.isActive);
-  $('#isVisual').prop('checked', data.isShow);
-  console.log(data);
   
   $('#isActive').change(function(){
     f_active($(this).is(':checked'));
   });
-  $('#isVisual').change(function(){
-    f_showen($(this).is(':checked'));
-  });
 });
+
+$('#open-options').click(function(){
+  chrome.tabs.create({ "url": "chrome-extension://" + chrome.runtime.id + "/options/index.html"});
+});
+
 });

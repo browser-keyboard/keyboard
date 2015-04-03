@@ -1,36 +1,25 @@
-chrome.storage.local.get("isActive", function(data){
+chrome.browserAction.setBadgeBackgroundColor({color: [62, 62, 62, 255]});
+
+chrome.storage.local.get(["userOptions", "isActive", "languageList", "kStatus"], function(data){
   var isActive = data.isActive;
   if(isActive === undefined){
-    chrome.storage.local.set({'isActive': true}, function(){
-      console.log("x-frame saved");      
-    });
+    chrome.storage.local.set({'isActive': true});
   }
-});
-
-
-chrome.storage.local.get("isShow", function(data){
-  var isShow = data.isShow;
-  if(isShow === undefined){
-    chrome.storage.local.set({'isShow': true}, function(){});
+  
+  var userOptions = data.userOptions;
+  if(userOptions === undefined){
+    userOptions = {};
+    userOptions.show = 'always';
+    userOptions.capture = true;
+    chrome.storage.local.set({'userOptions': userOptions});
   }
-});
-
-var langNamesList;
-chrome.storage.local.get("languageList", function(data){
+  
   languageList = data.languageList;
-  if(languageList === undefined){
+  if((languageList === undefined) || (!languageList[0])){
     languageList = [ENGISHLAYOUT];    
-    chrome.storage.local.set({'languageList': languageList}, function(){});
+    chrome.storage.local.set({'languageList': languageList});
   }
-});
-
-function updateLangList(arr){
-  langNamesList = [];
-  for(var i=0; i < arr.length; i++)
-    langNamesList.push(arr[i].shortName);
-};
-
-chrome.storage.local.get("kStatus", function(data){
+  
   var kStatus = data.kStatus;
   if(kStatus === undefined){
     var kStatus = {
@@ -49,42 +38,48 @@ chrome.storage.local.get("kStatus", function(data){
 	active: false
       },
       language: {
-	value: 0,
-	count: 1
+	value: 0
       }
-    };
-    chrome.storage.local.set({'kStatus': kStatus}, function(){});
+    };    
   }
+  kStatus.language.count = languageList.length;
+  chrome.storage.local.set({'kStatus': kStatus});
+  
+});
+
+setTimeout(function(){  
+  f_updateBadgeList();
+}, 12);
+
+
+chrome.storage.local.get("kStatus", function(data){
 });
 
 chrome.tabs.onActivated.addListener(function(info){
   f_sendKStatusOnActivate(info.tabId);
-  console.log('banana');
 });
 
 chrome.tabs.onUpdated.addListener(function(info){
   f_sendKStatusOnActivate(info);
-  console.log('yea');
 });
 
  
 chrome.runtime.onMessage.addListener(function(data, sender){
   switch(data.eve){
     case 'changeKStutus':
-//       chrome.storage.local.set({'kStatus': data.kStatus}, function() {});
       f_updateKStatus(sender.tab.id, data.kStatus);
       break;
     case 'activision':
       f_active(data.status);
-      break;
-    case 'showen':
-      f_showen(data.status);
       break;
     case 'to_create_child':
       chrome.tabs.sendMessage(sender.tab.id, {eve: 'to_create_child'});
       break;
     case 'to_destroy_child':
       chrome.tabs.sendMessage(sender.tab.id, {eve: 'to_destroy_child'});
-      break;   
+      break; 
+    case 'updateBadgeList':
+      f_updateBadgeList();
+      break;
   };
 });

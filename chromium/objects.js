@@ -101,7 +101,7 @@ keyboardOption = {
     ['layout', keyBackspace],
     ['layout', keyDelete],
     [keyCaps, 'layout', keyEnter ],
-    [keyShift, 'layout', keyShiftEnter],
+    [keyShift, 'layout', keyShift],
     [keyNextLanguage, keySpace, keyAddit, keyAdditLong]
   ],
   keyCodes: keyCodes,

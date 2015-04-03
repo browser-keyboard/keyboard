@@ -1,10 +1,12 @@
 var Keyboard;
-Keyboard = function(options){
+Keyboard = function(options, userOptions){
   this.field = new Field();
   this.logic = new KeyboardLogic(this, this.field, options);
   this.keyCodes = options.keyCodes;
   this.active = true;
   
+  this.capture = userOptions.capture;
+  this.visualOption = userOptions.show;
   
 // create hotkey combinations
   this.keyHots = [];
@@ -51,7 +53,8 @@ Keyboard = function(options){
       }        
     }
   }
-  this.visual = new KeyboardVisual(this, options);
+  if(this.visualOption != 'newer')
+    this.visual = new KeyboardVisual(this, options);
   //this.visual.setLanguageTitles(0);
   this.browserFocused = true;
 } 
@@ -74,14 +77,24 @@ Keyboard.prototype.setField = function(newField, newWindow, params){
   }, params);
   this.animate = params.animate;
   this.field.focus(newField, newWindow);
+  
+  if(this.visualOption == 'on-active')
+    this.visual.show();
 };
 
 Keyboard.prototype.destroy = function(status){
-  this.visual.container.remove();
+  if(this.visualOption != 'newer')
+    this.visual.container.remove();
 }
 
 Keyboard.prototype.fieldBlur = function(){
   this.field.blur();
+  var that = this;
+  setTimeout(function(){
+    if(!that.field.active)
+      if(that.visualOption == 'on-active')
+	that.visual.hide();
+  }, 12);
 };
 
 Keyboard.prototype.browserFocus = function(){
@@ -111,7 +124,7 @@ Keyboard.prototype.addLetter = function(keyLetter){
   if(!this.field.active)
     return;
   this.logic.addLetter(keyLetter.currentSymbol);
-  if(this.animate)
+  if(this.animate && (this.visualOption != 'newer'))
     keyLetter.visual.down();
   if(this.logic.additObserve()){
     this.changeSymbols();
@@ -186,7 +199,8 @@ Keyboard.prototype.changeLanguage = function(){
   for(var i = this.keyLetters.length-1; i > -1; i--){
     this.keyLetters[i].changeLayout(value, status);
   }
-  this.visual.setLanguageTitles(this.logic.kStatus.language.value);
+  if(this.visualOption != 'newer')
+    this.visual.setLanguageTitles(this.logic.kStatus.language.value);
 }
 
 Keyboard.prototype.changeSymbols = function(){
@@ -201,6 +215,8 @@ Keyboard.prototype.changeSymbols = function(){
 }
 
 Keyboard.prototype.visualKeyFunct = function(func, bool){
+  if(this.visualOption == 'newer')
+    return;
   if(bool){
     for(var i = this.keyFunctionals.length-1; i > -1 ; i--){
       if( this.keyFunctionals[i].func == func){
@@ -218,8 +234,8 @@ Keyboard.prototype.visualKeyFunct = function(func, bool){
 
 //*******Physical Key Actions******************************************************
 Keyboard.prototype.keyDown = function(event){
-  /*if(!this.field.active)
-    return;  */
+  if(!this.capture)
+    return;
   var code = event.keyCode;
   var isHappened = false;
   for(var i = this.keyHots.length-1; i > -1 ; i--){
@@ -247,11 +263,12 @@ Keyboard.prototype.keyDown = function(event){
   if(!this.field.active)
     return;
   
-  for(var i = this.keyFunctionals.length-1; i > -1 ; i--){
-    if( this.keyFunctionals[i].code == code ){
-      this.keyFunctionals[i].visual.down();
-    };
-  }
+  if(this.visualOption != 'newer')
+    for(var i = this.keyFunctionals.length-1; i > -1 ; i--){
+      if( this.keyFunctionals[i].code == code ){
+	this.keyFunctionals[i].visual.down();
+      };
+    }
   
   for(var i = this.keyCodes.length-1; i > -1 ; i--){      
     if( this.keyCodes[i] == code ){
@@ -269,8 +286,8 @@ Keyboard.prototype.keyDown = function(event){
 };  
 
 Keyboard.prototype.keyUp = function(event){
-  /*if(!this.field.active)
-    return;*/
+  if(!this.capture)
+    return;
   var code = event.keyCode;
   var isHappened = false;
   for(var i = this.keyHots.length-1; i > -1 ; i--){
@@ -288,6 +305,8 @@ Keyboard.prototype.keyUp = function(event){
   }
   
   
+  if(this.visualOption == 'newer')
+    return;
   for(var i = this.keyCodes.length-1; i > -1 ; i--){
     if( this.keyCodes[i] == code ){
       this.keyLetters[i].visual.up();
