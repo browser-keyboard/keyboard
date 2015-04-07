@@ -4,22 +4,26 @@ f_updateBadgeList = function(){
   chrome.storage.local.get('languageList', function(data){
   for(var i=0; i < data.languageList.length; i++)
     langNamesList.push(data.languageList[i].shortName);
-  chrome.browserAction.setBadgeText({text: langNamesList[0]});
+  f_updateBadge();
   });
 };
 f_updateBadge = function(){
-  chrome.storage.local.get('kStatus', function(data){
-    chrome.browserAction.setBadgeText({text: langNamesList[data.kStatus.language.value]});
+  chrome.storage.local.get(['kStatus', 'isActive'], function(data){
+		if(data.isActive)
+			chrome.browserAction.setBadgeText({text: langNamesList[data.kStatus.language.value]});
+		else
+			chrome.browserAction.setBadgeText({text: ""});
   });
 }
 
 f_active = function(bool){  
   var isActive = bool;   
   chrome.storage.local.set({'isActive': isActive});  
-  var data = {eve: "active"}
+  f_updateBadgeList();
+  var data = {eve: "active"};  
   chrome.tabs.query({}, function(tabs) {
     for (var i=0; i<tabs.length; ++i) {
-	chrome.tabs.sendMessage(tabs[i].id, data);
+			chrome.tabs.sendMessage(tabs[i].id, data);
     }
   });
 }

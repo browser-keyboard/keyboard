@@ -20,6 +20,7 @@ angular.module('optionApp', [])
 	$scope.userOptions = {};
 	$scope.userOptions.capture = result.userOptions.capture;
 	$scope.userOptions.show = result.userOptions.show;
+	$scope.userOptions.langToSave = result.userOptions.langToSave;
 	
 	for(var i = 0; i < result.languageList.length; i++){
 	  layoutsIdUsed.push(result.languageList[i].id);
@@ -149,51 +150,58 @@ angular.module('optionApp', [])
       $scope.layoutsUsed[b].order = order + 1;
     };
     
-    $scope.save = function(){
-      if($scope.layoutsUsed.length == 0){
-	$scope.alertLangCount = true;
-	return;
-      }else
-	$scope.alertLangCount = false;
-      
-      $scope.layoutsUsed.sort(function(a,b) {
-	if (a.order < b.order)
-	  return -1;
-	    if (a.order > b.order)
-	      return 1;
-	return 0;	
-      });
-      
-      var toSave = [];
-      for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
-	$http.get('http://browser-keyboard.github.io/languages/' + $scope.layoutsUsed[i].id + '.json')
-	  .success(function(data){
-	    toSave.push(data);
-	  });
-      };
-      
-      setTimeout(function(){
-	chrome.storage.local.get('kStatus', function(data){
-	  var kStatus = data.kStatus;
-	  kStatus.language.count = toSave.length;
-	  kStatus.language.value = 0;
-	  
-	  chrome.storage.local.set({'languageList': toSave, 'kStatus': kStatus, userOptions: $scope.userOptions});
-	  chrome.runtime.sendMessage({eve: "updateBadgeList"});
-	  data = {
-	    eve: "rebult",
-	    kStatus: kStatus,
-	    userOptions: $scope.userOptions
-	  }
-	  chrome.tabs.query({}, function(tabs) {
-	    for (var i=0; i<tabs.length; ++i)
-	      chrome.tabs.sendMessage(tabs[i].id, data);
-	  });
-	  
-	});
-      },120);
-      f_active($scope.isActive);
-  }
+    
+    /*********************      SAVE         *********************************/
+    
+	$scope.save = function(){
+		if($scope.layoutsUsed.length == 0){
+			$scope.alertLangCount = true;
+			return;
+		}else
+			$scope.alertLangCount = false;
+		
+		$scope.layoutsUsed.sort(function(a,b) {
+			if (a.order < b.order)
+				return -1;
+					if (a.order > b.order)
+						return 1;
+			return 0;	
+		});
+		
+		var toSave = [];
+		var saveBool = true;
+		for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
+			$http.get('http://browser-keyboard.github.io/languages/' + $scope.layoutsUsed[i].id + '.json')
+				.success(function(data){
+					toSave.push(data);
+				});
+		};
+		
+		setInterval(function(){
+			if(!saveBool || (toSave.length != $scope.layoutsUsed.length))
+				return;
+			chrome.storage.local.get('kStatus', function(data){
+				var kStatus = data.kStatus;
+				kStatus.language.count = toSave.length;
+				kStatus.language.value = 0;
+				
+				chrome.storage.local.set({'languageList': toSave, 'kStatus': kStatus, userOptions: $scope.userOptions});
+				chrome.runtime.sendMessage({eve: "updateBadgeList"});
+				data = {
+					eve: "rebult",
+					kStatus: kStatus,
+					userOptions: $scope.userOptions
+				}
+				chrome.tabs.query({}, function(tabs) {
+					for (var i=0; i<tabs.length; ++i)
+						chrome.tabs.sendMessage(tabs[i].id, data);
+				});
+			});
+			saveBool = false;
+		}, 120);	
+		
+		f_active($scope.isActive);
+	}
   
   
   $scope.reset(); 

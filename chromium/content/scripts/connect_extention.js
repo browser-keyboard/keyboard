@@ -137,7 +137,9 @@ var childActive = function(){
     createChild();
 }
 
-var tabActivate = function(newKStatus){
+var tabActivate = function(){
+	if(window.chrome.searchBox)
+		return;
   if(created === 1)
     return;
   if(!created){
@@ -177,14 +179,14 @@ if(self==window.top){
   chrome.runtime.onMessage.addListener(function(data){
     switch(data.eve){
       case "kStatus":
-	tabActivate();
-	break;
+				tabActivate();
+				break;
       case "active":
-	activision();
-	break;
+				activision();
+				break;
       case "rebult":
-	rebult();
-	break;
+				rebult();
+				break;
     }
   })
 }else{ 

@@ -11,6 +11,7 @@ chrome.storage.local.get(["userOptions", "isActive", "languageList", "kStatus"],
     userOptions = {};
     userOptions.show = 'always';
     userOptions.capture = true;
+    userOptions.langToSave = true;
     chrome.storage.local.set({'userOptions': userOptions});
   }
   
@@ -24,32 +25,30 @@ chrome.storage.local.get(["userOptions", "isActive", "languageList", "kStatus"],
   if(kStatus === undefined){
     var kStatus = {
       shift:{
-	physical: false,
-	active: false
-      },
+				physical: false,
+				active: false
+			},
       caps: {
-	active: false
-	},
+			active: false
+			},
       addit: {
-	physical: false,
-	active: false    		
+				physical: false,
+				active: false    		
       },
       additLong: {
-	active: false
+				active: false
       },
       language: {
-	value: 0
+				value: 0
       }
     };    
   }
   kStatus.language.count = languageList.length;
+  if(!userOptions.langToSave)
+		kStatus.language.value = 0;
   chrome.storage.local.set({'kStatus': kStatus});
-  
-});
-
-setTimeout(function(){  
   f_updateBadgeList();
-}, 12);
+});
 
 
 chrome.storage.local.get("kStatus", function(data){
@@ -58,12 +57,11 @@ chrome.storage.local.get("kStatus", function(data){
 chrome.tabs.onActivated.addListener(function(info){
   f_sendKStatusOnActivate(info.tabId);
 });
-
+ 
 chrome.tabs.onUpdated.addListener(function(info){
   f_sendKStatusOnActivate(info);
 });
 
- 
 chrome.runtime.onMessage.addListener(function(data, sender){
   switch(data.eve){
     case 'changeKStutus':
@@ -83,3 +81,22 @@ chrome.runtime.onMessage.addListener(function(data, sender){
       break;
   };
 });
+
+
+
+
+
+
+
+
+
+function install_notice() {
+    if (localStorage.getItem('install_time'))
+        return;
+
+    var now = new Date().getTime();
+    localStorage.setItem('install_time', now);
+    chrome.tabs.create({ "url": "chrome-extension://" + chrome.runtime.id + "/options/index.html"});
+}
+setTimeout(install_notice, 500);
+

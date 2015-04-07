@@ -19,17 +19,11 @@ KeyboardVisual = function(kb, options){
     dragger.append(this.languageTitle);
     
     var controlsDiv = $('<div id=\'controlsDiv\'></div>');
-    var minimControl = $('<div id=\'minimize\'></div>');
     var closeControl = $('<div id=\'close\'></div>');
-    minimControl.click(function(){
-    	//that.minimize();
-      chrome.runtime.sendMessage({eve: "showen", status: false});
-    });
     closeControl.click(function(){
     	//that.kb.reverse();
       chrome.runtime.sendMessage({eve: "activision", status: false});
     });
-    controlsDiv.append(minimControl);
     controlsDiv.append(closeControl);
     dragger.append(controlsDiv);
     
@@ -88,18 +82,10 @@ KeyboardVisual = function(kb, options){
 KeyboardVisual.prototype.setLanguageTitles = function(num){
 	this.languageTitle.text(this.languageNames[num]);
 
-for(var i = this.kb.keyFunctionals.length-1; i > -1 ; i--){
-	if( this.kb.keyFunctionals[i].func == 'keyNextLanguage' ){
-		this.kb.keyFunctionals[i].visual.setDisplayKeyText(this.languageShortNames[num]);
-	};
-}
-}
-
-KeyboardVisual.prototype.minimize = function(){
-	if(this.container.attr("minimized") == "true"){
-		this.container.attr("minimized", "false");
-	}else{
-		this.container.attr("minimized", "true");
+	for(var i = this.kb.keyFunctionals.length-1; i > -1 ; i--){
+		if( this.kb.keyFunctionals[i].func == 'keyNextLanguage' ){
+			this.kb.keyFunctionals[i].visual.setDisplayKeyText(this.languageShortNames[num]);
+		};
 	}
 }
 
@@ -109,3 +95,4 @@ KeyboardVisual.prototype.show = function(){
 KeyboardVisual.prototype.hide = function(){
 	this.container.hide();
 }
+

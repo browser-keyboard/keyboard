@@ -1,13 +1,12 @@
 <!doctype html>
-<html ng-app="optionApp">
+<html ng-app="optionApp"  ng-csp>
 <head>
   <title>Настройка языка</title>
   <meta charset="utf-8">
-  <script src="libs/angular.min.js"></script>
-  <script src="libs/angular.min.js.map"></script>
+  <script src="libs/angular.js"></script>
   <script src="../synca.js"></script>
   <script src="script.js"></script>
-  <link href="libs/bootstrap/css/paper.css" rel="stylesheet">
+  <link href="libs/paper.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
   <body>
@@ -28,6 +27,10 @@
 	
 	<div class="checkbox">
 	  <label><input type="checkbox" ng-model="userOptions.capture">Перехват клавиш</label>
+	</div>
+	
+	<div class="checkbox">
+	  <label><input type="checkbox" ng-model="userOptions.langToSave">Сохранять текущий язык при закрытии браузера</label>
 	</div>
       </div>
     </div>
@@ -103,8 +106,8 @@
   
       <div class="panel-footer">
       <div class="btn-group" role="group" aria-label="...">
-	<button type="button" class="btn btn-success" ng-click="reset()">Cansel</button>
-	<button type="button" class="btn btn-success" ng-click="save()">Save</button>
+	<button type="button" class="btn btn-success" ng-click="reset()">Отмена</button>
+	<button type="button" class="btn btn-success" ng-click="save()">Сохранить</button>
 	
       </div></div>
 	</div>
