@@ -4,7 +4,7 @@ Virtual keyboard extensoin for Firefox and Chrome
 Расширение виртуальная клавитура для Firefox и Chrome
 
 [View Demo | Посмотреть демо](http://browser-keyboard.github.io/demo/index.html)
-
+[AChrome alpha test| Альфа-тест на Chrome](https://chrome.google.com/webstore/detail/browser-keyboardalpha/fkbfahodmkmnemdhcnejmafailmahkkp?hl=ru)
 
 # Features 
 
@@ -101,7 +101,7 @@ In Firefox at wrinting mail on gmail.com physical key press can't be detected
 В Firefox`е при написании письма на gmail.com нажатия физических клавиш не определяются.
 
 # TODO
-1) Chrome and Firefox:
+1) Firefox:
 
 * make able to turn on/off keyboard capturing
 * make able to set on-screen keyboard showing only on active text field
@@ -121,7 +121,7 @@ In Firefox at wrinting mail on gmail.com physical key press can't be detected
 
 
 # Список задач
-1) Chrome and Firefox:
+1) Firefox:
 
 * сделать возможным вкл/выкл перехвата нажатий физических клавиш
 * сделать возможным опция появление на-экранной клавиатуры только при акивном текстовом поле
