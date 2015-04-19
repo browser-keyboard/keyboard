@@ -9,112 +9,125 @@
   <link href="libs/paper.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
-  <body>
+  <body ng-controller="OptionController">
+		
+		<div class="container alerted" >
+			<div class="animated-show"  ng-class="alertNotNetOnReset"> 
+				<div class="alert alert-dismissible alert-warning">
+					<strong>Ошибка соодинения: проверьте подключение к интернету и обновите страницу</strong>
+				</div>
+			</div>
+			<div class="animated-show"  ng-class="alertNotNetOnSave"> 
+				<div class="alert alert-dismissible alert-danger">
+					<strong>Ошибка соодинения: проверьте подключение к интернету и нажмите "Сохранить" снова</strong>
+				</div>
+			</div>
+			<div class="animated-show"  ng-class="alertLangCount"> 
+				<div class="alert alert-dismissible alert-danger">
+					<button type="button" class="close" data-dismiss="alert" ng-click="alertLangCountClose()">×</button>
+					<strong>Выбирете хотя бы один язык</strong>
+				</div>
+			</div>
+			<div class="animated-show" ng-class="alertShowSaved"> 
+				<div class="alert alert-dismissible alert-success">
+					<button type="button" class="close" data-dismiss="alert" ng-click="alertShowSavedClose()">×</button>
+					<strong>Измения сохранены</strong>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="container" >
+			<div class="form-horizontal row" style="margin:auto">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<div class="checkbox">
+							<label><input type="checkbox"  ng-model="isActive">Включен</label>
+						</div>						
+						<div class="checkbox">
+							<label><input type="checkbox" ng-model="userOptions.capture">Перехват клавиш</label>
+						</div>				
+						<div class="checkbox">
+							<label><input type="checkbox" ng-model="userOptions.langToSave">Сохранять текущий язык при закрытии браузера</label>
+						</div>
+					</div>
+				</div>
+					<div class="col-lg-6">
+					 <div class="form-group">
+						<div class="radio">
+							<label>
+								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="always">
+								Всегда показывать экраную клавиатуру
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="on-active">
+								Показывать экраную клавиатуру только при активном текстовом поле
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="newer">
+								Скрыть экраную клавиатуру
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="panel panel-primary">
+				<div class="panel-heading">Настройка языка</div>
+				<div class="panel-body" style="padding-top:0; padding-bottom: 0px;">
+				
+				
+				<div class="row bg-primary" style="color: white">
+					<div class="col-xs-5">Доступные языки</div>
+					<div class="col-xs-1" ></div>
+					<div class="col-xs-5">Добавленные</div>
+					<div class="col-xs-1" ></div>
+				</div>  
+					
+				<div class="row" id="mytable" style="height: 360px"  >
+					<div class="col-xs-5">
+					<input type="text" class="search-input" placeholder="поиск" ng-model="searchEnable">
+					 <div class='radiobox-div' ng-repeat="layout in layoutsEnable = (layoutsAll | filter : {$: searchEnable, toUse: false} | orderBy : 'shortName': reverse)">
+							<label class='radiobox'><input type="radio" name="selectedIdEneble" ng-model="$parent.selectedIdEneble" ng-value="{{layout.id}}"><span class="item"><span class="badge">{{layout.shortName}}</span>{{layout.name}}</span></label>
+					 </div>
+					 
+					</div>
+					<div class="col-xs-1">
+						<div class="btn-group-vertical" role="group" aria-label="...">
+							<button type="button" class="btn btn-primary" ng-click="removeFromUsed()" ng-if="selectedIdUsed!=-1"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
+							<button type="button" class="btn btn-primary" ng-click="addToUsed()" ng-if="selectedIdEneble!=-1"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+						</div>
+					</div>
+					<div class="col-xs-5" style="padding: 0;  height: 100%">
+					 <div class='radiobox-div' ng-repeat="layout in layoutsUsed  = (layoutsAll | filter : {toUse: true} | orderBy : 'order': reverse)">
+							<label class='radiobox'><input type="radio" name="selectedIdUsed" ng-model="$parent.selectedIdUsed" ng-value="{{layout.id}}"><span class="item">{{layout.name}}</span></label>
+					 </div>     
+					</div>
+					<div class="col-xs-1" style="text-align: center;  height: 100%"">
+						<div class="btn-group-vertical" role="group" aria-label="...">
+							<button type="button" class="btn btn-primary" ng-click="orderUp()" ng-if="selectedIdUsed!=-1"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+							<button type="button" class="btn btn-primary" ng-click="orderDown()" ng-if="selectedIdUsed!=-1"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+						</div>
+					</div>
+				</div>
+			</div>
 
-  <div class="container" ng-controller="OptionController">
-  
-  <div class="alert alert-dismissible alert-danger" ng-if="alertLangCount">
-    <button type="button" class="close" data-dismiss="alert" ng-click="alertLangCountClose()">×</button>
-    <strong>Выбирете хотя бы один язык</strong>
-  </div>
+			
+			
+			<div class="panel-footer">
+				<div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-success" ng-click="reset()">Отмена</button>
+					<button type="button" class="btn btn-success" ng-click="save()">Сохранить</button>			
+				</div>
+			</div>
+		</div>
 
-  <div class="form-horizontal row" style="margin:auto">
-    <div class="col-lg-6">
-      <div class="form-group">
-	<div class="checkbox">
-	  <label><input type="checkbox"  ng-model="isActive">Включен</label>
-	</div>
-	
-	<div class="checkbox">
-	  <label><input type="checkbox" ng-model="userOptions.capture">Перехват клавиш</label>
-	</div>
-	
-	<div class="checkbox">
-	  <label><input type="checkbox" ng-model="userOptions.langToSave">Сохранять текущий язык при закрытии браузера</label>
-	</div>
-      </div>
-    </div>
-    
-    <div class="col-lg-6">
-     <div class="form-group">
-      <div class="radio">
-	<label>
-	  <input name="optionsRadios" ng-model="userOptions.show" type="radio" value="always">
-	  Всегда показывать экраную клавиатуру
-	</label>
-      </div>
-      <div class="radio">
-	<label>
-	  <input name="optionsRadios" ng-model="userOptions.show" type="radio" value="on-active">
-	  Показывать экраную клавиатуру только при активном текстовом поле
-	</label>
-      </div>
-      <div class="radio">
-          <label>
-            <input name="optionsRadios" ng-model="userOptions.show" type="radio" value="newer">
-            Скрыть экраную клавиатуру
-          </label>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  
-    <div class="panel panel-primary">
-      <div class="panel-heading">Настройка языка</div>
-	<div class="panel-body" style="padding-top:0; padding-bottom: 0px;">
-  
-  
-  <div class="row bg-primary" style="color: white">
-    <div class="col-xs-5">Доступные языки</div>
-    <div class="col-xs-1" ></div>
-    <div class="col-xs-5">Добавленные</div>
-    <div class="col-xs-1" ></div>
-  </div>  
-    
-  <div class="row" id="mytable" style="height: 360px">
-    <div class="col-xs-5">      
-    <input type="text" class="search-input" placeholder="search" ng-model="searchEnable">
-     <div id='radiobox-div' ng-repeat="layout in layoutsEnable = (layoutsAll | filter : {$: searchEnable, toUse: false} | orderBy : 'shortName': reverse)">
-	<label class='radiobox'><input type="radio" name="selectedIdEneble" ng-model="$parent.selectedIdEneble" ng-value="{{layout.id}}"><span>{{layout.name}}</span></label>
-     </div>
-     
-    </div>
-    <div class="col-xs-1">
-      <div class="btn-group-vertical" role="group" aria-label="...">
-	<button type="button" class="btn btn-primary" ng-click="removeFromUsed()"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
-	<button type="button" class="btn btn-primary" ng-click="addToUsed()"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
-      </div>
-    </div>
-    <div class="col-xs-5" style="padding: 0;  height: 100%">
-     <div id='radiobox-div' ng-repeat="layout in layoutsUsed  = (layoutsAll | filter : {toUse: true} | orderBy : 'order': reverse)">
-	<label class='radiobox'><input type="radio" name="selectedIdUsed" ng-model="$parent.selectedIdUsed" ng-value="{{layout.id}}"><span>{{layout.name}}</span></label>
-     </div>     
-    </div>
-    <div class="col-xs-1" style="text-align: center;  height: 100%"">
-      <div class="btn-group-vertical" role="group" aria-label="...">
-	<button type="button" class="btn btn-primary" ng-click="orderUp()"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
-	<button type="button" class="btn btn-primary" ng-click="orderDown()"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-      </div>
-    </div>
-  </div>
-  {{}}
-  
- 
-  </div>
-
-  
-      <div class="panel-footer">
-      <div class="btn-group" role="group" aria-label="...">
-	<button type="button" class="btn btn-success" ng-click="reset()">Отмена</button>
-	<button type="button" class="btn btn-success" ng-click="save()">Сохранить</button>
-	
-      </div></div>
-	</div>
-    </div>
-  </div>
-
-</body>
+	</body>
 </html>
 
 

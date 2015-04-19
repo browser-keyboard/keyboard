@@ -138,7 +138,7 @@ var childActive = function(){
 }
 
 var tabActivate = function(){
-	if(window.chrome.searchBox)
+  if(document.URL.indexOf("https://www.google.ru/_/chrome/newtab") != -1)
 		return;
   if(created === 1)
     return;

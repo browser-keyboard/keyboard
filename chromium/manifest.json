@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "Browser Keyboard(Alpha)",
+  "name": "Browser Keyboard(Beta)",
   "description": "Developing",
-  "version": "0.2.9",
+  "version": "0.3",
   "browser_action": {
     "default_icon": "popup/images/icon.png",
     "default_popup": "popup/popup.html"

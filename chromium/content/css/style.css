@@ -1,14 +1,29 @@
-
+@font-face {
+    font-family: "Function Symbols";
+	src:url('chrome-extension://__MSG_@@extension_id__/content/css/symbols.otf');
+}
+@font-face {
+    font-family: Roboto;
+	src:url('chrome-extension://__MSG_@@extension_id__/content/css/Roboto-Light.ttf');
+}
+@font-face {
+    font-family: "PT MONO";
+	src:url('chrome-extension://__MSG_@@extension_id__/content/css/PTM55F.ttf');
+}
 
 #keyboardDiv{
 	position: fixed !important;
   box-sizing: border-box;
 	right: 50px;
 	bottom: 50px;
-	width: 466px;
+	width: 451px;
 	z-index: 1000000000000;
 	color: #fcfcfc;
+	font-family: Roboto;
 	
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 #aftan-keyboard{
 	margin: 0;
@@ -19,11 +34,7 @@
 	box-sizing: border-box;
 	
 	font-size: 15px;
-	font-family: Droid Sans;
 
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
 }
 
 #keyboardDragger{
@@ -34,14 +45,19 @@
   position: relative;
   border: 1px solid #000;
   border-bottom: 0px;
+  font-size: 14px;
       
 }
 
 #keyboardDragger > #languageTitle{
+   /* font-family: "PT MONO";*/
+	letter-spacing: 3px;
   box-sizing: border-box;
 	height: 100%;
 	display: inline-block;
 	width: 43px;
+  line-height: 27px;
+  padding-left: 10px;
 }
 
 #keyboardDragger #controlsDiv{
@@ -50,22 +66,16 @@
 	position: absolute;
 	right: 0;
 	height:  100%;
-	background: #000;
-}
-
-#keyboardDragger > #controlsDiv > #minimize, #keyboardDragger > #controlsDiv > #close{
-  box-sizing: border-box;
-	display: inline-block;
-	width: 25px;
-	height:  100%;
-}
-
-#keyboardDragger > #controlsDiv > #minimize{
-	background: #00c9c9;
 }
 
 #keyboardDragger > #controlsDiv > #close{
-	background: #b23223;
+	font-family: "Function Symbols";
+	line-height: 25px;
+	box-sizing: border-box;
+	display: inline-block;
+	width: 25px;
+	height:  100%;
+	text-align: center;
 }
 
 .aftan-keyboard-line{
@@ -110,12 +120,28 @@
 }
 
 
+
+.aftan-keyboard-key[sidein="left"]{
+	text-align: left;
+	padding-left: 10px;
+}
+.aftan-keyboard-key[sidein="right"]{
+	text-align: right;
+	padding-right: 10px;
+}
+
+
+
 .keyCaps, .keyBackspace, .keyDelete{
-	width: 61px;
+	width: 46px;
+}
+
+.keyCaps, .keyBackspace, .keyDelete, .keyShift, .keyEnter{
+    font-family: "Function Symbols";
 }
 
 .keyNextLanguage{
-	width: 92px;
+	width: 77px;
 }
 .keySpace{
 	width: 217px;
@@ -130,5 +156,8 @@
 	width: 76px;
 }
 .keyShift{
-	width: 77px;
+	width: 69px;
+}
+.keyAdditLong{
+	text-decoration: underline;
 }

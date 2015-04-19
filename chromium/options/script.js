@@ -10,10 +10,17 @@ angular.module('optionApp', [])
 	return 0;
     }
     
+    /*********************      RESET        *********************************/
     $scope.reset = function(){
-      $scope.alertLangCount = false;
+      $scope.alertLangCount = "hided";
+			$scope.alertShowSaved = "hided";
+			$scope.alertNotNetOnReset = "hided";
+			$scope.alertNotNetOnSave = "hided";
+			$scope.netConnected = false;
       var layoutsFromServer;
       var layoutsIdUsed = [];
+	  $scope.selectedIdUsed = -1;
+	  $scope.selectedIdEneble = -1;
       
       chrome.storage.local.get(['languageList', 'isActive', 'userOptions'], function (result) {
 	$scope.isActive = result.isActive;
@@ -26,6 +33,7 @@ angular.module('optionApp', [])
 	  layoutsIdUsed.push(result.languageList[i].id);
 	  
 	  $http.get('http://browser-keyboard.github.io/languages/list.json').success(function(data){
+			$scope.netConnected = true;
 	    layoutsFromServer = data;
 	    $scope.layoutsAll = [];
 	    $scope.searchEnable = '';
@@ -44,14 +52,13 @@ angular.module('optionApp', [])
 	    $scope.layoutsEnable = -1; 
 	  }).error(function(){
 	    console.log('ошибка');
+			$scope.alertNotNetOnReset = "showed";
 	  });
 	}
       });
     }
-    $scope.alertLangCountClose = function(){
-      $scope.alertLangCount = false;
-    }
     
+    /*********************      ADD TO USE         *********************************/
     $scope.addToUsed = function(){
       if($scope.selectedIdEneble == -1)
 	return;
@@ -72,6 +79,7 @@ angular.module('optionApp', [])
       $scope.selectedIdEneble = (a == -1) ? -1 : $scope.layoutsEnable[a].id;
     };
     
+    /*********************      REMOVE FROM USED         *********************************/
     $scope.removeFromUsed = function(){
       if($scope.selectedIdUsed == -1)
 	return;
@@ -83,7 +91,7 @@ angular.module('optionApp', [])
 	  $scope.toUseLength--;
 	}      
       switch($scope.layoutsUsed.length) {
-	case 0:
+	case 1:
 	  $scope.selectedIdUsed = -1;
 	  break;
 	case order:
@@ -103,6 +111,7 @@ angular.module('optionApp', [])
       }
     };
     
+    /*********************      ORDER         *********************************/
     $scope.orderUp = function(){
       if($scope.selectedIdUsed == -1)
 	return;
@@ -154,43 +163,53 @@ angular.module('optionApp', [])
     /*********************      SAVE         *********************************/
     
 	$scope.save = function(){
-		if($scope.layoutsUsed.length == 0){
-			$scope.alertLangCount = true;
-			return;
-		}else
-			$scope.alertLangCount = false;
-		
-		$scope.layoutsUsed.sort(function(a,b) {
-			if (a.order < b.order)
-				return -1;
-					if (a.order > b.order)
-						return 1;
-			return 0;	
-		});
-		
-		var toSave = [];
 		var saveBool = true;
-		for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
-			$http.get('http://browser-keyboard.github.io/languages/' + $scope.layoutsUsed[i].id + '.json')
-				.success(function(data){
-					toSave.push(data);
-				});
-		};
+		
+		if($scope.netConnected){
+			if($scope.layoutsUsed.length == 0){
+				$scope.alertLangCount = "showed";
+				return;
+			}else
+				$scope.alertLangCount = "hided";
+			
+			$scope.layoutsUsed.sort(function(a,b) {
+				if (a.order < b.order)
+					return -1;
+						if (a.order > b.order)
+							return 1;
+				return 0;	
+			});
+			
+			var toSave = [];
+			for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
+				$http.get('http://browser-keyboard.github.io/languages/' + $scope.layoutsUsed[i].id + '.json')
+					.success(function(data){
+						toSave.push(data);
+					}).error(function(){
+						$scope.alertNotNetOnSave = "showen";
+						saveBool = false;
+					});
+			};			
+		}		
 		
 		setInterval(function(){
-			if(!saveBool || (toSave.length != $scope.layoutsUsed.length))
+			if(!saveBool)
 				return;
+			if($scope.netConnected)
+				if(toSave.length != $scope.layoutsUsed.length)
+					return;
 			chrome.storage.local.get('kStatus', function(data){
-				var kStatus = data.kStatus;
-				kStatus.language.count = toSave.length;
-				kStatus.language.value = 0;
-				
-				chrome.storage.local.set({'languageList': toSave, 'kStatus': kStatus, userOptions: $scope.userOptions});
-				chrome.runtime.sendMessage({eve: "updateBadgeList"});
+				if($scope.netConnected){
+					var kStatus = data.kStatus;
+					kStatus.language.count = toSave.length;
+					kStatus.language.value = 0;
+					
+					chrome.storage.local.set({'languageList': toSave, 'kStatus': kStatus});				
+					chrome.runtime.sendMessage({eve: "updateBadgeList"});	
+				}
+				chrome.storage.local.set({userOptions: $scope.userOptions});
 				data = {
-					eve: "rebult",
-					kStatus: kStatus,
-					userOptions: $scope.userOptions
+					eve: "rebult"
 				}
 				chrome.tabs.query({}, function(tabs) {
 					for (var i=0; i<tabs.length; ++i)
@@ -198,12 +217,30 @@ angular.module('optionApp', [])
 				});
 			});
 			saveBool = false;
+			$scope.alertNotNetOnSave = "hided";
+			$scope.alertShowSaved = "showed";
+			setTimeout(function(){
+				$scope.canHideAlertShowSaved = true;
+			}, 300);
 		}, 120);	
 		
 		f_active($scope.isActive);
 	}
   
-  
+    /*********************      ALERTS         *********************************/
+	
+  $scope.$watch(function() { 
+		if($scope.canHideAlertShowSaved){
+			$scope.alertShowSaved = "hided";
+		}
+  });
+	$scope.alertShowSavedClose = function(){
+		$scope.alertShowSaved = "hided";
+	}
+	$scope.alertLangCountClose = function(){
+		$scope.alertLangCount = "hided";
+	}
+
   $scope.reset(); 
 }]);
 

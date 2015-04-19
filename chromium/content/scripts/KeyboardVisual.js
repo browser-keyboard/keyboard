@@ -19,7 +19,7 @@ KeyboardVisual = function(kb, options){
     dragger.append(this.languageTitle);
     
     var controlsDiv = $('<div id=\'controlsDiv\'></div>');
-    var closeControl = $('<div id=\'close\'></div>');
+    var closeControl = $('<div id=\'close\'>E</div>');
     closeControl.click(function(){
     	//that.kb.reverse();
       chrome.runtime.sendMessage({eve: "activision", status: false});
@@ -55,7 +55,7 @@ KeyboardVisual = function(kb, options){
 			  if(options.keySet[i1][i2] == 'layout'){					
 				  // по колличеству элементов в первой расскладке
 				  for (var i3 = 0; i3 < options.languageSet[0].letterSet[i1].length; i3++) {
-		  var key = this.kb.keyLetters[keyWordCount].createVisual(attr);
+					  var key = this.kb.keyLetters[keyWordCount].createVisual();
 					  line.append(key);
 					  keyWordCount++;						
 				  }

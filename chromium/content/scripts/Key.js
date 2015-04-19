@@ -99,7 +99,8 @@ KeyLetter.prototype.action = function(){
   this.kb.addLetter(this);
 }
 
-KeyLetter.prototype.createVisual = function(params){
+KeyLetter.prototype.createVisual = function(){
+  var params = {}
   params.title = this.currentSymbol;
   this.visual = new VirtualKeyLetter(this, params);
   return this.visual.visual;
