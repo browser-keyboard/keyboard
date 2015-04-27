@@ -5,7 +5,7 @@ html, body{
 }
 
 html{
-	width: 160px;
+	width: 180px;
 	font-size: 18px;
 	
   -moz-user-select: none;
@@ -92,6 +92,7 @@ div.block:first-child{
 	padding-left: 4px;
 	padding-bottom: 10px;
 	letter-spacing: 1px;
+  padding-right: 20px;
 }
 
 

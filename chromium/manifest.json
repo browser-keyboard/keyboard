@@ -9,7 +9,7 @@
     "default_popup": "popup/popup.html"
   },
   "background": {
-    "scripts": ["synca.js","background/english.js","background/background.js"]
+    "page": "background/index.html"
   },
   "permissions": [
     "storage"

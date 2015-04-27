@@ -1,10 +1,12 @@
 var KeyboardVisual;
-KeyboardVisual = function(kb, options){
+KeyboardVisual = function(kb, options, userOptions){
     this.kb = kb;		
     
     var that = this;
 		
     this.container = $('<div id=\'keyboardDiv\'></div>');
+		this.container.attr('size', userOptions.size);
+		this.container.attr('color', userOptions.color);
     if(this.kb.visualOption == 'on-active')
       this.container.css({display: 'none'});
 
@@ -35,7 +37,7 @@ KeyboardVisual = function(kb, options){
     });
     
     dragger.appendTo(this.container);
-    this.container.draggable({handle: dragger, containment: "window" });
+   // var bod = $('body')[0];
     
   	var keyWordCount = 0;
   	var keyFunctionalCount = 0;
@@ -74,6 +76,12 @@ KeyboardVisual = function(kb, options){
 	  }
 	  this.container.append(this.visual);
     this.container.appendTo('html');	
+    
+    var x =  $(window).height() - 50;
+    var y =   $(window).width() - 50;
+    this.container.draggable({handle: "#keyboardDragger", containment: "html", 
+      position: {x: x, y: y}      
+    });
     
     this.setLanguageTitles(0);
   	

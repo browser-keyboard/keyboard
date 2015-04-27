@@ -8,6 +8,7 @@ body{
 
 .panel-primary{
 	margin-bottom: 0px;
+  font-size: 14px;
 }
 
 #mytable {
@@ -42,7 +43,10 @@ body{
 }
 
 .radiobox-div:hover{
-	background: #D5EDFF;;
+	background: #D5EDFF;
+}
+.radiobox-div{
+	padding-left: 7px;
 }
 
  .radiobox{

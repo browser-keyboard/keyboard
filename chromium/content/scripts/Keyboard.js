@@ -54,7 +54,7 @@ Keyboard = function(options, userOptions){
     }
   }
   if(this.visualOption != 'newer')
-    this.visual = new KeyboardVisual(this, options);
+    this.visual = new KeyboardVisual(this, options, userOptions);
   //this.visual.setLanguageTitles(0);
   this.browserFocused = true;
 } 

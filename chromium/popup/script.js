@@ -23,6 +23,10 @@ chrome.storage.local.get(["languageList", "kStatus"], function(data){
       f_changeLanguage( $(this).data('value'));
       $('#lang li').attr('active', 'false');
       list[$(this).data('value')].attr('active', 'true');
+			if(!$('#isActive').is(':checked')){
+				f_active(true);
+				$('#isActive').prop('checked', true);
+			}
     });
     list.push(li);
     ul.append(li);

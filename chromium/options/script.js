@@ -17,44 +17,46 @@ angular.module('optionApp', [])
 			$scope.alertNotNetOnReset = "hided";
 			$scope.alertNotNetOnSave = "hided";
 			$scope.netConnected = false;
-      var layoutsFromServer;
-      var layoutsIdUsed = [];
+			var layoutsFromServer;
+			var layoutsIdUsed = [];
 	  $scope.selectedIdUsed = -1;
 	  $scope.selectedIdEneble = -1;
       
       chrome.storage.local.get(['languageList', 'isActive', 'userOptions'], function (result) {
-	$scope.isActive = result.isActive;
-	$scope.userOptions = {};
-	$scope.userOptions.capture = result.userOptions.capture;
-	$scope.userOptions.show = result.userOptions.show;
-	$scope.userOptions.langToSave = result.userOptions.langToSave;
-	
-	for(var i = 0; i < result.languageList.length; i++){
-	  layoutsIdUsed.push(result.languageList[i].id);
-	  
-	  $http.get('http://browser-keyboard.github.io/languages/list.json').success(function(data){
-			$scope.netConnected = true;
-	    layoutsFromServer = data;
-	    $scope.layoutsAll = [];
-	    $scope.searchEnable = '';
-	    $scope.toUseLength = 0;
-	    angular.forEach(layoutsFromServer, function(layout) {
-	      var a = layoutsIdUsed.indexOf(layout.id);
-	      layout.order = a+1;
-	      layout.toUse = (a != -1);
-	      $scope.layoutsAll.push(layout);
-	      if(a != -1){
-		$scope.toUseLength++;
-	      }
-	    });
-	    
-	    $scope.selectedIdEneble = -1;
-	    $scope.layoutsEnable = -1; 
-	  }).error(function(){
-	    console.log('ошибка');
-			$scope.alertNotNetOnReset = "showed";
-	  });
-	}
+				$scope.isActive = result.isActive;
+				$scope.userOptions = {};
+				$scope.userOptions.capture = result.userOptions.capture;
+				$scope.userOptions.show = result.userOptions.show;
+				$scope.userOptions.langToSave = result.userOptions.langToSave;
+				$scope.userOptions.size = result.userOptions.size;
+				$scope.userOptions.color = result.userOptions.color;
+				
+				for(var i = 0; i < result.languageList.length; i++){
+					layoutsIdUsed.push(result.languageList[i].id);
+					
+					$http.get('http://browser-keyboard.github.io/languages/list.json').success(function(data){
+						$scope.netConnected = true;
+						layoutsFromServer = data;
+						$scope.layoutsAll = [];
+						$scope.searchEnable = '';
+						$scope.toUseLength = 0;
+						angular.forEach(layoutsFromServer, function(layout) {
+							var a = layoutsIdUsed.indexOf(layout.id);
+							layout.order = a+1;
+							layout.toUse = (a != -1);
+							$scope.layoutsAll.push(layout);
+							if(a != -1){
+					$scope.toUseLength++;
+							}
+						});
+						
+						$scope.selectedIdEneble = -1;
+						$scope.layoutsEnable = -1; 
+					}).error(function(){
+						console.log('ошибка');
+						$scope.alertNotNetOnReset = "showed";
+					});
+				}
       });
     }
     

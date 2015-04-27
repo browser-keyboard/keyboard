@@ -20,7 +20,11 @@ var f_blur = function(){
   window.virtualKeyboard.fieldBlur();
 }
 var f_keyDown =  function(e){
+  console.log('keyDown: ', e);
   window.virtualKeyboard.keyDown(e);
+}
+var f_keyPress =  function(e){
+  console.log('keyPress: ', e);
 }
 var f_keyUp = function(e){
   window.virtualKeyboard.keyUp(e);
@@ -38,6 +42,7 @@ keyboardConnectionOn = function(){
   $('html').on('blur', selector, f_blur);
   $('html').on('keydown', "body", f_keyDown);
   $('html').on('keyup', "body", f_keyUp);
+  $('html').on('keypress', "body", f_keyPress);
   $(window).blur(f_windowBlur);
   $(window).focus(f_windowFocus);
 };
@@ -47,6 +52,7 @@ keyboardConnectionOff = function(){
   $('html').off('blur', selector, f_blur);
   $('html').off('keydown', "body", f_keyDown);
   $('html').off('keyup', "body", f_keyUp);
+  $('html').off('keypress', "body", f_keyPress);
   $(window).off("blur", f_windowBlur);
   $(window).off("focus", f_windowFocus);
 };
@@ -122,6 +128,8 @@ createTop = function(){
 }
 
 var createChild = function(){
+  if($('body').length == 0)
+     return;
   window.virtualKeyboard = parent.window.virtualKeyboard; 
   keyboardConnectionOn();
   created = true;

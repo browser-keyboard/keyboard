@@ -41,11 +41,12 @@
 			<div class="form-horizontal row" style="margin:auto">
 				<div class="col-lg-6">
 					<div class="form-group">
+						<h6>Основные настройки</h6>
 						<div class="checkbox">
 							<label><input type="checkbox"  ng-model="isActive">Включен</label>
 						</div>						
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="userOptions.capture">Перехват клавиш</label>
+							<label><input type="checkbox" ng-model="userOptions.capture">Обрабатывать нажатия клавиш на физической клавиатуре</label>
 						</div>				
 						<div class="checkbox">
 							<label><input type="checkbox" ng-model="userOptions.langToSave">Сохранять текущий язык при закрытии браузера</label>
@@ -54,6 +55,7 @@
 				</div>
 					<div class="col-lg-6">
 					 <div class="form-group">
+						<h6>Поведение на-экранной клавиатуры</h6>
 						<div class="radio">
 							<label>
 								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="always">
@@ -70,6 +72,50 @@
 							<label>
 								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="newer">
 								Скрыть экраную клавиатуру
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="form-horizontal row" style="margin:auto">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<h6>Цветовая схема на-экранной клавиатуры</h6>
+							<div class="radio">
+							<label>
+								<input name="optionsRadios2" ng-model="userOptions.color" type="radio" value="white">
+								Белая
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="optionsRadios2" ng-model="userOptions.color" type="radio" value="black">
+								Черная
+							</label>
+						</div>
+					</div>
+				</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+						<h6>Размер на-экранной клавиатуры</h6>
+							<div class="radio">
+							<label>
+								<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="standart">
+								Стандартный
+							</label>
+						</div>
+							<div class="radio">
+								<label>
+									<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="big">
+									Большой
+								</label>
+							</div>
+							<div class="radio">
+							<label>
+								<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="large">
+								Огромный
 							</label>
 						</div>
 					</div>

@@ -12,6 +12,8 @@ chrome.storage.local.get(["userOptions", "isActive", "languageList", "kStatus"],
     userOptions.show = 'always';
     userOptions.capture = true;
     userOptions.langToSave = true;
+    userOptions.size = "standart";
+    userOptions.color = "white";
     chrome.storage.local.set({'userOptions': userOptions});
   }
   
@@ -78,6 +80,9 @@ chrome.runtime.onMessage.addListener(function(data, sender){
       break; 
     case 'updateBadgeList':
       f_updateBadgeList();
+      break;
+    case 'updateBadge':
+      f_updateBadge();
       break;
   };
 });
