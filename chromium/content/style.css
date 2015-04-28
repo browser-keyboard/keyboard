@@ -1,15 +1,15 @@
 /*********************      FONT        *********************************/
 @font-face {
     font-family: "Function Symbols";
-	src:url('chrome-extension://__MSG_@@extension_id__/content/css/symbols.otf');
+	src:url('chrome-extension://__MSG_@@extension_id__/include/fonts/symbols.otf');
 }
 @font-face {
     font-family: Roboto;
-	src:url('chrome-extension://__MSG_@@extension_id__/content/css/Roboto-Light.ttf');
+	src:url('chrome-extension://__MSG_@@extension_id__/include/fonts/Roboto-Light.ttf');
 }
 @font-face {
     font-family: "PT MONO";
-	src:url('chrome-extension://__MSG_@@extension_id__/content/css/PTM55F.ttf');
+	src:url('chrome-extension://__MSG_@@extension_id__/include/fonts/PTM55F.ttf');
 }
 #keyboardDiv{
 	font-family: Roboto;

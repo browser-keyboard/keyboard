@@ -5,7 +5,7 @@
   "description": "Developing",
   "version": "0.3",
   "browser_action": {
-    "default_icon": "popup/images/icon.png",
+    "default_icon": "icons/19.png",
     "default_popup": "popup/popup.html"
   },
   "background": {
@@ -19,8 +19,8 @@
     {
       "matches": ["<all_urls>"],
       "js": [
-	      "content/libs/jquery.js",
-	      "content/libs/jquery.pep.js",
+	      "include/jquery.js",
+	      "include/jquery.pep.js",
 	      "objects.js",
 	      "content/scripts/KeyVisual.js",
 	      "content/scripts/Key.js",
@@ -32,8 +32,7 @@
 	      "content/scripts/connect_extention.js"
       ],
       "css": [
-	      "content/css/style.css",
-	      "content/libs/jquery-ui.css"
+	      "content/style.css"
       ],
       "all_frames": true,
       "run_at": "document_start"

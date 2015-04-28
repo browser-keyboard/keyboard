@@ -5,7 +5,7 @@ f_udpateBAImage = function(text){
 	if(text == ''){
 		context.clearRect(0, 0, 19, 19);
 		var img = new Image();
-		img.src = '../icons/193.png';
+		img.src = '../icons/19.png';
 		img.onload = function(){
 			context.drawImage(img, 0, 0, 19, 19);
 			chrome.browserAction.setIcon({ imageData: context.getImageData(0, 0, 19, 19) });	
