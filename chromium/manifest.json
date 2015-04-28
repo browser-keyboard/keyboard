@@ -20,7 +20,7 @@
       "matches": ["<all_urls>"],
       "js": [
 	      "content/libs/jquery.js",
-	      "content/libs/drag.js",
+	      "content/libs/jquery.pep.js",
 	      "objects.js",
 	      "content/scripts/KeyVisual.js",
 	      "content/scripts/Key.js",

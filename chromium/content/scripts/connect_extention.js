@@ -20,11 +20,7 @@ var f_blur = function(){
   window.virtualKeyboard.fieldBlur();
 }
 var f_keyDown =  function(e){
-  console.log('keyDown: ', e);
   window.virtualKeyboard.keyDown(e);
-}
-var f_keyPress =  function(e){
-  console.log('keyPress: ', e);
 }
 var f_keyUp = function(e){
   window.virtualKeyboard.keyUp(e);
@@ -35,6 +31,25 @@ var f_windowBlur = function(){
 var f_windowFocus = function(){
   window.virtualKeyboard.browserFocus();
 }
+var f_windowResize = function(){
+	var con = window.virtualKeyboard.visual.container;
+	var top = con.position().top;
+	var left = con.position().left;
+	/*
+	if((top<0) || (left<0)){
+		top = (top<0) ? 0 : top;
+		left = (left<0) ? 0 : left;
+		console.log('2', top, left);
+		con.data('plugin_pep').setXY(left, top);
+	}*/
+	if((top + con.height() > $(window).height())){
+		con.data('plugin_pep').yToBorder();
+	}
+	if((left + con.width() > $(window).width())){
+		con.data('plugin_pep').xToBorder();
+	}
+}
+
 
 keyboardConnectionOn = function(){
   $('html').on('focus', selector, f_focus);    
@@ -42,7 +57,6 @@ keyboardConnectionOn = function(){
   $('html').on('blur', selector, f_blur);
   $('html').on('keydown', "body", f_keyDown);
   $('html').on('keyup', "body", f_keyUp);
-  $('html').on('keypress', "body", f_keyPress);
   $(window).blur(f_windowBlur);
   $(window).focus(f_windowFocus);
 };
@@ -52,7 +66,6 @@ keyboardConnectionOff = function(){
   $('html').off('blur', selector, f_blur);
   $('html').off('keydown', "body", f_keyDown);
   $('html').off('keyup', "body", f_keyUp);
-  $('html').off('keypress', "body", f_keyPress);
   $(window).off("blur", f_windowBlur);
   $(window).off("focus", f_windowFocus);
 };
@@ -61,59 +74,59 @@ createTop = function(){
   if(created)
     return;
   created = 1;
-    chrome.storage.local.get(['languageList', 'userOptions', "kStatus"], function (result) {	
-      keyboardOption.languageSet = result.languageList;
-      window.virtualKeyboard = new Keyboard(keyboardOption, result.userOptions);
-      window.virtualKeyboard.changeKStutus(result.kStatus);
-      keyboardConnectionOn();
-      created = true;
-      
+	chrome.storage.local.get(['languageList', 'userOptions', "kStatus"], function (result) {	
+		keyboardOption.languageSet = result.languageList;
+		window.virtualKeyboard = new Keyboard(keyboardOption, result.userOptions);
+		window.virtualKeyboard.changeKStutus(result.kStatus);
+		keyboardConnectionOn();
+		created = true;
+		$(window).on('resize',f_windowResize);
       // если скрипт не запустился в iframe (костыль для ckeditor)
-      setTimeout(function(){
-	setInterval(function(){
-	  if(!created)
-	    return;
-	  for(var i = 0; i < window.frames.length ; i++){
-	    if(!window.frames[i].virtualKeyboard){
-	      window.frames[i].virtualKeyboard = true;
-	      try {
-		content = $(window.frames[i].document).contents().find('body').parent();
-		content.on('focus', selector, function(e){
-		  if(!created) return;
-		  if($(this).is(nonSelector))
-		    return false;
-		  virtualKeyboard.setField(this, e.view.window);
-		  });
-		content.on('focus', 'input:password', function(e){
-		  if(!created) return;
-		  virtualKeyboard.setField(this, e.view.window, {animate: false});
-		  });
-		content.on('blur', selector, function(){
-		  if(!created) return;
-		  virtualKeyboard.fieldBlur();
-		});
-		content.on('keydown', selector, function(e){
-		  if(!created) return;
-		  virtualKeyboard.keyDown(e);
-		});
-		content.on('keyup', selector, function(e){
-		  if(!created) return;
-		  virtualKeyboard.keyUp(e);
-		});
-		$(window.frames[i].window).blur(function(){
-		  if(!created) return;
-		  virtualKeyboard.browserBlur();
-		});
-		$(window.frames[i].window).focus(function(){
-		  if(!created) return;
-		  virtualKeyboard.browserFocus();
-		});            
-	      } catch(e){}
-	    }
-	  }
+	setTimeout(function(){
+		setInterval(function(){
+			if(!created)
+				return;
+			for(var i = 0; i < window.frames.length ; i++){
+				if(!window.frames[i].virtualKeyboard){
+					window.frames[i].virtualKeyboard = true;
+					try {
+						content = $(window.frames[i].document).contents().find('body').parent();
+						content.on('focus', selector, function(e){
+							if(!created) return;
+							if($(this).is(nonSelector))
+								return false;
+							virtualKeyboard.setField(this, e.view.window);
+							});
+						content.on('focus', 'input:password', function(e){
+							if(!created) return;
+							virtualKeyboard.setField(this, e.view.window, {animate: false});
+							});
+						content.on('blur', selector, function(){
+							if(!created) return;
+							virtualKeyboard.fieldBlur();
+						});
+						content.on('keydown', selector, function(e){
+							if(!created) return;
+							virtualKeyboard.keyDown(e);
+						});
+						content.on('keyup', selector, function(e){
+							if(!created) return;
+							virtualKeyboard.keyUp(e);
+						});
+						$(window.frames[i].window).blur(function(){
+							if(!created) return;
+							virtualKeyboard.browserBlur();
+						});
+						$(window.frames[i].window).focus(function(){
+							if(!created) return;
+							virtualKeyboard.browserFocus();
+						});            
+					} catch(e){}
+				}
+			}
+		}, 150);
 	}, 150);
-      }, 150);
-      if(document.activeElement != document.getElementsByTagName('body')[0]){
+	if(document.activeElement != document.getElementsByTagName('body')[0]){
 	// если при загрузки странницы установлен автофокус на текстовом поле
 	if($(document.activeElement).is('input:password')){
 	  virtualKeyboard.setField(document.activeElement, self, {animate: false});
@@ -162,6 +175,7 @@ var tabActivate = function(){
 
 var turnOff = function(){
   keyboardConnectionOff();
+	$(window).off('resize',f_windowResize);
   window.virtualKeyboard.destroy();
   delete window.virtualKeyboard;
   created = false;

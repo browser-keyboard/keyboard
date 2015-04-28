@@ -75,14 +75,16 @@ KeyboardVisual = function(kb, options, userOptions){
 		  this.visual.append(line);
 	  }
 	  this.container.append(this.visual);
-    this.container.appendTo('html');	
-    
-    var x =  $(window).height() - 50;
-    var y =   $(window).width() - 50;
-    this.container.draggable({handle: "#keyboardDragger", containment: "html", 
-      position: {x: x, y: y}      
-    });
-    
+    this.container.prependTo('html');	
+		this.container.pep({
+			handle: dragger, 
+			shouldEase: false,
+			constrainTo: 'window',
+			startPos:{
+				left: $(window).width() - this.container.width() - 25,
+				top: $(window).height() - this.container.height() - 25
+			}
+		});
     this.setLanguageTitles(0);
   	
 }

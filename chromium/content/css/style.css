@@ -22,8 +22,6 @@
 #keyboardDiv{	
   box-sizing: border-box;
 	position: fixed !important;
-	right: 50px;
-	bottom: 50px;
 	z-index: 1000000000000;
 	-webkit-user-select: none;
 }
@@ -255,14 +253,14 @@
 
 /*************      WHITE      *************/
 #keyboardDiv[color="white"]{	
-	color: #666;
+	color: #424242;
   border: 1px solid #cdcdcd;
 }
 #keyboardDiv[color="white"] #aftan-keyboard ,#keyboardDiv[color="white"] #keyboardDragger{
   background: #f4f4f4;
 }
 #keyboardDiv[color="white"] .aftan-keyboard-key{
-  color: #666;
+  color: #424242;
   background-color: #fff;
 	border-radius: 1px;
   /*transition: font-size 0.4s, box-shadow 0.4s;*/
@@ -437,7 +435,7 @@
 #keyboardDiv[color="white"][size="large"] .keyNextLanguage{	width: 182px }
 #keyboardDiv[color="white"][size="large"] .keySpace{	width: 444px }
 #keyboardDiv[color="white"][size="large"] .keyAddit,
-	#keyboardDiv[color="white"][size="large"] .keyAdditLong{	width: 160px }
+	#keyboardDiv[color="white"][size="large"] .keyAdditLong{	width: 169px }
 #keyboardDiv[color="white"][size="large"] .keyEnter{	width: 124px }
 #keyboardDiv[color="white"][size="large"] .keyShiftEnter{ width: 152px }
 #keyboardDiv[color="white"][size="large"] .keyShift{ width: 146px }
