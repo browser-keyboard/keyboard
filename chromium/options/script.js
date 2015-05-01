@@ -1,5 +1,5 @@
 angular.module('optionApp', [])
-  .controller('OptionController', ['$scope', '$http', function($scope, $http) {  
+  .controller('OptionController', ['$scope', '$http', '$document', function($scope, $http, $document) {  
     
     // functions
     var sortByShortName = function(a,b) {
@@ -243,6 +243,45 @@ angular.module('optionApp', [])
 		$scope.alertLangCount = "hided";
 	}
 
+	$scope.getTitle = function(){
+		return chrome.i18n.getMessage("options");
+	}
+	
+	$scope.localeLoad = function(){
+		$scope.locale = {};
+		$document[0].title = chrome.i18n.getMessage("options");
+		
+		$scope.locale.alert_not_net_on_reset = chrome.i18n.getMessage("alert_not_net_on_reset");
+		$scope.locale.alert_on_lang_count = chrome.i18n.getMessage("alert_on_lang_count");
+		$scope.locale.alert_not_net_on_save = chrome.i18n.getMessage("alert_not_net_on_save");
+		$scope.locale.main_options = chrome.i18n.getMessage("main_options");
+		$scope.locale.option_active = chrome.i18n.getMessage("option_active");
+		$scope.locale.option_capture = chrome.i18n.getMessage("option_capture");
+		$scope.locale.option_langToSave = chrome.i18n.getMessage("option_langToSave");
+		$scope.locale.onsreen_keyboard_behavior = chrome.i18n.getMessage("onsreen_keyboard_behavior");
+		$scope.locale.show_always = chrome.i18n.getMessage("show_always");
+		$scope.locale.show_onactive = chrome.i18n.getMessage("show_onactive");
+		$scope.locale.show_newer = chrome.i18n.getMessage("show_newer");
+		$scope.locale.onsreen_color_sceme = chrome.i18n.getMessage("onsreen_color_sceme");
+		$scope.locale.onsreen_color_white = chrome.i18n.getMessage("onsreen_color_white");
+		$scope.locale.onsreen_color_black = chrome.i18n.getMessage("onsreen_color_black");
+		$scope.locale.onsreen_size = chrome.i18n.getMessage("onsreen_size");
+		$scope.locale.onsreen_size_standart = chrome.i18n.getMessage("onsreen_size_standart");
+		$scope.locale.onsreen_size_big = chrome.i18n.getMessage("onsreen_size_big");
+		$scope.locale.onsreen_size_large = chrome.i18n.getMessage("onsreen_size_large");
+		$scope.locale.language_options = chrome.i18n.getMessage("language_options");
+		$scope.locale.languages_enable = chrome.i18n.getMessage("languages_enable");
+		$scope.locale.language_selected = chrome.i18n.getMessage("language_selected");
+		$scope.locale.search_placehold = chrome.i18n.getMessage("search_placehold");
+		$scope.locale.cancel_button = chrome.i18n.getMessage("cancel_button");
+		$scope.locale.save_button = chrome.i18n.getMessage("save_button");
+		
+	}
+	
+	
+	
+	
+	$scope.localeLoad();
   $scope.reset(); 
 }]);
 

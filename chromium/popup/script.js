@@ -1,4 +1,10 @@
 $(function(){
+
+$('#momon').text(chrome.i18n.getMessage("keyboard"));
+$('#open-options').text(chrome.i18n.getMessage("options"));
+	
+	
+	
 var switches = document.querySelectorAll('input[type="checkbox"].ios-switch');
 
 for (var i=0, sw; sw = switches[i++]; ) {

@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="optionApp"  ng-csp>
 <head>
-  <title>Настройка языка</title>
+  <title>{{getTitle()}}</title>
   <meta charset="utf-8">
   <script src="../include/angular.js"></script>
   <script src="../synca.js"></script>
@@ -14,24 +14,24 @@
 		<div class="container alerted" >
 			<div class="animated-show"  ng-class="alertNotNetOnReset"> 
 				<div class="alert alert-dismissible alert-warning">
-					<strong>Ошибка соодинения: проверьте подключение к интернету и обновите страницу</strong>
+					<strong>{{locale.alert_not_net_on_reset}}</strong>
 				</div>
 			</div>
 			<div class="animated-show"  ng-class="alertNotNetOnSave"> 
 				<div class="alert alert-dismissible alert-danger">
-					<strong>Ошибка соодинения: проверьте подключение к интернету и нажмите "Сохранить" снова</strong>
+					<strong>{{locale.alert_not_net_on_save}}</strong>
 				</div>
 			</div>
 			<div class="animated-show"  ng-class="alertLangCount"> 
 				<div class="alert alert-dismissible alert-danger">
 					<button type="button" class="close" data-dismiss="alert" ng-click="alertLangCountClose()">×</button>
-					<strong>Выбирете хотя бы один язык</strong>
+					<strong>{{locale.alert_on_lang_count}}</strong>
 				</div>
 			</div>
 			<div class="animated-show" ng-class="alertShowSaved"> 
 				<div class="alert alert-dismissible alert-success">
 					<button type="button" class="close" data-dismiss="alert" ng-click="alertShowSavedClose()">×</button>
-					<strong>Измения сохранены</strong>
+					<strong>{{locale.alert_not_net_on_save}}</strong>
 				</div>
 			</div>
 		</div>
@@ -41,37 +41,37 @@
 			<div class="form-horizontal row" style="margin:auto">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<h6>Основные настройки</h6>
+						<h6>{{locale.main_options}}</h6>
 						<div class="checkbox">
-							<label><input type="checkbox"  ng-model="isActive">Включен</label>
+							<label><input type="checkbox"  ng-model="isActive">{{locale.option_active}}</label>
 						</div>						
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="userOptions.capture">Обрабатывать нажатия клавиш на физической клавиатуре</label>
+							<label><input type="checkbox" ng-model="userOptions.capture">{{locale.option_capture}}</label>
 						</div>				
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="userOptions.langToSave">Сохранять текущий язык при закрытии браузера</label>
+							<label><input type="checkbox" ng-model="userOptions.langToSave">{{locale.option_langToSave}}</label>
 						</div>
 					</div>
 				</div>
 					<div class="col-lg-6">
 					 <div class="form-group">
-						<h6>Поведение на-экранной клавиатуры</h6>
+						<h6>{{locale.onsreen_keyboard_behavior}}</h6>
 						<div class="radio">
 							<label>
 								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="always">
-								Всегда показывать экраную клавиатуру
+								{{locale.show_always}}
 							</label>
 						</div>
 						<div class="radio">
 							<label>
 								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="on-active">
-								Показывать экраную клавиатуру только при активном текстовом поле
+								{{locale.show_onactive}}
 							</label>
 						</div>
 						<div class="radio">
 							<label>
 								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="newer">
-								Скрыть экраную клавиатуру
+								{{locale.show_newer}}
 							</label>
 						</div>
 					</div>
@@ -82,40 +82,40 @@
 			<div class="form-horizontal row" style="margin:auto">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<h6>Цветовая схема на-экранной клавиатуры</h6>
+						<h6>{{locale.onsreen_color_sceme}}</h6>
 							<div class="radio">
 							<label>
 								<input name="optionsRadios2" ng-model="userOptions.color" type="radio" value="white">
-								Белая
+								{{locale.onsreen_color_white}}
 							</label>
 						</div>
 						<div class="radio">
 							<label>
 								<input name="optionsRadios2" ng-model="userOptions.color" type="radio" value="black">
-								Черная
+								{{locale.onsreen_color_black}}
 							</label>
 						</div>
 					</div>
 				</div>
 					<div class="col-lg-6">
 						<div class="form-group">
-						<h6>Размер на-экранной клавиатуры</h6>
+						<h6>{{locale.onsreen_size}}</h6>
 							<div class="radio">
 							<label>
 								<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="standart">
-								Стандартный
+								{{locale.onsreen_size_standart}}
 							</label>
 						</div>
 							<div class="radio">
 								<label>
 									<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="big">
-									Большой
+									{{locale.onsreen_size_big}}
 								</label>
 							</div>
 							<div class="radio">
 							<label>
 								<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="large">
-								Огромный
+								{{locale.onsreen_size_large}}
 							</label>
 						</div>
 					</div>
@@ -124,20 +124,20 @@
 			
 			
 			<div class="panel panel-primary">
-				<div class="panel-heading">Настройка языка</div>
+				<div class="panel-heading">{{locale.language_options}}</div>
 				<div class="panel-body" style="padding-top:0; padding-bottom: 0px;">
 				
 				
 				<div class="row bg-primary" style="color: white">
-					<div class="col-xs-5">Доступные языки</div>
+					<div class="col-xs-5">{{locale.languages_enable}}</div>
 					<div class="col-xs-1" ></div>
-					<div class="col-xs-5">Добавленные</div>
+					<div class="col-xs-5">{{locale.language_selected}}</div>
 					<div class="col-xs-1" ></div>
 				</div>  
 					
 				<div class="row" id="mytable" style="height: 360px"  >
 					<div class="col-xs-5">
-					<input type="text" class="search-input" placeholder="поиск" ng-model="searchEnable">
+					<input type="text" class="search-input" placeholder="{{locale.search_placehold}}" ng-model="searchEnable">
 					 <div class='radiobox-div' ng-repeat="layout in layoutsEnable = (layoutsAll | filter : {$: searchEnable, toUse: false} | orderBy : 'shortName': reverse)">
 							<label class='radiobox'><input type="radio" name="selectedIdEneble" ng-model="$parent.selectedIdEneble" ng-value="{{layout.id}}"><span class="item"><span class="badge">{{layout.shortName}}</span>{{layout.name}}</span></label>
 					 </div>
@@ -163,14 +163,12 @@
 				</div>
 			</div>
 
+		</div>
 			
 			
-			<div class="panel-footer">
-				<div class="btn-group" role="group" aria-label="...">
-					<button type="button" class="btn btn-success" ng-click="reset()">Отмена</button>
-					<button type="button" class="btn btn-success" ng-click="save()">Сохранить</button>			
-				</div>
-			</div>
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-primary" ng-click="reset()">{{locale.cancel_button}}</button>
+			<button type="button" class="btn btn-primary" ng-click="save()">{{locale.save_button}}</button>			
 		</div>
 
 	</body>

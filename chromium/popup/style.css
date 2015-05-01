@@ -45,7 +45,7 @@ html{
 }
 
 :root input[type="checkbox"].ios-switch + div:before {
-	content: 'On';
+	content: '__MSG_on__';
 	float: left;
 	width: 1.65em; height: 1.65em;
 	margin: -.1em;
@@ -66,7 +66,7 @@ html{
 }
 
 :root input[type="checkbox"].ios-switch + div:after {
-	content: 'Off';
+	content: '__MSG_off__';
 	float: left;
 	text-indent: .5em;
 	color: rgba(0,0,0,.45);
@@ -85,7 +85,7 @@ div.block:first-child{
 	margin-top: 10px;
 	border-top: none;
 }
-.momon{
+#momon{
 	display: inline-block;
 	width: 90px;
 	margin: 0;

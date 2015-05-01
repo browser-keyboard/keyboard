@@ -14,6 +14,7 @@ body{
 #mytable {
   border-left: 1px solid rgb(52, 152, 219);
   border-right: 1px solid rgb(52, 152, 219);
+  border-bottom: 1px solid rgb(52, 152, 219);
 }
 
 
@@ -44,9 +45,6 @@ body{
 
 .radiobox-div:hover{
 	background: #D5EDFF;
-}
-.radiobox-div{
-	padding-left: 7px;
 }
 
  .radiobox{
@@ -104,4 +102,19 @@ body{
 .showed{
   max-height: 999px;
 }
+
+.btn-group{
+	text-align: right;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.btn-group .btn{
+  float: none; 
+  margin-left: 15px;
+	padding: 8px 15px 8px 15px;
+	font-size: 15px;
+	
+}
+
 

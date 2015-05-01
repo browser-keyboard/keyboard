@@ -1,0 +1,124 @@
+ {
+	"ext_description":{
+		"message": "Virtual Keyboard",
+		"description": "extention description"
+	},
+	
+	"keyboard":{
+		"message": "Keyboard",
+		"description": "to show is virtual keyboard is active on popup menu"
+	},
+	
+	"options": {
+		"message": "Options",
+		"description": "options on popup menu"	
+	},
+	
+	"on":{
+		"message": "On",
+		"description": "to show is virtual keyboard is active on popup menu"
+	},
+	"off":{
+		"message": "Off",
+		"description": "to show is virtual keyboard is active on popup menu"
+	},
+	
+	"alert_not_net_on_reset": {
+		"message": "Connection Error: make sure that Internet is enabled and reload page",
+		"description": "alert on options shows on Internet does not enable on option page load"	
+	},
+	"alert_on_lang_count": {
+		"message": "Select at least one language",
+		"description": "alert on options shows on user does not select any language"	
+	},
+	"alert_not_net_on_save": {
+		"message": "Connection Error: make sure that Internet is enabled and click 'Save' again",
+		"description": "alert on options shows on Internet does not enable on 'Save' button click"	
+	},
+	
+	"main_options": {
+		"message": "Main options",
+		"description": "title of checkbox options group"	
+	},
+	"option_active":{
+		"message": "Active",
+		"description": "option: to show is virtual keyboard is active"
+	},
+	"option_capture": {
+		"message": "Handle key press on physical keyboard",
+		"description": "option: Handle key press on physical keyboard"	
+	},
+	"option_langToSave": {
+		"message": "Save current language on closing browser",
+		"description": "option: Save current language on closing browser"	
+	},
+	"onsreen_keyboard_behavior": {
+		"message": "On-screen keyboard behavior",
+		"description": "title of on-sreen keyboard behavior option"	
+	},
+	"show_always": {
+		"message": "Always to show on-screen keyboard",
+		"description": "option: always to show on-screen keyboard"	
+	},
+	"show_onactive": {
+		"message": "Show on-screen keyboard only on active text field",
+		"description": "option: show on-screen keyboard only on active text field"	
+	},
+	"show_newer": {
+		"message": "Hide on-screen keyboard",
+		"description": "option: hide on-screen keyboard"	
+	},
+	"onsreen_color_sceme": {
+		"message": "Color sceme of on-screen keyboard",
+		"description": "title of on-screen keyboard color sceme options group"	
+	},
+	"onsreen_color_white": {
+		"message": "White",
+		"description": "white color sceme"	
+	},
+	"onsreen_color_black": {
+		"message": "Black",
+		"description": "black color sceme"	
+	},
+	"onsreen_size": {
+		"message": "Size of on-sreen keyboard",
+		"description": "title of on-screen keyboard size options group"	
+	},
+	"onsreen_size_standart": {
+		"message": "Standart",
+		"description": "stadart size of on-screen keyboard"	
+	},
+	"onsreen_size_big": {
+		"message": "Big",
+		"description": "big size of on-screen keyboard"	
+	},
+	"onsreen_size_large": {
+		"message": "Large",
+		"description": "large size of on-screen keyboard"	
+	},
+	"language_options": {
+		"message": "Languge options",
+		"description": "title of language layout select option"	
+	},
+	"languages_enable": {
+		"message": "Enable languages",
+		"description": "header of enable languages list"	
+	},
+	"language_selected": {
+		"message": "Selected languages",
+		"description": "header of selected languages list"	
+	},
+	"search_placehold": {
+		"message": "search",
+		"description": "plasehold: language search on enable languages list"	
+	},
+	"cancel_button": {
+		"message": "Cancel",
+		"description": "cancel button"	
+	},
+	"save_button": {
+		"message": "Save",
+		"description": "save button"	
+	}
+	
+ }
