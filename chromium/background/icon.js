@@ -31,7 +31,7 @@ f_updateBadgeList = function(){
   langNamesList = [];
   chrome.storage.local.get('languageList', function(data){
   for(var i=0; i < data.languageList.length; i++)
-    langNamesList.push(data.languageList[i].shortName);
+    langNamesList.push(data.languageList[i].shortName[0] + data.languageList[i].shortName[1]);
   f_updateBadge();
   });
 };

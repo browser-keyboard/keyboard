@@ -1,8 +1,3 @@
-$('html').keydown(function(event){
-  if(event.ctrlKey && (event.keyCode == 75))
-    chrome.runtime.sendMessage({eve: "activision", status: !created});
-})
-
 var created = false;
 
 var selector = 'textarea, input, [contentEditable]';

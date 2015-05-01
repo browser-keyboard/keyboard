@@ -41,6 +41,20 @@
   "web_accessible_resources": [
     "*"
   ],
-	"default_locale": "en"
-
+	"default_locale": "en",
+	
+"commands": {
+	"toggle-feature-activision": {
+		"suggested_key": {
+			"default": "Alt+K",
+			"windows": "Alt+K",
+			"mac": "Command+K",
+			"chromeos": "Alt+K",
+			"linux": "Alt+K"
+		},
+		"description": "Acive/disactive keyboard extention"
+	}
+}
+	
+	
 }

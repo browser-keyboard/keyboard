@@ -105,3 +105,15 @@ function install_notice() {
 }
 setTimeout(install_notice, 500);
 
+ chrome.commands.onCommand.addListener(function(command) {
+		
+	 
+chrome.commands.onCommand.addListener(function(command) {
+	if(command == "toggle-feature-activision"){
+		chrome.storage.local.get(["isActive"], function(data){
+			f_active(!data.isActive);
+		});
+	}
+});
+	 
+	});
