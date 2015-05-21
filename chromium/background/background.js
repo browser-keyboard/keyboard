@@ -66,7 +66,7 @@ chrome.tabs.onUpdated.addListener(function(info){
 
 chrome.runtime.onMessage.addListener(function(data, sender){
   switch(data.eve){
-    case 'changeKStutus':
+    case 'changeKStatus':
       f_updateKStatus(sender.tab.id, data.kStatus);
       break;
     case 'activision':
@@ -86,11 +86,6 @@ chrome.runtime.onMessage.addListener(function(data, sender){
       break;
   };
 });
-
-
-
-
-
 
 
 

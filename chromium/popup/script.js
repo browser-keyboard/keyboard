@@ -24,7 +24,10 @@ chrome.storage.local.get(["languageList", "kStatus"], function(data){
   for (var i = 0; i < lSet.length; i++) {
     languageNames[i] = lSet[i].name;
     var boll = cur_active == i;
-    var li = $('<li data-value = "' + i + '" active="' + boll +'">' + languageNames[i] + '</li>');
+		var li = $('<li>');
+		li.attr('active', boll);
+		li.data('value', i);
+		li.text(languageNames[i]);
     li.click(function(){
       f_changeLanguage( $(this).data('value'));
       $('#lang li').attr('active', 'false');

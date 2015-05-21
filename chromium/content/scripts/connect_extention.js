@@ -11,8 +11,9 @@ var f_focus = function(e){
 var f_focusPassport = function(e){
   window.virtualKeyboard.setField(this, self, {animate: false});
 }
-var f_blur = function(){
-  window.virtualKeyboard.fieldBlur();
+var f_blur = function(e){
+	window.virtualKeyboard.fieldBlur();
+
 }
 var f_keyDown =  function(e){
   window.virtualKeyboard.keyDown(e);
@@ -30,13 +31,6 @@ var f_windowResize = function(){
 	var con = window.virtualKeyboard.visual.container;
 	var top = con.position().top;
 	var left = con.position().left;
-	/*
-	if((top<0) || (left<0)){
-		top = (top<0) ? 0 : top;
-		left = (left<0) ? 0 : left;
-		console.log('2', top, left);
-		con.data('plugin_pep').setXY(left, top);
-	}*/
 	if((top + con.height() > $(window).height())){
 		con.data('plugin_pep').yToBorder();
 	}
@@ -47,25 +41,33 @@ var f_windowResize = function(){
 
 
 keyboardConnectionOn = function(){
-  $('html').on('focus', selector, f_focus);    
-  $('html').on('focus', 'input:password',f_focusPassport);    
-  $('html').on('blur', selector, f_blur);
-  $('html').on('keydown', "body", f_keyDown);
-  $('html').on('keyup', "body", f_keyUp);
-  $(window).blur(f_windowBlur);
-  $(window).focus(f_windowFocus);
+	// set events
+	setTimeout(function(){
+		$('html').on('focus', selector, f_focus);    
+		$('html').on('focus', 'input:password',f_focusPassport);    
+		$('html').on('blur', selector, f_blur);
+		$('html').on('keydown', f_keyDown);
+		$('html').on('keyup', f_keyUp);
+		$(window).blur(f_windowBlur);
+		$(window).focus(f_windowFocus);
+	},1000) 
 };
 keyboardConnectionOff = function(){
+	// unset events
   $('html').off('focus', selector, f_focus);    
   $('html').off('focus', 'input:password',f_focusPassport);    
   $('html').off('blur', selector, f_blur);
-  $('html').off('keydown', "body", f_keyDown);
-  $('html').off('keyup', "body", f_keyUp);
+  $('html').off('keydown', selector, f_keyDown);
+  $('html').off('keyup', selector, f_keyUp);
   $(window).off("blur", f_windowBlur);
   $(window).off("focus", f_windowFocus);
 };
 
 createTop = function(){  
+  if(document.URL.indexOf("https://www.google.ru/_/chrome/newtab") != -1)
+		return;
+  if(document.URL.indexOf("https://docs.google.com") != -1)
+		return;
   if(created)
     return;
   created = 1;
@@ -76,68 +78,71 @@ createTop = function(){
 		keyboardConnectionOn();
 		created = true;
 		$(window).on('resize',f_windowResize);
-      // если скрипт не запустился в iframe (костыль для ckeditor)
-	setTimeout(function(){
-		setInterval(function(){
-			if(!created)
-				return;
-			for(var i = 0; i < window.frames.length ; i++){
-				if(!window.frames[i].virtualKeyboard){
-					window.frames[i].virtualKeyboard = true;
-					try {
-						content = $(window.frames[i].document).contents().find('body').parent();
-						content.on('focus', selector, function(e){
-							if(!created) return;
-							if($(this).is(nonSelector))
-								return false;
-							virtualKeyboard.setField(this, e.view.window);
+		// если скрипт не запустился в iframe (костыль для ckeditor)
+		// if script was not run on iframe (its for ckeditor)
+		setTimeout(function(){
+			setInterval(function(){
+				if(!created)
+					return;
+				for(var i = 0; i < window.frames.length ; i++){
+					if(!window.frames[i].virtualKeyboard){
+						window.frames[i].virtualKeyboard = true;
+						try {
+							content = $(window.frames[i].document).contents().find('body').parent();
+							content.on('focus', selector, function(e){
+								if(!created) return;
+								if($(this).is(nonSelector))
+									return false;
+								virtualKeyboard.setField(this, e.view.window);
+								});
+							content.on('focus', 'input:password', function(e){
+								if(!created) return;
+								virtualKeyboard.setField(this, e.view.window, {animate: false});
+								});
+							content.on('blur', selector, function(){
+								if(!created) return;
+								virtualKeyboard.fieldBlur();
 							});
-						content.on('focus', 'input:password', function(e){
-							if(!created) return;
-							virtualKeyboard.setField(this, e.view.window, {animate: false});
+							content.on('keydown', selector, function(e){
+								if(!created) return;
+								virtualKeyboard.keyDown(e);
 							});
-						content.on('blur', selector, function(){
-							if(!created) return;
-							virtualKeyboard.fieldBlur();
-						});
-						content.on('keydown', selector, function(e){
-							if(!created) return;
-							virtualKeyboard.keyDown(e);
-						});
-						content.on('keyup', selector, function(e){
-							if(!created) return;
-							virtualKeyboard.keyUp(e);
-						});
-						$(window.frames[i].window).blur(function(){
-							if(!created) return;
-							virtualKeyboard.browserBlur();
-						});
-						$(window.frames[i].window).focus(function(){
-							if(!created) return;
-							virtualKeyboard.browserFocus();
-						});            
-					} catch(e){}
+							content.on('keyup', selector, function(e){
+								if(!created) return;
+								virtualKeyboard.keyUp(e);
+							});
+							$(window.frames[i].window).blur(function(){
+								if(!created) return;
+								virtualKeyboard.browserBlur();
+							});
+							$(window.frames[i].window).focus(function(){
+								if(!created) return;
+								virtualKeyboard.browserFocus();
+							});            
+						} catch(e){}
+					}
 				}
+			}, 500);
+		}, 500);
+		$(function() {
+			if(document.activeElement != document.getElementsByTagName('body')[0]){
+				// если при загрузки странницы установлен автофокус на текстовом поле
+				if($(document.activeElement).is('input:password')){
+					virtualKeyboard.setField(document.activeElement, self, {animate: false});
+					return;
+				}
+				if($(document.activeElement).is(nonSelector)){
+					return false;
+				}
+				virtualKeyboard.setField(document.activeElement, self);    
 			}
-		}, 150);
-	}, 150);
-	if(document.activeElement != document.getElementsByTagName('body')[0]){
-	// если при загрузки странницы установлен автофокус на текстовом поле
-	if($(document.activeElement).is('input:password')){
-	  virtualKeyboard.setField(document.activeElement, self, {animate: false});
-	  return;
-	}
-	if($(document.activeElement).is(nonSelector)){
-	  return false;
-	}
-	virtualKeyboard.setField(document.activeElement, self);    
-      }
-    });
+		});
+	});
 }
 
 var createChild = function(){
-  if($('body').length == 0)
-     return;
+	// create link to top object
+	// создает ссылку на глобальный объект
   window.virtualKeyboard = parent.window.virtualKeyboard; 
   keyboardConnectionOn();
   created = true;
@@ -154,8 +159,6 @@ var childActive = function(){
 }
 
 var tabActivate = function(){
-  if(document.URL.indexOf("https://www.google.ru/_/chrome/newtab") != -1)
-		return;
   if(created === 1)
     return;
   if(!created){
@@ -169,6 +172,8 @@ var tabActivate = function(){
 }
 
 var turnOff = function(){
+	if(!created)
+		return;
   keyboardConnectionOff();
 	$(window).off('resize',f_windowResize);
   window.virtualKeyboard.destroy();
@@ -206,7 +211,7 @@ if(self==window.top){
 				break;
     }
   })
-}else{ 
+}else{
   childActive();
   chrome.runtime.onMessage.addListener(function(data){
     switch(data.eve){

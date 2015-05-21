@@ -3,79 +3,24 @@ Field = function(){
   this.active = false;
   this.field = null;
   this.window = null;
-  this.type = undefined;
 }
       
 Field.prototype.focus = function(newField, newWindow){
   this.active = true;
   this.field = newField;
   this.window = newWindow;
-  this.type = $(this.field).is('textarea, input') ? 'input' : 'contentEditable' ;
 };
       
 Field.prototype.blur = function(){
   this.active = false;
   this.field = null;
-  this.window = null;
-  this.type = undefined;		
+  this.window = null;	
 }
       
 Field.prototype.addSymbol = function(word){
   if (!this.active)
     return;
   this.window.document.execCommand("insertText", false, word)
-  /*var keyEvent = new KeyboardEvent("keydown", {key : "a", char : "a", shiftKey: true});
-    
-   this.window.document.dispatchEvent(keyEvent);
-    */
-  /*
-  var obj =  { which: 75};
-  obj.originalEvent = new KeyboardEvent("keypress");
-  var e = $.Event("keypress",obj); //"keydown" if that's what you're doing
-  $(this.window.document.body).trigger(e);
-  */
-  
-  
-  
-  
-  /*
-     var eventObj = this.window.document.createEventObject ?
-        this.window.document.createEventObject() : this.window.document.createEvent("Events");
-  
-    if(eventObj.initEvent){
-      eventObj.initEvent("keypress", true, true);
-    }
-  
-    eventObj.which = 1185;
-    eventObj.charCode = 1185;
-    
-    this.window.document.body.dispatchEvent ? this.window.document.body.dispatchEvent(eventObj) : this.window.document.body.fireEvent("onpress", eventObj); 
-  
-  
-  */
-  
-  
-  
-  try{
-    
-    
-    
-    /*var e = $.Event("keypress", { which: 1185, charCode: 1185}); //"keydown" if that's what you're doing
-    $("body").trigger(e);*/
-  //  $.event.trigger({ type : 'keypress', which : 1185 });
-    
-    /*if(this.window.document.execCommand("insertText", false, word)){
-      isExecCommand = true;*/
-    /*
-            var start = this.selectionStart;
-	    var end = this.selectionEnd;
-	    var val = this.value;
-            this.value = val.slice(0, start) + transformedChar + val.slice(end);
-    }*/
-  }
-  catch(err) {
-    isExecCommand = false;
-  }
 }
       
 Field.prototype.backspacing = function(){
@@ -137,12 +82,6 @@ Field.prototype.deleting = function(){
 Field.prototype.simpleEnter = function(){
   if (!this.active)
     return;
- /* var e = jQuery.Event("keypress");
-  e.which = 13; //choose the one you want
-  e.keyCode = 13;
-  (this.field).trigger(e);
-  */
-  
   if($(this.field).is('textarea, input'))
     this.window.document.execCommand("insertText", false, '\n');
   else
@@ -150,6 +89,8 @@ Field.prototype.simpleEnter = function(){
 }
 
 Field.prototype.shiftEnter = function(){
+	// its not used on current buld and its not worked think
+	// это функция не рабочия и не используется в текущей версии
   if (!this.active)
     return;
   this.window.document.execCommand("formatBlock", false, '<br>');

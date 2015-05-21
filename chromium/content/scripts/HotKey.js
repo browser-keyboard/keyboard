@@ -15,13 +15,13 @@ KeyHot = function(kb, combo){
 	this.shift = combo.shift;
 	this.code = combo.code;
 	this.keyFunction = combo.keyFunction;
+	this.func = combo.func;
 	this.when = combo.when;
 	this.active = false;
 	this.thisSesson = false;
-	
-	var that = this;
-	this.action = function(downOrUp){
-		downOrUp = downOrUp ? downOrUp : '';
-		that.kb.keyFunctionalAction(combo.func,{from: "physical", status: downOrUp} );
-	}
+}
+
+KeyHot.prototype.action = function(downOrUp){
+	downOrUp = downOrUp ? downOrUp : '';
+	this.kb.keyFunctionalAction(this.func,{from: "physical", status: downOrUp} );
 }

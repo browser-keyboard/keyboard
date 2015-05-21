@@ -1,6 +1,7 @@
 var KeyboardVisual;
 KeyboardVisual = function(kb, options, userOptions){
     this.kb = kb;		
+		this.hover = false;
     
     var that = this;
 		
@@ -30,8 +31,8 @@ KeyboardVisual = function(kb, options, userOptions){
     dragger.append(controlsDiv);
     
     this.visual = $('<div id=\'aftan-keyboard\'>');
-    
-    this.visual.mousedown(function(e){
+    var that = this;
+    this.container.on("mousedown", function(e){
       e.preventDefault();  //prevent default DOM action
       e.stopPropagation();   //stop bubbling        
     });

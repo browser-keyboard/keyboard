@@ -15,8 +15,8 @@ KeyLetter = function(kb, physicalKeyCode, symbols, options){
   /*    example of symbols array
 	symbols = [
 	  {
-	    lowerCase: 'a',
-	    upperCase: 'A',
+	    lowerCase: 'q',
+	    upperCase: 'Q',
 	    lowerAdd: '&',
 	    upperAdd: '*'              
 	  },{
@@ -30,7 +30,7 @@ KeyLetter = function(kb, physicalKeyCode, symbols, options){
     symbols[i].options = $.extend({
       caps: true
     },symbols[i].options);
-	      }
+	}
   
   this.symbols = symbols;
   this.currentLayout = 0;
@@ -47,7 +47,7 @@ KeyLetter.prototype.changeStatus = function(options){
     }else{ 
 	    this.status = options.addit ? "lowerAdd" : "lowerCase" ;
     };
-    }else{
+	}else{
     if(options.shift){// shift XOR caps 
       this.status = options.addit ? "upperAdd" : "upperCase" ;
     }else{ 
@@ -73,34 +73,19 @@ KeyLetter.prototype.changeStatus = function(options){
     this.visual.setDisplayKeyText(this.currentSymbol);
 }
 
-KeyLetter.prototype.changeLayout = function(num, status){
+KeyLetter.prototype.changeLayout = function(num){
   this.currentLayout = num;
-  this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
-  switch (this.status) {
-    case "lowerCase":
-	    this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
-	    break;
-    case "upperCase":
-	    this.currentSymbol = this.symbols[this.currentLayout].upperCase;
-	    break;
-    case "lowerAdd":
-	    this.currentSymbol = this.symbols[this.currentLayout].lowerAdd;
-	    break;
-    case "upperAdd":
-	    this.currentSymbol = this.symbols[this.currentLayout].upperAdd;
-	    break;
-    }
-  this.changeStatus(status);
+  this.changeStatus(this.status);
 }
 
 KeyLetter.prototype.action = function(){
-      if(this.currentSymbol == "")
-	      return  	
+	if(this.currentSymbol == "")
+		return;
   this.kb.addLetter(this);
 }
 
 KeyLetter.prototype.createVisual = function(){
-  var params = {}
+  var params = {};
   params.title = this.currentSymbol;
   this.visual = new VirtualKeyLetter(this, params);
   return this.visual.visual;
@@ -123,5 +108,3 @@ KeyFunctional.prototype.createVisual = function(params){
   this.visual = new VirtualKeyFuncts(this, this.func, params);
   return this.visual.visual;
 }
-
-
