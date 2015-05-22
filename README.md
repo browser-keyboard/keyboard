@@ -30,8 +30,10 @@ Virtual keyboard extensoin for Firefox and Chrome
 
 # TODO
 1) Port to Firefox and Safari
+
 2) Add new language layouts
 
 # Список задач
 1) Портировать под Firefox и Safari
+
 2) Добавить новые языковые раскладки
