@@ -3,7 +3,7 @@
 
   "name": "Browser Keyboard(Beta)",
   "description": "__MSG_ext_description__",
-  "version": "0.6",
+  "version": "0.7.6",
   "icons": { 
 		"48": "icons/icon48.png",
 		"64": "icons/icon64.png",
@@ -19,7 +19,8 @@
   "permissions": [
     "storage",
     "tabs",
-    "http://browser-keyboard.github.io/languages/*"
+    "http://browser-keyboard.github.io/languages/*",
+		"management"
   ],
   "options_page": "options/index.html",
   "content_scripts": [

@@ -1,7 +1,5 @@
 var Key, KeyLetter, KeyFunctional;
 
-//(function($) {
-$(function(){
   Key = function(kb, code){
     this.kb = kb;
     this.code = code ? code : 0;
@@ -42,7 +40,8 @@ $(function(){
 
   KeyLetter.prototype = Object.create(Key.prototype);
   
-  KeyLetter.prototype.changeStatus = function(options){
+  KeyLetter.prototype.changeSymbols = function(options){
+		this.currentLayout = options.language;
   	if(this.symbols[this.currentLayout].options.caps){
     	if(!options.shift ^ !options.caps){// shift XOR caps 
     		this.status = options.addit ? "upperAdd" : "upperCase" ;
@@ -57,43 +56,24 @@ $(function(){
     	};
   	}
     switch (this.status) {
-		case "lowerCase":
-			this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
-			break;
-		case "upperCase":
-			this.currentSymbol = this.symbols[this.currentLayout].upperCase;
-			break;
-		case "lowerAdd":
-			this.currentSymbol = this.symbols[this.currentLayout].lowerAdd;
-			break;
-		case "upperAdd":
-			this.currentSymbol = this.symbols[this.currentLayout].upperAdd;
-			break;
+			case "lowerCase":
+				this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
+				break;
+			case "upperCase":
+				this.currentSymbol = this.symbols[this.currentLayout].upperCase;
+				break;
+			case "lowerAdd":
+				this.currentSymbol = this.symbols[this.currentLayout].lowerAdd;
+				break;
+			case "upperAdd":
+				this.currentSymbol = this.symbols[this.currentLayout].upperAdd;
+				break;
 		}
-  }
-
-  KeyLetter.prototype.changeLayout = function(num, status){
-    this.currentLayout = num;
-    switch (this.status) {
-		case "lowerCase":
-			this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
-			break;
-		case "upperCase":
-			this.currentSymbol = this.symbols[this.currentLayout].upperCase;
-			break;
-		case "lowerAdd":
-			this.currentSymbol = this.symbols[this.currentLayout].lowerAdd;
-			break;
-		case "upperAdd":
-			this.currentSymbol = this.symbols[this.currentLayout].upperAdd;
-			break;
-		}
-    this.changeStatus(status);
-  }
+	}
 
   KeyLetter.prototype.action = function(){
   	if(this.currentSymbol == "")
-  		return  	
+  		return;
     this.kb.addLetter(this);
   }
     
@@ -109,8 +89,4 @@ $(function(){
   }
 
   KeyFunctional.prototype = Object.create(Key.prototype);
-  
 
-});
-
-//})(jQuery);

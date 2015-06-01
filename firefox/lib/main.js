@@ -1,313 +1,405 @@
+ENGISHLAYOUT = {
+	"id": 1,
+	"name" : "English",
+	"shortName": "en",
+	"letterSet" : [
+		[
+				[{}, "`", "~","~","~"],
+				[{"caps": false}, "1", "!","@","@"],
+				[{"caps": false}, "2", "@","",""],
+				[{"caps": false}, "3", "#","",""],
+				[{"caps": false}, "4", "$","",""],
+				[{"caps": false}, "5", "%","",""],
+				[{"caps": false}, "6", "^","",""],
+				[{"caps": false}, "7", "&","",""],
+				[{"caps": false}, "8", "*","",""],
+				[{"caps": false}, "9", "(","",""],
+				[{"caps": false}, "0", ")","",""],
+				[{"caps": false}, "-", "_","",""],
+				[{"caps": false}, "=", "+","",""]
+		],[
+				[{}, "q", "Q","",""],
+				[{}, "w", "W","",""],
+				[{}, "e", "E","",""],
+				[{}, "r", "R","",""],
+				[{}, "t", "T","",""],
+				[{}, "y", "Y","",""],
+				[{}, "u", "U","",""],
+				[{}, "i", "I","",""],
+				[{}, "o", "O","",""],
+				[{}, "p", "P","",""],
+				[{}, "[", "}","",""],
+				[{}, "]", "{","",""],
+				[{}, "\\", "|","",""]
+		],[
+				[{}, "a", "A","",""],
+				[{}, "s", "S","",""],
+				[{}, "d", "D","",""],
+				[{}, "f", "F","",""],
+				[{}, "g", "G","",""],
+				[{}, "h", "H","",""],
+				[{}, "j", "J","",""],
+				[{}, "k", "K","",""],
+				[{}, "l", "L","",""],
+				[{}, ";", ":","",""],
+				[{}, "'", "\"","",""]
+		],[
+				[{}, "z", "Z","",""],
+				[{}, "x", "X","",""],
+				[{}, "c", "C","",""],
+				[{}, "v", "V","",""],
+				[{}, "b", "B","",""],
+				[{}, "n", "N","",""],
+				[{}, "m", "M","",""],
+				[{}, ",", "<","",""],
+				[{}, ".", ">","",""],
+				[{}, "/", "?","",""]
+		]
+	]
+};
+
 //	подключение api браузера для рассширения
-var ss = require("sdk/simple-storage");
+var ss = require("sdk/simple-storage").storage;
 var array = require('sdk/util/array');
 var data = require("sdk/self").data;
 var { ToggleButton } = require('sdk/ui/button/toggle');
 var pageMod = require("sdk/page-mod");
+var windows = require("sdk/windows").browserWindows;
+var tabs = require("sdk/tabs");
 
 //	восстановление настройкей клавиатуры из storage: текуший язык, видимость и активность
-var currentLanguage = ss.storage.currentLanguage ? ss.storage.currentLanguage : 0;
-ss.storage.currentLanguage = currentLanguage;
-var showing = ss.storage.showing ? ss.storage.showing : true;
-ss.storage.showing = showing;
-var active = ss.storage.active ? ss.storage.active : true;
-ss.storage.active = active;
+	if(ss.isActive === undefined){
+		ss.isActive = true;
+	}
+
+	if(ss.userOptions === undefined){
+		var userOptions = {};
+		userOptions.show = 'always';
+		userOptions.capture = true;
+		userOptions.langToSave = true;
+		userOptions.size = "standart";
+		userOptions.color = "white";
+		ss.userOptions = userOptions;
+	}
+	
+	if((ss.languageList === undefined) || (!ss.languageList[0])){
+		ss.languageList = [ENGISHLAYOUT];
+	}
+	var kStatus = {
+	shift:{
+			physical: false,
+			active: false
+		},
+		caps: {
+		active: false
+		},
+		addit: {
+			physical: false,
+			active: false    		
+		},
+		additLong: {
+			active: false
+		},
+		language: {
+			value: 0
+		}
+	};
+	if(ss.currentLanguage === undefined){
+		ss.currentLanguage = 0;
+	}
+	kStatus.language.count = ss.languageList.length;
+	if(!ss.userOptions.langToSave)
+		kStatus.language.value = ss.currentLanguage;
+
 
 var currentTab;
 //	состояние функциональных клавиш
-var currentKStatus = {
-  shift:{
-    physical: false,
-    active: false
-  },
-  caps: {
-    active: false
-  },
-  addit: {
-    physical: false,
-    active: false    		
-  },
-  additLong: {
-    active: false
-  }   		
-};
-
-    
+		
 // горячая клавиша для влючения/отключения клавиатуры
 var { Hotkey } = require("sdk/hotkeys");
 var hotKeyToActivate = Hotkey({
-  combo: "accel-k",
-  onPress: function() {
-    factivision(!active);
-  }
+	combo: "accel-k",
+	onPress: function() {
+		factivision(!ss.isActive);
+	}
 });
 
 //	кнопка и панель на адрес баре браузера
 var button = ToggleButton({
-  id: "style-tab",
-  label: "Style Tab",
-  icon: "./icon-16.png",  
-  onChange: handleChange
+	id: "style-tab",
+	label: "Style Tab",
+	icon: "./icon-16.png",  
+	onChange: handleChange
 });
 // функция для показа понели настроек при нажатии на кнопку
 function handleChange(state) {
-  if (state.checked) {
-    panel.show({
-      position: button
-    });
-  }
+	if (state.checked) {
+		panel.show({
+			position: button
+		});
+	}
 }
 
 var panels = require("sdk/panel");
 var panel = panels.Panel({
-  contentURL: data.url("panel/panel.html"),
-  contentStyleFile: data.url("panel/style.css"),
-  contentScriptFile: [data.url("libs/jquery.js"), data.url("objects.js"), data.url("panel/script.js")],
-  onHide: handleHide,
-  width: 200,
-  height: 180
+	contentURL: data.url("panel/panel.html"),
+	contentStyleFile: data.url("panel/style.css"),
+	contentScriptFile: [data.url("libs/jquery.js"), data.url("objects.js"), data.url("panel/script.js")],
+	onHide: handleHide,
+	width: 180,
+	height: (90 + 45 * (ss.languageList.length))
 });
 function handleHide() {
-  button.state('window', {checked: false});
+	button.state('window', {checked: false});
 }
 panel.port.on('changeLanguage', function(params){
-  ss.storage.currentLanguage = params;
-  fChangeLanguage(params);
+	ss.currentLanguage = params;
+	fChangeLanguage(params);
 });
-panel.port.on('showing', function(params){
-  ss.storage.showing = params;
-  fShowing(params);
+panel.port.on('openOptions', function(){
+	fOpenOptions();
 });
 panel.port.on('activision', function(params){
-  factivision(params);
+	factivision(params);
 });
-panel.port.emit('changeLanguage', currentLanguage);
-panel.port.emit('showing', showing);
-panel.port.emit('activision', active);
-
-
-
+panel.port.emit('activision', ss.isActive);
+panel.port.emit('languageList', ss.languageList);
+panel.port.emit('changeLanguage', ss.currentLanguage);
 
 
 var fSetField, fkeyDown, fkeyUp, fBrowserBlur, fBrowserFocus, fTopChangeLanguage; // functions 
 var fKeyDownToFrame, fSimpleEnter, fShiftEnter, fDeleting, fBackspacing, fAddLetter;
 
-// 	логика изменения состояния и визуальная часть
 var topPages = [];
+var workers = [];
+
+// 	логика изменения состояния и визуальная часть
 pageMod.PageMod({
-  include: "*",
-  attachTo: ["top"],
-  contentScriptWhen: 'ready',
-  contentScriptFile: [data.url("libs/jquery.js"), data.url("objects.js"), data.url("libs/jquery-ui.js"), data.url("visual/scripts/Key.js"), 
-    data.url("visual/scripts/KeyboardLogic.js"), data.url("visual/scripts/KeyboardVisual.js"), data.url("visual/scripts/KeyVisual.js"),
-    data.url("visual/scripts/Keyboard.js"), data.url("visual/scripts/connect.js") ],
-  contentStyleFile: data.url("visual/css/style.css"),
-  onAttach: function(worker){
-		  
-  array.add(topPages, worker);
-  worker.on('pageshow', function() { array.add(topPages, this); });
-  worker.on('pagehide', function() { array.remove(topPages, this); });
-  worker.on('detach', function() { array.remove(topPages, this); })
-  
-  worker.port.emit('changeLanguage', currentLanguage);
-  worker.port.emit('changeSymbols', currentKStatus);
-  worker.port.emit('showing', showing);
-				  
-  worker.port.on('changeSymbols', function(params){
-    fChangeSymbols(params);
-  });
-  worker.port.on('changeLanguage', function(params){
-    ss.storage.currentLanguage = params;
-    fChangeLanguage(params);
-  });
-  worker.port.on('showing', function(params){
-    ss.storage.showing = params;
-    fShowing(params);
-  });
-  worker.port.on('activision', function(params){
-    ss.storage.active = params;
-    factivision(params);
-  });
-  worker.port.on('functional', function(params){
-    fFunctional(params);
-  });
-  worker.port.on('addLetter', function(massage){
-    fAddLetter(massage);
-  });
-}
+	include: "*",
+	attachTo: ["top"],
+	contentScriptWhen: 'ready',
+	contentScriptFile: [data.url("include/jquery.js"), data.url("objects.js"), data.url("include/jquery.pep.js"), data.url("visual/scripts/Key.js"), 
+		data.url("visual/scripts/KeyboardLogic.js"), data.url("visual/scripts/KeyboardVisual.js"), data.url("visual/scripts/KeyVisual.js"),
+		data.url("visual/scripts/Keyboard.js"), data.url("visual/scripts/connect.js") ],
+	contentStyleFile: [data.url("visual/css/style.css"), data.url('include/fonts/symbols.otf')],
+	onAttach: function(worker){
+			
+		array.add(topPages, worker);
+		worker.on('pageshow', function() { array.add(topPages, this); });
+		worker.on('pagehide', function() { array.remove(topPages, this); });
+		worker.on('detach', function() { array.remove(topPages, this); })
+		
+		if(ss.isActive){
+			worker.port.emit('create', {userOptions: ss.userOptions, languageList: ss.languageList});
+			worker.port.emit('changeSymbols', kStatus);
+		}
+		worker.port.on('changeSymbols', function(params){
+			fChangeSymbols(params);
+		});
+		worker.port.on('activision', function(params){
+			ss.active = params;
+			factivision(params);
+		});
+		worker.port.on('functional', function(params){
+			fFunctional(params);
+		});
+		worker.port.on('addLetter', function(massage){
+			fAddLetter(massage);
+		});
+	}
 });
 
 //	логика работы с текстовым полем и нажатием физических клавиш
-var workers = [];
 pageMod.PageMod({
-  include: "*",
-  attachTo: ["frame", "top"],
-  contentScriptWhen: 'ready',
-  contentScriptFile: [data.url("libs/jquery.js"), data.url("objects.js"), data.url("content/scripts/Field.js"),
-    data.url("content/scripts/HotKey.js"), data.url("content/scripts/Key.js"), data.url("content/scripts/KeyboardLogic.js"), 
-    data.url("content/scripts/Keyboard.js"), data.url("content/scripts/connect.js") ],
-  onAttach: function(worker){
-    
-    array.add(workers, worker);
-    worker.on('pageshow', function() { array.add(workers, this); });
-    worker.on('pagehide', function() { array.remove(workers, this); });
-    worker.on('detach', function() { array.remove(workers, this); })
-    
-    worker.port.emit('activision', active);
-
-    worker.port.emit('changeLanguage', currentLanguage);
-    worker.port.emit('changeSymbols', currentKStatus);
-    worker.port.on('setField', function(params){
-      fSetField(params);
-    });	
-    worker.port.on('changeSymbols', function(params){
-      console.log('main.js called by changeSymbols', params );
-      fChangeSymbols(params);
-    });
-    worker.port.on('blurField', function(){
-      fBlurField();
-    });
-    worker.port.on('KeyFunctionalVisual', function(params){
-      fKeyFunctionalVisual(params);
-    });
-    worker.port.on('KeyDown', function(params){
-      fKeyDown(params);
-    });
-    worker.port.on('KeyUp', function(params){
-      fKeyUp(params);
-    });
-}
+	include: "*",
+	attachTo: ["frame", "top"],
+	contentScriptWhen: 'ready',
+	contentScriptFile: [data.url("libs/jquery.js"), data.url("objects.js"), data.url("content/scripts/Field.js"),
+		data.url("content/scripts/HotKey.js"), data.url("content/scripts/Key.js"), data.url("content/scripts/KeyboardLogic.js"), 
+		data.url("content/scripts/Keyboard.js"), data.url("content/scripts/connect.js") ],
+	onAttach: function(worker){
+		
+		array.add(workers, worker);
+		worker.on('pageshow', function() { array.add(workers, this); });
+		worker.on('pagehide', function() { array.remove(workers, this); });
+		worker.on('detach', function() { array.remove(workers, this); })
+		
+		if(ss.isActive){
+			worker.port.emit('create', {userOptions: ss.userOptions, languageList: ss.languageList});
+			worker.port.emit('changeSymbols', kStatus);
+		}
+		worker.port.on('setField', function(params){
+			fSetField(params);
+		});	
+		worker.port.on('changeSymbols', function(params){
+			fChangeSymbols(params);
+		});
+		worker.port.on('blurField', function(){
+			fBlurField();
+		});
+		worker.port.on('KeyDown', function(params){
+			fKeyDown(params);
+		});
+		worker.port.on('KeyUp', function(params){
+			fKeyUp(params);
+		});
+	}
 });
+
+
+f_turnOn = function(){
+	for(var i=0; i < topPages.length; i++){
+		topPages[i].port.emit('create', {userOptions: ss.userOptions, languageList: ss.languageList});
+		topPages[i].port.emit('changeSymbols', kStatus);
+	}
+	for(var i=0; i < workers.length; i++){
+		workers[i].port.emit('create', {userOptions: ss.userOptions, languageList: ss.languageList});
+		workers[i].port.emit('changeSymbols', kStatus);
+	}
+}
+f_turnOff = function(){
+	for(var i=0; i < topPages.length; i++){
+		topPages[i].port.emit('destroy');
+	}
+	for(var i=0; i < workers.length; i++){
+		workers[i].port.emit('destroy');
+	}
+}
 
 //	включает/отключает клавиатуры
 factivision = function(params){
-  active = params;
-  panel.port.emit('activision', params);
-  for(var i=0; i < workers.length; i++)
-    workers[i].port.emit('activision', params);
-  var isToShow = active && showing;
-  for(var i=0; i < topPages.length; i++){
-    topPages[i].port.emit('showing', isToShow);
-  }
-  ss.storage.active = active;
+	ss.isActive = params;
+	if(params)
+		f_turnOn();
+	else
+		f_turnOff();
+	panel.port.emit('activision', ss.isActive);
 }
 
 // меняет символы
 fChangeSymbols = function(params){
-  console.log('main.js fChangeSymbols', params );
-  for(var i=0; i < workers.length; i++){
-    if(workers[i].tab.id == currentTab){
-      workers[i].port.emit('changeSymbols', params);
-      console.log('1e');
-    }
-  }
-  for(var i=0; i < topPages.length; i++)
-    if(topPages[i].tab.id == currentTab){
-      topPages[i].port.emit('changeSymbols', params);
-      console.log('2e');
-    }
-  currentKStatus = params;
+	if(!ss.isActive)
+		return;
+	try{
+		for(var i=0; i < workers.length; i++){
+			if(workers[i].tab.id == currentTab){
+				workers[i].port.emit('changeSymbols', params);
+			}
+		}
+		for(var i=0; i < topPages.length; i++)
+			if(topPages[i].tab.id == currentTab){
+				topPages[i].port.emit('changeSymbols', params);
+			}
+	}finally {}
+	kStatus = params;
+	ss.currentLanguage = params.language.value;
 }
-// меняет язык
-fChangeLanguage = function(params){
-  currentLanguage = params;
-  panel.port.emit('changeLanguage', params);
-  for(var i=0; i < workers.length; i++){
-    if(workers[i].tab.id == currentTab)
-      workers[i].port.emit('changeLanguage', params);
-  }
-  for(var i=0; i < topPages.length; i++)
-    if(topPages[i].tab.id == currentTab)
-      topPages[i].port.emit('changeLanguage', params);
-  ss.storage.currentLanguage = currentLanguage;
-}
-
 
 fFunctional = function(params){
-  for(var i=0; i < workers.length; i++)
-    if(workers[i].tab.id == currentTab)
-      workers[i].port.emit('functional', params);
+	for(var i=0; i < workers.length; i++)
+		if(workers[i].tab.id == currentTab)
+			workers[i].port.emit('functional', params);
 }
 fAddLetter = function(params){
-  for(var i=0; i < workers.length; i++)
-    if(workers[i].tab.id == currentTab)
-      workers[i].port.emit('addLetter', params);
+	for(var i=0; i < workers.length; i++)
+		if(workers[i].tab.id == currentTab)
+			workers[i].port.emit('addLetter', params);
 }
-
-
-
-
-	
-	/***/
-	
-fShowing = function(params){
-  showing = params;
-  ss.storage.showing = showing;
-  if(!active)
-    return;
-  for(var i=0; i < topPages.length; i++)
-    topPages[i].port.emit('showing', params);
-  panel.port.emit('showing', params);
-};
 
 fSetField = function(params){
-  for(var i=0; i < topPages.length; i++)
-    if(topPages[i].tab.id == currentTab)
-      topPages[i].port.emit('setField', params);
-  for(var i=0; i < workers.length; i++)
-    if(workers[i].tab.id == currentTab){
-      workers[i].port.emit('changeLanguage', currentLanguage);
-      workers[i].port.emit('changeSymbols', currentKStatus);
-    }
+	if(!ss.isActive)
+		return;
+	for(var i=0; i < topPages.length; i++)
+		if(topPages[i].tab.id == currentTab)
+			topPages[i].port.emit('setField', params);
+	for(var i=0; i < workers.length; i++)
+		if(workers[i].tab.id == currentTab){
+			workers[i].port.emit('changeSymbols', kStatus);
+		}
 };
 fBlurField = function(){
-  for(var i=0; i < topPages.length; i++)
-    if(topPages[i].tab.id == currentTab)
-      topPages[i].port.emit('blurField');
+	for(var i=0; i < topPages.length; i++)
+		if(topPages[i].tab.id == currentTab)
+			topPages[i].port.emit('blurField');
 };
 
-fKeyFunctionalVisual = function(params){
-  for(var i=0; i < topPages.length; i++)
-    if(topPages[i].tab.id == currentTab)
-      topPages[i].port.emit('KeyFunctionalVisual', params);
-}
 fKeyDown = function(params){
-  for(var i=0; i < topPages.length; i++)
-    if(topPages[i].tab.id == currentTab)
-      topPages[i].port.emit('keyDown', params);			
-}
+	for(var i=0; i < topPages.length; i++)
+		if(topPages[i].tab.id == currentTab)
+			topPages[i].port.emit('keyDown', params);
+};
 fKeyUp = function(params){
-  for(var i=0; i < topPages.length; i++)
-    if(topPages[i].tab.id == currentTab)
-      topPages[i].port.emit('keyUp', params);
+	for(var i=0; i < topPages.length; i++)
+		if(topPages[i].tab.id == currentTab)
+			topPages[i].port.emit('keyUp', params);
 }
-
-
-var windows = require("sdk/windows").browserWindows;
 
 windows.on('activate', function() {
-  for(var i=0; i < topPages.length; i++){
-    topPages[i].port.emit('browserFocus');
-  }
+	if(ss.isActive)
+		for(var i=0; i < topPages.length; i++){
+			topPages[i].port.emit('browserFocus');
+		}
 });
 windows.on('deactivate', function() {
-  for(var i=0; i < topPages.length; i++){
-    topPages[i].port.emit('browserBlur');
-}
+	if(ss.isActive)
+		for(var i=0; i < topPages.length; i++){
+			topPages[i].port.emit('browserBlur');
+		}
 });
 
-var tabs = require("sdk/tabs");
-
-// Listen for tab openings.
 tabs.on('activate', function onOpen(tab) {
-  currentTab = tab.id;
-  fChangeLanguage(currentLanguage);
-	console.log('currentTab', currentTab);
+	currentTab = tab.id;
+	if(ss.isActive)
+		fChangeSymbols(kStatus);
 });
 
 
 // Глобальные настройки раскладок
+var optionPage;
 pageMod.PageMod({
-  include: data.url("options/index.html")
+	include: [data.url("options/index.html"), data.url("browser-keyboard.github.io/*")],
+	contentScriptFile: [data.url("include/angular.js"), data.url("options/script.js")],
+	contentStyleFile: [data.url("include/paper.css"), data.url("options/style.css")],
+	onAttach: function(worker){
+		optionPage = this;
+		
+		if(ss.isActive){
+			worker.port.emit('create', {userOptions: ss.userOptions, languageList: ss.languageList});
+			worker.port.emit('changeSymbols', kStatus);
+		}
+		worker.port.on('reset', function(){
+			f_resetOptions();
+		});	
+		worker.port.on('save', function(params){
+			f_saveOptions(params);
+		});
+	}
 });
-tabs.open(data.url("options/index.html"));
+
+f_resetOptions = function(){
+	optionPage.port.emit('setInfo', {isActive: ss.isActive, languageList: ss.languageList, userOptions: ss.userOptions});
+}
+f_saveOptions = function(params){
+	if (ss.isActive)
+		f_turnOff();
+	
+	ss.isActive = params.isActive;
+	ss.languageList = params.languageList;
+	ss.userOptions = params.userOptions;
+	
+	kStatus.language.count = ss.languageList.length;
+	kStatus.language.value = 0;
+	
+	panel.height = (90 + 45 * (ss.languageList.length));
+	panel.port.emit('languageList', ss.languageList);
+	
+	if (ss.isActive)
+		f_turnOn();
+}
+var optionPage;
+fOpenOptions = function(){
+	tabs.open(data.url("options/index.html"));
+}
+
+if(ss.isActive)
+	f_turnOn();

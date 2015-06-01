@@ -1,139 +1,17 @@
 var keyboardOption;
-$(function(){
-//jQuery.noConflict();
-	//						 [`, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, =, q, w, e, r, t, y, u, i, o, p, [, ], a, s, d, f, g, h, j, k, l, ;, ', ", z, x, c, v, b, n, m, ',', '.', /  ];
-	var keyCodes = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 173, 61, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 65, 83, 68, 70, 71, 72, 74, 75, 76, 59, 222, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191];
-  var englishLayoat = {
-    id: 1,
-    name : "English",
-    shortName: "en",
-    letterSet : [
-      [
-	        [{}, "`", "~","~","~"],
-	        [{caps: false}, "1", "!","@","@"],
-	        [{caps: false}, "2", "@","",""],
-	        [{caps: false}, "3", "#","",""],
-	        [{caps: false}, "4", "$","",""],
-	        [{caps: false}, "5", "%","",""],
-	        [{caps: false}, "6", "^","",""],
-	        [{caps: false}, "7", "&","",""],
-	        [{caps: false}, "8", "*","",""],
-	        [{caps: false}, "9", "(","",""],
-	        [{caps: false}, "0", ")","",""],
-	        [{caps: false}, "-", "_","",""],
-	        [{caps: false}, "=", "+","",""]
-      ],[
-	        [{}, "q", "Q","",""],
-	        [{}, "w", "W","",""],
-	        [{}, "e", "E","",""],
-	        [{}, "r", "R","",""],
-	        [{}, "t", "T","",""],
-	        [{}, "y", "Y","",""],
-	        [{}, "u", "U","",""],
-	        [{}, "i", "I","",""],
-	        [{}, "o", "O","",""],
-	        [{}, "p", "P","",""],
-	        [{}, "[", "}","",""],
-	        [{}, "]", "{","",""],
-	        [{}, "\\", "|","",""]
-      ],[
-	        [{}, "a", "A","",""],
-	        [{}, "s", "S","",""],
-	        [{}, "d", "D","",""],
-	        [{}, "f", "F","",""],
-	        [{}, "g", "G","",""],
-	        [{}, "h", "H","",""],
-	        [{}, "j", "J","",""],
-	        [{}, "k", "K","",""],
-	        [{}, "l", "L","",""],
-	        [{}, ";", ":","",""],
-	        [{}, "\'", "\"","",""]
-      ],[
-	        [{}, "z", "Z","",""],
-	        [{}, "x", "X","",""],
-	        [{}, "c", "C","",""],
-	        [{}, "v", "V","",""],
-	        [{}, "b", "B","",""],
-	        [{}, "n", "N","",""],
-	        [{}, "m", "M","",""],
-	        [{}, ",", "<","",""],
-	        [{}, ".", ">","",""],
-	        [{}, "/", "?","",""]
-      ],
-      []
-    ]
-  };
+var languageList;
 
-  var bashkirLayoat = {
-    id: 2,
-    name : "Башҡорт",
-    shortName: "bash",
-    letterSet : [
-      [
-		[{}, "ә", "Ә","1","!"],
-		[{}, "!", "\"","2","@"],
-		[{}, "ө", "Ө","3","#"],
-		[{}, "ҡ", "Ҡ","4","$"],
-		[{}, "ғ", "Ғ","5","%"],
-		[{}, "ҫ", "Ҫ","6","^"],
-		[{}, ":", ";","7","&"],
-		[{}, "ҙ", "Ҙ","8","*"],
-		[{}, "һ", "Һ","9","("],
-		[{}, "?", "(","0",")"],
-		[{}, "№", ")","-","_"],
-		[{}, "-", "%","=","+"],
-		[{}, "ү", "Ү","",""]
-      ],[
-	        [{}, "й", "Й","",""],
-	        [{}, "ц", "Ц","",""],
-	        [{}, "у", "У","",""],
-	        [{}, "к", "К","ҡ","Ҡ"],
-	        [{}, "е", "Е","",""],
-	        [{}, "н", "Н","ң","Ң"],
-	        [{}, "г", "Г","ғ","Ғ"],
-	        [{}, "ш", "Ш","",""],
-	        [{}, "щ", "Щ","",""],
-	        [{}, "з", "З","ҙ","Ҙ"],
-	        [{}, "х", "Х","һ, ","Һ"],
-	        [{}, "ъ", "Ъ","",""],
-	        [{}, "ң", "Ң","",""]
-      ],[
-	        [{}, "ф", "Ф","",""],
-	        [{}, "ы", "Ы","",""],
-	        [{}, "в", "В","",""],
-	        [{}, "а", "А","ә","Ә"],
-	        [{}, "п", "П","",""],
-	        [{}, "р", "Р","",""],
-	        [{}, "о", "О","ө","Ө"],
-	        [{}, "л", "Л","",""],
-	        [{}, "д", "Д","",""],
-	        [{}, "ж", "Ж","",""],
-	        [{}, "э", "Э","",""]
-      ],[
-	        [{}, "я", "Я","",""],
-	        [{}, "ч", "Ч","",""],
-	        [{}, "с", "С","",""],
-	        [{}, "м", "М","",""],
-	        [{}, "и", "И","",""],
-	        [{}, "т", "Т","",""],
-	        [{}, "ь", "Ь","",""],
-	        [{}, "б", "Б","",""],
-	        [{}, "ю", "Ю","",""],
-	        [{}, ".", ",","",""]
-      ]
-              
-    ]
-
-  }
-
+	/*[`, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, =, q, w, e, r, t, y, u, i, o, p, [, ], a, s, d, f, g, h, j, k, l, ;, ', ", z, x, c, v, b, n, m, ',', '.', /  ];*/
+	var keyCodes = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191];
+  
   var keyBackspace = {
   	func: 'keyBackspace',
-  	title: 'backspace',
+  	title: 'A',
   	code: 8
   }
   var keyCaps = {
 		func: 'keyCaps',
-		title: 'Caps Lock'
+		title: 'D'
   }
   var keyNextLanguage = {
 		func: 'keyNextLanguage',
@@ -146,20 +24,15 @@ $(function(){
   }
   var keyAddit = {
 		func: 'keyAddit',
-		title: 'Ctrl + Alt'
-  }
-  var keyLongCtrlAlt = {
-		func: 'keyLongCtrlAlt',
-		title: 'Ctrl + Alt + Space',
-  	code: 0
+		title: '!@#$'
   }
   var keyShift = {
 		func: 'keyShift',
-		title: 'Shift'
+		title: 'C'
 	}
   var keyEnter = {
 		func: 'keyEnter',
-		title: 'Enter',
+		title: 'F',
   	code: 13
   }
   var keyShiftEnter = {
@@ -169,13 +42,13 @@ $(function(){
   
   var keyDelete = {
 		func: 'keyDelete',
-		title: 'Delete',
+		title: 'B',
   	code: 46
   };
 
   var keyAdditLong = {
   	func: 'keyAdditLong',
-  	title: 'Ctrl+Alt+space'
+  	title: '!@#$'
   };
   
   var comboAdditLong = {
@@ -215,18 +88,18 @@ $(function(){
   	func: 'keyAddit'
   };
 
-  keyboardOption = {
-    languageSet: [englishLayoat, bashkirLayoat],
 
-    keySet : [
-      ['layout', keyBackspace],
-      ['layout', keyDelete],
-      [keyCaps, 'layout', keyEnter ],
-      [keyShift, 'layout', keyShiftEnter],
-      [keyNextLanguage, keySpace, keyAddit, keyAdditLong]
-    ],
-    keyCodes: keyCodes,
-    //size: 1,
-    combos: [comboNextLanguage, comboCaps, comboShift, comboAddit, comboAdditLong]
-  } 
-});
+keyboardOption = {
+  //languageSet: [languageList],
+
+  keySet : [
+    ['layout', keyBackspace],
+    ['layout', keyDelete],
+    [keyCaps, 'layout', keyEnter ],
+    [keyShift, 'layout', keyShift],
+    [keyNextLanguage, keySpace, keyAddit, keyAdditLong]
+  ],
+  keyCodes: keyCodes,
+  combos: [comboNextLanguage, comboCaps, comboShift, comboAddit, comboAdditLong]
+}
+

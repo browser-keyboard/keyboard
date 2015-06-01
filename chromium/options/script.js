@@ -1,28 +1,28 @@
 angular.module('optionApp', [])
-  .controller('OptionController', ['$scope', '$http', '$document', function($scope, $http, $document) {  
-    
-    // functions
-    var sortByShortName = function(a,b) {
-      if (a.shortName < b.shortName)
+	.controller('OptionController', ['$scope', '$http', '$document', function($scope, $http, $document) {  
+		
+		// functions
+		var sortByShortName = function(a,b) {
+			if (a.shortName < b.shortName)
 	return -1;
-	  if (a.shortName > b.shortName)
-	    return 1;
+		if (a.shortName > b.shortName)
+			return 1;
 	return 0;
-    }
-    
-    /*********************      RESET        *********************************/
-    $scope.reset = function(){
-      $scope.alertLangCount = "hided";
+		}
+		
+		/*********************      RESET        *********************************/
+		$scope.reset = function(){
+			$scope.alertLangCount = "hided";
 			$scope.alertShowSaved = "hided";
 			$scope.alertNotNetOnReset = "hided";
 			$scope.alertNotNetOnSave = "hided";
 			$scope.netConnected = false;
 			var layoutsFromServer;
 			var layoutsIdUsed = [];
-	  $scope.selectedIdUsed = -1;
-	  $scope.selectedIdEneble = -1;
-      
-      chrome.storage.local.get(['languageList', 'isActive', 'userOptions'], function (result) {
+			$scope.selectedIdUsed = -1;
+			$scope.selectedIdEneble = -1;
+			
+			chrome.storage.local.get(['languageList', 'isActive', 'userOptions'], function (result) {
 				$scope.isActive = result.isActive;
 				$scope.userOptions = {};
 				$scope.userOptions.capture = result.userOptions.capture;
@@ -57,113 +57,113 @@ angular.module('optionApp', [])
 						$scope.alertNotNetOnReset = "showed";
 					});
 				}
-      });
-    }
-    
-    /*********************      ADD TO USE         *********************************/
-    $scope.addToUsed = function(){
-      if($scope.selectedIdEneble == -1)
+			});
+		}
+		
+		/*********************      ADD TO USE         *********************************/
+		$scope.addToUsed = function(){
+			if($scope.selectedIdEneble == -1)
 	return;
-      for (var i = 0, len = $scope.layoutsAll.length; i < len; i++)
+			for (var i = 0, len = $scope.layoutsAll.length; i < len; i++)
 	if($scope.layoutsAll[i].id == $scope.selectedIdEneble){
-	  $scope.layoutsAll[i].toUse = true;
-	  $scope.toUseLength++;
-	  $scope.layoutsAll[i].order = $scope.toUseLength;
+		$scope.layoutsAll[i].toUse = true;
+		$scope.toUseLength++;
+		$scope.layoutsAll[i].order = $scope.toUseLength;
 	}
-      a = -1;
-      for (var i = 0, len = $scope.layoutsEnable.length; i < len; i++) {
+			a = -1;
+			for (var i = 0, len = $scope.layoutsEnable.length; i < len; i++) {
 	if($scope.layoutsEnable[i].id == $scope.selectedIdEneble)
-	  a = i;
-      };
-      var len = $scope.layoutsEnable.length - 1;
-      a++;
-      a = (a < len+1) ? a : len - 1;
-      $scope.selectedIdEneble = (a == -1) ? -1 : $scope.layoutsEnable[a].id;
-    };
-    
-    /*********************      REMOVE FROM USED         *********************************/
-    $scope.removeFromUsed = function(){
-      if($scope.selectedIdUsed == -1)
+		a = i;
+			};
+			var len = $scope.layoutsEnable.length - 1;
+			a++;
+			a = (a < len+1) ? a : len - 1;
+			$scope.selectedIdEneble = (a == -1) ? -1 : $scope.layoutsEnable[a].id;
+		};
+		
+		/*********************      REMOVE FROM USED         *********************************/
+		$scope.removeFromUsed = function(){
+			if($scope.selectedIdUsed == -1)
 	return;
-      for (var i = 0, len = $scope.layoutsAll.length; i < len; i++)
+			for (var i = 0, len = $scope.layoutsAll.length; i < len; i++)
 	if($scope.layoutsAll[i].id == $scope.selectedIdUsed){
-	  $scope.layoutsAll[i].toUse = false;
-	  var order = $scope.layoutsAll[i].order;
-	  delete $scope.layoutsAll[i].order;
-	  $scope.toUseLength--;
+		$scope.layoutsAll[i].toUse = false;
+		var order = $scope.layoutsAll[i].order;
+		delete $scope.layoutsAll[i].order;
+		$scope.toUseLength--;
 	}      
-      switch($scope.layoutsUsed.length) {
+			switch($scope.layoutsUsed.length) {
 	case 1:
-	  $scope.selectedIdUsed = -1;
-	  break;
+		$scope.selectedIdUsed = -1;
+		break;
 	case order:
-	  for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
-	    if($scope.layoutsUsed[i].order+1 ==  order)
-	      $scope.selectedIdUsed = $scope.layoutsUsed[i].id;
-	  }	
-	  break;
+		for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
+			if($scope.layoutsUsed[i].order+1 ==  order)
+				$scope.selectedIdUsed = $scope.layoutsUsed[i].id;
+		}	
+		break;
 	default:
-	  for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
-	    if($scope.layoutsUsed[i].order > order){
-	      $scope.layoutsUsed[i].order = $scope.layoutsUsed[i].order - 1;
-	      if($scope.layoutsUsed[i].order ==  order)
+		for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
+			if($scope.layoutsUsed[i].order > order){
+				$scope.layoutsUsed[i].order = $scope.layoutsUsed[i].order - 1;
+				if($scope.layoutsUsed[i].order ==  order)
 		$scope.selectedIdUsed = $scope.layoutsUsed[i].id;
-	    }
-	  }	
-      }
-    };
-    
-    /*********************      ORDER         *********************************/
-    $scope.orderUp = function(){
-      if($scope.selectedIdUsed == -1)
+			}
+		}	
+			}
+		};
+		
+		/*********************      ORDER         *********************************/
+		$scope.orderUp = function(){
+			if($scope.selectedIdUsed == -1)
 	return;
-      for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
+			for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
 	if($scope.layoutsUsed[i].id == $scope.selectedIdUsed)
-	  a = i;
-      }
-      var order = $scope.layoutsUsed[a].order;
-      if(order == 1)
+		a = i;
+			}
+			var order = $scope.layoutsUsed[a].order;
+			if(order == 1)
 	return;
-      
-      for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
+			
+			for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
 	if($scope.layoutsUsed[i].order == order - 1)
-	  b = i;
-      }
-      var objectC = $scope.layoutsUsed[a];
-      $scope.layoutsUsed[a] = $scope.layoutsUsed[b];
-      $scope.layoutsUsed[b] = objectC;
-      
-      $scope.layoutsUsed[a].order = order ;
-      $scope.layoutsUsed[b].order = order - 1;
-    };
-    
-    $scope.orderDown = function(){
-      if($scope.selectedIdUsed == -1)
+		b = i;
+			}
+			var objectC = $scope.layoutsUsed[a];
+			$scope.layoutsUsed[a] = $scope.layoutsUsed[b];
+			$scope.layoutsUsed[b] = objectC;
+			
+			$scope.layoutsUsed[a].order = order ;
+			$scope.layoutsUsed[b].order = order - 1;
+		};
+		
+		$scope.orderDown = function(){
+			if($scope.selectedIdUsed == -1)
 	return;
-      for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
+			for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
 	if($scope.layoutsUsed[i].id == $scope.selectedIdUsed)
-	  a = i;
-      }
-      var order = $scope.layoutsUsed[a].order;
-      if(order == $scope.layoutsUsed.length)
+		a = i;
+			}
+			var order = $scope.layoutsUsed[a].order;
+			if(order == $scope.layoutsUsed.length)
 	return;
-      
-      for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
+			
+			for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
 	if($scope.layoutsUsed[i].order == order + 1)
-	  b = i;
-      }
-      
-      var objectC = $scope.layoutsUsed[a];
-      $scope.layoutsUsed[a] = $scope.layoutsUsed[b];
-      $scope.layoutsUsed[b] = objectC;
-      
-      $scope.layoutsUsed[a].order = order;
-      $scope.layoutsUsed[b].order = order + 1;
-    };
-    
-    
-    /*********************      SAVE         *********************************/
-    
+		b = i;
+			}
+			
+			var objectC = $scope.layoutsUsed[a];
+			$scope.layoutsUsed[a] = $scope.layoutsUsed[b];
+			$scope.layoutsUsed[b] = objectC;
+			
+			$scope.layoutsUsed[a].order = order;
+			$scope.layoutsUsed[b].order = order + 1;
+		};
+		
+		
+		/*********************      SAVE         *********************************/
+		
 	$scope.save = function(){
 		var saveBool = true;
 		
@@ -228,14 +228,14 @@ angular.module('optionApp', [])
 		
 		f_active($scope.isActive);
 	}
-  
-    /*********************      ALERTS         *********************************/
 	
-  $scope.$watch(function() { 
+		/*********************      ALERTS         *********************************/
+	
+	$scope.$watch(function() { 
 		if($scope.canHideAlertShowSaved){
 			$scope.alertShowSaved = "hided";
 		}
-  });
+	});
 	$scope.alertShowSavedClose = function(){
 		$scope.alertShowSaved = "hided";
 	}
@@ -266,7 +266,7 @@ angular.module('optionApp', [])
 		$scope.locale.onsreen_color_white = chrome.i18n.getMessage("onsreen_color_white");
 		$scope.locale.onsreen_color_black = chrome.i18n.getMessage("onsreen_color_black");
 		$scope.locale.onsreen_size = chrome.i18n.getMessage("onsreen_size");
-		$scope.locale.onsreen_size_standart = chrome.i18n.getMessage("onsreen_size_standart");
+		$scope.locale.onsreen_size_normal = chrome.i18n.getMessage("onsreen_size_normal");
 		$scope.locale.onsreen_size_big = chrome.i18n.getMessage("onsreen_size_big");
 		$scope.locale.onsreen_size_large = chrome.i18n.getMessage("onsreen_size_large");
 		$scope.locale.language_options = chrome.i18n.getMessage("language_options");
@@ -282,6 +282,6 @@ angular.module('optionApp', [])
 	
 	
 	$scope.localeLoad();
-  $scope.reset(); 
+	$scope.reset(); 
 }]);
 

@@ -1,7 +1,7 @@
  {
 	"ext_description":{
 		"message": "Virtual Keyboard",
-		"description": "extention description"
+		"description": "extension description"
 	},
 	
 	"keyboard":{
@@ -53,8 +53,8 @@
 		"description": "option: Save current language on closing browser"	
 	},
 	"onsreen_keyboard_behavior": {
-		"message": "On-screen keyboard behavior",
-		"description": "title of on-sreen keyboard behavior option"	
+		"message": "On-screen keyboard behaviour",
+		"description": "title of on-screen keyboard behaviour option"	
 	},
 	"show_always": {
 		"message": "Always to show on-screen keyboard",
@@ -69,24 +69,24 @@
 		"description": "option: hide on-screen keyboard"	
 	},
 	"onsreen_color_sceme": {
-		"message": "Color sceme of on-screen keyboard",
-		"description": "title of on-screen keyboard color sceme options group"	
+		"message": "Colour scheme of on-screen keyboard",
+		"description": "title of on-screen keyboard colour scheme options group"	
 	},
 	"onsreen_color_white": {
 		"message": "White",
-		"description": "white color sceme"	
+		"description": "white colour scheme"	
 	},
 	"onsreen_color_black": {
 		"message": "Black",
-		"description": "black color sceme"	
+		"description": "black colour scheme"	
 	},
 	"onsreen_size": {
-		"message": "Size of on-sreen keyboard",
+		"message": "Size of on-screen keyboard",
 		"description": "title of on-screen keyboard size options group"	
 	},
-	"onsreen_size_standart": {
-		"message": "Standart",
-		"description": "stadart size of on-screen keyboard"	
+	"onsreen_size_normal": {
+		"message": "Normal",
+		"description": "normal size of on-screen keyboard"	
 	},
 	"onsreen_size_big": {
 		"message": "Big",

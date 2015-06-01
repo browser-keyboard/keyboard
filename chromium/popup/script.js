@@ -1,4 +1,4 @@
-$(function(){
+
 
 $('#momon').text(chrome.i18n.getMessage("keyboard"));
 $('#open-options').text(chrome.i18n.getMessage("options"));
@@ -29,7 +29,7 @@ chrome.storage.local.get(["languageList", "kStatus"], function(data){
 		li.data('value', i);
 		li.text(languageNames[i]);
     li.click(function(){
-      f_changeLanguage( $(this).data('value'));
+      f_changeLanguage($(this).data('value'));
       $('#lang li').attr('active', 'false');
       list[$(this).data('value')].attr('active', 'true');
 			if(!$('#isActive').is(':checked')){
@@ -40,20 +40,15 @@ chrome.storage.local.get(["languageList", "kStatus"], function(data){
     list.push(li);
     ul.append(li);
   }
-  
-  
 });
 
 chrome.storage.local.get(["isActive"], function(data){
-  $('#isActive').prop('checked', data.isActive);
-  
+  $('#isActive').prop('checked', data.isActive);  
   $('#isActive').change(function(){
     f_active($(this).is(':checked'));
   });
 });
 
 $('#open-options').click(function(){
-  chrome.tabs.create({ "url": "chrome-extension://" + chrome.runtime.id + "/options/index.html"});
-});
-
+  chrome.tabs.create({"url": "chrome-extension://" + chrome.runtime.id + "/options/index.html"});
 });

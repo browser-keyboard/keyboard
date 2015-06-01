@@ -1,7 +1,7 @@
  {
 	"ext_description":{
 		"message": "Виртуальная клавиатура",
-		"description": "extention description"
+		"description": "extension description"
 	},
 	
 	"keyboard":{
@@ -37,7 +37,7 @@
 	},
 	"alert_on_save": {
 		"message": "Changes saved",
-		"description": "alert after succefull save button click"	
+		"description": "alert after successfully save button click"	
 	},
 	
 	"main_options": {
@@ -57,23 +57,23 @@
 		"description": "option: Save current language on closing browser"	
 	},
 	"onsreen_keyboard_behavior": {
-		"message": "Поведение экранной клавиатуры",
+		"message": "Поведение на-экранной клавиатуры",
 		"description": "title of on-sreen keyboard behavior option"	
 	},
 	"show_always": {
-		"message": "Всегда показывать экранную клавиатуру",
+		"message": "Всегда показывать на-экранную клавиатуру",
 		"description": "option: always to show on-screen keyboard"	
 	},
 	"show_onactive": {
-		"message": "Показывать экранную клавиатуру только при активном текстовом поле",
+		"message": "Показывать на-экранную клавиатуру только при активном текстовом поле",
 		"description": "option: show on-screen keyboard only on active text field"	
 	},
 	"show_newer": {
-		"message": "Скрыть экранную клавиатуру",
+		"message": "Скрыть на-экранную клавиатуру",
 		"description": "option: hide on-screen keyboard"	
 	},
 	"onsreen_color_sceme": {
-		"message": "Цветовая схема экранной клавиатуры",
+		"message": "Цветовая схема на-экранной клавиатуры",
 		"description": "title of on-screen keyboard color sceme options group"	
 	},
 	"onsreen_color_white": {
@@ -85,12 +85,12 @@
 		"description": "black color sceme"	
 	},
 	"onsreen_size": {
-		"message": "Размер экранной клавиатуры",
+		"message": "Размер на-экранной клавиатуры",
 		"description": "title of on-screen keyboard size options group"	
 	},
-	"onsreen_size_standart": {
+	"onsreen_size_normal": {
 		"message": "Стандартный",
-		"description": "stadart size of on-screen keyboard"	
+		"description": "normal size of on-screen keyboard"	
 	},
 	"onsreen_size_big": {
 		"message": "Большой",

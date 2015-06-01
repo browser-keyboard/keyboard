@@ -4,7 +4,7 @@
   "id": "jid1-22LiLPJ1BDPl2A",
   "description": "a basic add-on",
   "author": "",
-  "license": "MPL 2.0",
+  "license": "Apache",
   "version": "0.1",
   "permissions": {}
 }

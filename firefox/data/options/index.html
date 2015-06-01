@@ -1,15 +1,172 @@
 <!doctype html>
-<html ng-app="todoApp">
+<html ng-app="optionApp"  ng-csp>
 <head>
-  <title>Настройка языка</title>
+  <title data-l10n-id="options"></title>
   <meta charset="utf-8">
-  <script src="min/angular.min.js"></script>
-  <script src="libs/bootstrap/js/bootstrap.min.js"></script>
-  <script src="script.js"></script>
-  <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-</body>
+  <body ng-controller="OptionController">
+		
+		<div class="container alerted" >
+			<div class="animated-show"  ng-class="alertNotNetOnReset"> 
+				<div class="alert alert-dismissible alert-warning">
+					<strong data-l10n-id="options" data-l10n-id="alert_not_net_on_reset"></strong>
+				</div>
+			</div>
+			<div class="animated-show"  ng-class="alertNotNetOnSave"> 
+				<div class="alert alert-dismissible alert-danger">
+					<strong data-l10n-id="alert_not_net_on_save"></strong>
+				</div>
+			</div>
+			<div class="animated-show"  ng-class="alertLangCount"> 
+				<div class="alert alert-dismissible alert-danger">
+					<button type="button" class="close" data-dismiss="alert" ng-click="alertLangCountClose()">×</button>
+					<strong data-l10n-id="alert_on_lang_count"></strong>
+				</div>
+			</div>
+			<div class="animated-show" ng-class="alertShowSaved"> 
+				<div class="alert alert-dismissible alert-success">
+					<button type="button" class="close" data-dismiss="alert" ng-click="alertShowSavedClose()">×</button>
+					<strong data-l10n-id="alert_not_net_on_save"></strong>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="container" >
+			<div class="form-horizontal row" style="margin:auto">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<h6 data-l10n-id="main_options"></h6>
+						<div class="checkbox">
+							<label><input type="checkbox"  ng-model="isActive"><span data-l10n-id="option_active"></span></label>
+						</div>						
+						<div class="checkbox">
+							<label><input type="checkbox" ng-model="userOptions.capture"><span data-l10n-id="option_capture"></span></label>
+						</div>				
+						<div class="checkbox">
+							<label><input type="checkbox" ng-model="userOptions.langToSave"><span data-l10n-id="option_langToSave"></span></label>
+						</div>
+					</div>
+				</div>
+					<div class="col-lg-6">
+					 <div class="form-group">
+						<h6 data-l10n-id="onsreen_keyboard_behavior"></h6>
+						<div class="radio">
+							<label>
+								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="always">
+								<span data-l10n-id="show_always"></span>
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="on-active">
+								<span data-l10n-id="main_options"></span>
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="newer">
+								<span data-l10n-id="main_options"></span>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="form-horizontal row" style="margin:auto">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<h6 data-l10n-id="onsreen_color_scheme"></h6>
+							<div class="radio">
+							<label>
+								<input name="optionsRadios2" ng-model="userOptions.color" type="radio" value="white">
+								<span data-l10n-id="onsreen_color_white"></span>
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="optionsRadios2" ng-model="userOptions.color" type="radio" value="black">
+								<span data-l10n-id="onsreen_color_black"></span>
+							</label>
+						</div>
+					</div>
+				</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+						<h6 data-l10n-id="onsreen_size"></h6>
+							<div class="radio">
+							<label>
+								<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="standart">
+								<span data-l10n-id="onsreen_size_standart"></span>
+							</label>
+						</div>
+							<div class="radio">
+								<label>
+									<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="big">
+								<span data-l10n-id="onsreen_size_big"></span>
+								</label>
+							</div>
+							<div class="radio">
+							<label>
+								<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="large">
+								<span data-l10n-id="onsreen_size_large"></span>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="panel panel-primary">
+				<div class="panel-heading" data-l10n-id="language_options"></div>
+				<div class="panel-body" style="padding-top:0; padding-bottom: 0px;">
+				
+				
+				<div class="row bg-primary" style="color: white">
+					<div class="col-xs-5" data-l10n-id="languages_enable"></div>
+					<div class="col-xs-1" ></div>
+					<div class="col-xs-5" data-l10n-id="language_selected"></div>
+					<div class="col-xs-1" ></div>
+				</div>  
+					
+				<div class="row" id="mytable" style="height: 360px"  >
+					<div class="col-xs-5">
+					<input type="text" class="search-input" placeholder="{{locale.search_placehold}}" ng-model="searchEnable">
+					 <div class='radiobox-div' ng-repeat="layout in layoutsEnable = (layoutsAll | filter : {$: searchEnable, toUse: false} | orderBy : 'shortName': reverse)">
+							<label class='radiobox'><input type="radio" name="selectedIdEneble" ng-model="$parent.selectedIdEneble" ng-value="{{layout.id}}"><span class="item"><span class="badge">{{layout.shortName}}</span>{{layout.name}}</span></label>
+					 </div>
+					 
+					</div>
+					<div class="col-xs-1">
+						<div class="btn-group-vertical" role="group" aria-label="...">
+							<button type="button" class="btn btn-primary" ng-click="removeFromUsed()" ng-if="selectedIdUsed!=-1"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
+							<button type="button" class="btn btn-primary" ng-click="addToUsed()" ng-if="selectedIdEneble!=-1"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+						</div>
+					</div>
+					<div class="col-xs-5" style="padding: 0;  height: 100%">
+					 <div class='radiobox-div' ng-repeat="layout in layoutsUsed  = (layoutsAll | filter : {toUse: true} | orderBy : 'order': reverse)">
+							<label class='radiobox'><input type="radio" name="selectedIdUsed" ng-model="$parent.selectedIdUsed" ng-value="{{layout.id}}"><span class="item">{{layout.name}}</span></label>
+					 </div>     
+					</div>
+					<div class="col-xs-1" style="text-align: center;  height: 100%"">
+						<div class="btn-group-vertical" role="group" aria-label="...">
+							<button type="button" class="btn btn-primary" ng-click="orderUp()" ng-if="selectedIdUsed!=-1"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+							<button type="button" class="btn btn-primary" ng-click="orderDown()" ng-if="selectedIdUsed!=-1"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+			
+			
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-primary" ng-click="reset()" data-l10n-id="cancel_button"></button>
+			<button type="button" class="btn btn-primary" ng-click="save()" data-l10n-id="save_button"></button>			
+		</div>
+
+	</body>
 </html>
 
 

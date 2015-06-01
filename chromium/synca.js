@@ -1,6 +1,6 @@
 var langNamesList;
 
-f_active = function(bool){  
+f_active = function(bool){
   var isActive = bool;   
   chrome.storage.local.set({'isActive': isActive});  
 	chrome.runtime.sendMessage({eve: "updateBadgeList"});
@@ -53,4 +53,3 @@ f_changeLanguage = function(num){
 		chrome.runtime.sendMessage({eve: "updateBadgeList"});
   });
 }
-

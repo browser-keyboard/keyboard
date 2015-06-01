@@ -12,14 +12,15 @@ chrome.storage.local.get(["userOptions", "isActive", "languageList", "kStatus"],
     userOptions.show = 'always';
     userOptions.capture = true;
     userOptions.langToSave = true;
-    userOptions.size = "standart";
+    userOptions.size = "normal";
     userOptions.color = "white";
     chrome.storage.local.set({'userOptions': userOptions});
   }
   
   languageList = data.languageList;
   if((languageList === undefined) || (!languageList[0])){
-    languageList = [ENGISHLAYOUT];    
+    languageList = [ENGISHLAYOUT];
+		console.log(languageList);
     chrome.storage.local.set({'languageList': languageList});
   }
   
@@ -66,7 +67,7 @@ chrome.tabs.onUpdated.addListener(function(info){
 
 chrome.runtime.onMessage.addListener(function(data, sender){
   switch(data.eve){
-    case 'changeKStatus':
+    case 'changeKStutus':
       f_updateKStatus(sender.tab.id, data.kStatus);
       break;
     case 'activision':
@@ -97,11 +98,14 @@ function install_notice() {
     var now = new Date().getTime();
     localStorage.setItem('install_time', now);
     chrome.tabs.create({ "url": "chrome-extension://" + chrome.runtime.id + "/options/index.html"});
+		setTimeout(
+			function(){
+				f_active(true);
+			}
+		)
 }
 setTimeout(install_notice, 500);
 
- chrome.commands.onCommand.addListener(function(command) {
-		
 	 
 chrome.commands.onCommand.addListener(function(command) {
 	if(command == "toggle-feature-activision"){
@@ -110,5 +114,14 @@ chrome.commands.onCommand.addListener(function(command) {
 		});
 	}
 });
-	 
-	});
+
+chrome.management.onDisabled.addListener(function(){
+	f_active(false);
+})
+chrome.management.onEnabled.addListener(function(){
+	setTimeout(
+		function(){
+			f_active(true);
+		}
+	)
+})

@@ -1,5 +1,3 @@
-// JS is only used to add the <div>s
-$(function(){
 var switches = document.querySelectorAll('input[type="checkbox"].ios-switch');
 
 for (var i=0, sw; sw = switches[i++]; ) {
@@ -8,38 +6,36 @@ for (var i=0, sw; sw = switches[i++]; ) {
 	sw.parentNode.insertBefore(div, sw.nextSibling);
 }
 
-
-var languageNames = [];
-var ul = $('#lang');
 var list = [];
-for (var i = 0; i < keyboardOption.languageSet.length; i++) {
-	languageNames[i] = keyboardOption.languageSet[i].name;
-	var li = $('<li data-value = "' + i + '">' + languageNames[i] + '</li>');
-	li.click(function(){
-		self.port.emit('changeLanguage', $(this).data('value'));
-	});
-	list.push(li);
-	ul.append(li);
-}
+self.port.on('languageList', function(languageList){
+	var languageNames = [];
+	var ul = $('#lang');
+	ul.empty();
+	
+	for (var i = 0; i < languageList.length; i++) {
+		languageNames[i] = languageList[i].name;
+		var li = $('<li>');
+		li.attr('active', false);
+		li.data('value', i);
+		li.text(languageNames[i]);
+		li.click(function(){
+			self.port.emit('changeLanguage', $(this).data('value'));
+      $('#lang li').attr('active', 'false');
+      list[$(this).data('value')].attr('active', 'true');
+			if(!$('#isActive').is(':checked')){
+				f_active(true);
+				$('#isActive').prop('checked', true);
+			}
+		});
+		list.push(li);
+		ul.append(li);
+	}
+});
 
 self.port.on('changeLanguage', function(i){
 	$('#lang li').attr('active', 'false');
 	list[i].attr('active', 'true');
 });
-
-var isShowTime = false;
-self.port.on('showing', function(params){
-	$('#isVisual').prop('checked', params);
-	isShowTime = true;
-	setTimeout(function(){
-		isShowTime = false;
-	}, 12);
-});
-
-$('#isVisual').change(function(){
-	if(!isShowTime)
-		self.port.emit('showing', $(this).is(':checked'));
-	});
 
 var isActiveTime = false;
 self.port.on('activision', function(params){
@@ -53,6 +49,8 @@ self.port.on('activision', function(params){
 $('#isActive').change(function(){
 	if(!isActiveTime)
 		self.port.emit('activision', $(this).is(':checked'));
-	});
+});
 
+$('#open-options').click(function(){
+  self.port.emit('openOptions');
 });

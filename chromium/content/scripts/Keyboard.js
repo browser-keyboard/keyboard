@@ -68,11 +68,11 @@ Keyboard.prototype.changeKStutus = function(newStatus){
 	// синхрониция между вкладками браузера. здесь устанавиваются данные полученные с background
 	this.logic.kStatus = newStatus;
 	this.changeLanguage();
-	this.changeSymbols();    
-	this.visualKeyFunct('keyShift', this.logic.kStatus.shift.active);  
-	this.visualKeyFunct('keyCaps', this.logic.kStatus.caps.active);  
-	this.visualKeyFunct('keyAddit', this.logic.kStatus.addit.active);  
-	this.visualKeyFunct('keyAdditLong', this.logic.kStatus.additLong.active);  
+	this.changeSymbols();
+	this.visualKeyFunct('keyShift', this.logic.kStatus.shift.active);
+	this.visualKeyFunct('keyCaps', this.logic.kStatus.caps.active);
+	this.visualKeyFunct('keyAddit', this.logic.kStatus.addit.active);
+	this.visualKeyFunct('keyAdditLong', this.logic.kStatus.additLong.active);
 }
 
 
@@ -223,13 +223,13 @@ Keyboard.prototype.visualKeyFunct = function(func, bool){
 	if(bool){
 		for(var i = this.keyFunctionals.length-1; i > -1 ; i--){
 			if( this.keyFunctionals[i].func == func){
-	this.keyFunctionals[i].visual.down();
+				this.keyFunctionals[i].visual.down();
 			};
 		}
 	}else{
 		for(var i = this.keyFunctionals.length-1; i > -1 ; i--){
 			if( this.keyFunctionals[i].func == func){
-	this.keyFunctionals[i].visual.up();
+				this.keyFunctionals[i].visual.up();
 			};
 		}
 	}

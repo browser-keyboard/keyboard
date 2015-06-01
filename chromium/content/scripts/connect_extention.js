@@ -46,8 +46,8 @@ keyboardConnectionOn = function(){
 		$('html').on('focus', selector, f_focus);    
 		$('html').on('focus', 'input:password',f_focusPassport);    
 		$('html').on('blur', selector, f_blur);
-		$('html').on('keydown', f_keyDown);
-		$('html').on('keyup', f_keyUp);
+		$('html').on('keydown', selector, f_keyDown);
+		$('html').on('keyup', selector, f_keyUp);
 		$(window).blur(f_windowBlur);
 		$(window).focus(f_windowFocus);
 	},1000) 
