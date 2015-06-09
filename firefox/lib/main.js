@@ -108,7 +108,7 @@ if(ss.currentLanguage === undefined){
 	ss.currentLanguage = 0;
 }
 kStatus.language.count = ss.languageList.length;
-if(!ss.userOptions.langToSave)
+if(ss.userOptions.langToSave)
 	kStatus.language.value = ss.currentLanguage;
 
 var createLangList = function(){
@@ -234,7 +234,7 @@ pageMod.PageMod({
 	include: "*",
 	attachTo: ["frame", "top"],
 	contentScriptWhen: 'ready',
-	contentScriptFile: [data.url("libs/jquery.js"), data.url("objects.js"), data.url("content/scripts/Field.js"),
+	contentScriptFile: [data.url("include/jquery.js"), data.url("objects.js"), data.url("content/scripts/Field.js"),
 		data.url("content/scripts/HotKey.js"), data.url("content/scripts/Key.js"), data.url("content/scripts/KeyboardLogic.js"), 
 		data.url("content/scripts/Keyboard.js"), data.url("content/scripts/connect.js") ],
 	onAttach: function(worker){

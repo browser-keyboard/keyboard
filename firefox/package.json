@@ -1,0 +1,11 @@
+{
+  "name": "browser_keyboard",
+  "title": "Browser Keyboard",
+  "id": "jid1-22LiLPJ1BDPl2A",
+  "description": "a basic add-on",
+  "license": "Apache",
+  "version": "0.7",
+  "permissions": {},
+  "icon": "data/icons/64.png",
+  "homepage": "browser-keyboard.github.io"
+}

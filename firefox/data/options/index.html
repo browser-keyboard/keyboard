@@ -29,6 +29,12 @@
 					<strong data-l10n-id="alert_not_net_on_save"></strong>
 				</div>
 			</div>
+			<div class="animated-show" ng-class="alertShowSaved"> 
+				<div class="alert alert-dismissible alert-success">
+					<button type="button" class="close" data-dismiss="alert" ng-click="alertShowSavedClose()">×</button>
+					<strong data-l10n-id="alert_on_save"></strong>
+				</div>
+			</div>
 		</div>
 		
 		
@@ -38,13 +44,13 @@
 					<div class="form-group">
 						<h6 data-l10n-id="main_options"></h6>
 						<div class="checkbox">
-							<label><input type="checkbox"  ng-model="isActive"><span data-l10n-id="option_active"></span></label>
+							<label><input type="checkbox"  ng-model="isActive" class="checkbox-items"><span data-l10n-id="option_active"></span></label>
 						</div>						
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="userOptions.capture"><span data-l10n-id="option_capture"></span></label>
+							<label><input type="checkbox" ng-model="userOptions.capture" class="checkbox-items"><span data-l10n-id="option_capture"></span></label>
 						</div>				
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="userOptions.langToSave"><span data-l10n-id="option_langToSave"></span></label>
+							<label><input type="checkbox" ng-model="userOptions.langToSave" class="checkbox-items"><span data-l10n-id="option_langToSave"></span></label>
 						</div>
 					</div>
 				</div>
@@ -60,13 +66,13 @@
 						<div class="radio">
 							<label>
 								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="on-active">
-								<span data-l10n-id="main_options"></span>
+								<span data-l10n-id="show_onactive"></span>
 							</label>
 						</div>
 						<div class="radio">
 							<label>
 								<input name="optionsRadios" ng-model="userOptions.show" type="radio" value="newer">
-								<span data-l10n-id="main_options"></span>
+								<span data-l10n-id="show_newer"></span>
 							</label>
 						</div>
 					</div>
@@ -146,7 +152,7 @@
 					</div>
 					<div class="col-xs-5" style="padding: 0;  height: 100%">
 					 <div class='radiobox-div' ng-repeat="layout in layoutsUsed  = (layoutsAll | filter : {toUse: true} | orderBy : 'order': reverse)">
-							<label class='radiobox'><input type="radio" name="selectedIdUsed" ng-model="$parent.selectedIdUsed" ng-value="{{layout.id}}"><span class="item">{{layout.name}}</span></label>
+							<label class='radiobox'><input type="radio" name="selectedIdUsed" ng-model="$parent.selectedIdUsed" ng-value="{{layout.id}}"><span class="item"><span class="badge">{{layout.shortName}}</span>{{layout.name}}</span></label>
 					 </div>     
 					</div>
 					<div class="col-xs-1" style="text-align: center;  height: 100%"">

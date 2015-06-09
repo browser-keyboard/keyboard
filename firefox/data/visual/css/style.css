@@ -31,6 +31,7 @@
   box-sizing: border-box;
 	height: 100%;
 	display: inline-block;
+	word-wrap: normal !important;
 }
 #keyboardDiv #controlsDiv{
 	display: inline-block;
