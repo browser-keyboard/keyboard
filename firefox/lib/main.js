@@ -159,7 +159,7 @@ var panels = require("sdk/panel");
 var panel = panels.Panel({
 	contentURL: data.url("panel/panel.html"),
 	contentStyleFile: data.url("panel/style.css"),
-	contentScriptFile: [data.url("libs/jquery.js"), data.url("objects.js"), data.url("panel/script.js")],
+	contentScriptFile: [data.url("include/jquery.js"), data.url("objects.js"), data.url("panel/script.js")],
 	onHide: handleHide,
 	width: 180,
 	height: (90 + 45 * (ss.languageList.length))
