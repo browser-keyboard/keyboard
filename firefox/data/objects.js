@@ -2,12 +2,12 @@ var keyboardOption;
 var languageList;
 
 	/*[`, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, =, q, w, e, r, t, y, u, i, o, p, [, ], a, s, d, f, g, h, j, k, l, ;, ', ", z, x, c, v, b, n, m, ',', '.', /  ];*/
-	var keyCodes = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191];
+	var keyCodes = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash"];
   
   var keyBackspace = {
   	func: 'keyBackspace',
   	title: 'A',
-  	code: 8
+  	code: 'Backspace'
   }
   var keyCaps = {
 		func: 'keyCaps',
@@ -20,7 +20,7 @@ var languageList;
   var keySpace = {
 		func: 'keySpace',
 		title: '',
-  	code: 32
+  	code: 'Space'
   }
   var keyAddit = {
 		func: 'keyAddit',
@@ -33,7 +33,7 @@ var languageList;
   var keyEnter = {
 		func: 'keyEnter',
 		title: 'F',
-  	code: 13
+  	code: 'Enter'
   }
   var keyShiftEnter = {
 		func: 'keyShiftEnter',
@@ -43,7 +43,7 @@ var languageList;
   var keyDelete = {
 		func: 'keyDelete',
 		title: 'B',
-  	code: 46
+  	code: 'Delete'
   };
 
   var keyAdditLong = {
@@ -55,7 +55,7 @@ var languageList;
   		when: 'down',
   		ctrl: true,
   		alt: true,
-  		code: 32,
+  		code: 'Space',
   		keyFunction: 'keyAdditLong',
     	func: 'keyAdditLong',
   };
@@ -63,14 +63,14 @@ var languageList;
   var comboNextLanguage = {
   	when: 'down',
   	shift: true,
-  	code: 32,
+  	code: 'Space',
   	keyFunction: 'keyNextLanguage',
   	func: 'keyNextLanguage'
   };
 
   var comboCaps = {
   	when: 'down',
-  	code: 20,
+  	code: 'CapsLock',
   	keyFunction: 'keyCaps',
   	func: 'keyCaps'
   };

@@ -1,11 +1,13 @@
 self.port.on('create', function(params){
 	keyboardOption.languageSet = params.languageList;
 	virtualKeyboard = new Keyboard(keyboardOption, params.userOptions);
+	$(window).on('resize',f_windowResize);
 });
 self.port.on('destroy', function(){	
+	$(window).off('resize',f_windowResize);
 	virtualKeyboard.destroy();
   delete virtualKeyboard;
-});	
+});
 self.port.on('setField', function(params){
 	virtualKeyboard.setField(params);
 });
@@ -30,10 +32,15 @@ self.port.on('changeSymbols', function(params){
 });
 
 /*****************************************************************************************/
-$(window).blur(function(){
-	virtualKeyboard.browserBlur();
-});
 
-$(window).focus(function(){
-	virtualKeyboard.browserFocus();
-});
+var f_windowResize = function(){
+	var con = virtualKeyboard.visual.container;
+	var top = con.position().top;
+	var left = con.position().left;
+	if((top + con.height() > $(window).height())){
+		con.data('plugin_pep').yToBorder();
+	}
+	if((left + con.width() > $(window).width())){
+		con.data('plugin_pep').xToBorder();
+	}
+}

@@ -4,12 +4,8 @@
 	src:url('chrome-extension://__MSG_@@extension_id__/include/fonts/symbols.otf');
 }
 @font-face {
-    font-family: Roboto;
+	font-family: Roboto;
 	src:url('chrome-extension://__MSG_@@extension_id__/include/fonts/Roboto-Light.ttf');
-}
-@font-face {
-    font-family: "PT MONO";
-	src:url('chrome-extension://__MSG_@@extension_id__/include/fonts/PTM55F.ttf');
 }
 #keyboardDiv{
 	font-family: Roboto;

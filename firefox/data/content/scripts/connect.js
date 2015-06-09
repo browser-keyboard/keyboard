@@ -1,6 +1,6 @@
 var getKeyParams = function(e){
 	var params = {};
-	params.keyCode = e.keyCode;
+	params.keyCode = e.originalEvent.code;
 	params.shitfKey = e.shiftKey;
 	params.ctrlKey = e.ctrlKey;
 	params.altKey = e.ctrlKey;

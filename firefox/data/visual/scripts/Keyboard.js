@@ -209,29 +209,33 @@ Keyboard.prototype.codeToKeyDown = function(code){
 	}
 	if(this.visualOption == 'newer')
 		return;
+	for(var i = this.keyFunctionals.length-1; i > -1 ; i--)
+		if( this.keyFunctionals[i].code == code ){
+			this.keyFunctionals[i].visual.down();
+			return;
+		}
+	if(!this.animate)
+		return;
 	for(var i = this.keyCodes.length-1; i > -1 ; i--)
 		if( this.keyCodes[i] == code ){
 			this.keyLetters[i].visual.down();
 				return;
-	}
-	for(var i = this.keyFunctionals.length-1; i > -1 ; i--)
-	if( this.keyFunctionals[i].code == code ){
-		this.keyFunctionals[i].visual.down();
-		return;
-	}
+		}
 }
 	
 Keyboard.prototype.codeToKeyUp = function(code){
 	if(this.visualOption == 'newer')
 		return;
-	for(var i = this.keyCodes.length-1; i > -1 ; i--)
-		if( this.keyCodes[i] == code ){
-			this.keyLetters[i].visual.up();
-			return;
-		}
 	for(var i = this.keyFunctionals.length-1; i > -1 ; i--)
 		if( this.keyFunctionals[i].code == code ){
 			this.keyFunctionals[i].visual.up();
+			return;
+		}
+	if(!this.animate)
+		return;
+	for(var i = this.keyCodes.length-1; i > -1 ; i--)
+		if( this.keyCodes[i] == code ){
+			this.keyLetters[i].visual.up();
 			return;
 		}
 }

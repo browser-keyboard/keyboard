@@ -1,25 +1,17 @@
 /*********************      FONT        *********************************/
 @font-face {
 	font-family: "Function Symbols";
-	src:url('data:include/fonts/symbols.otf');
-}
-@font-face {
-	font-family: Roboto;
-	src:url('data:include/fonts/Roboto-Light.ttf');
-}
-@font-face {
-	font-family: "PT MONO";
-	src:url('data:include/fonts/PTM55F.ttf');
+	src:url('data:application/font-woff;base64,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')format('woff');
 }
 #keyboardDiv{
-	font-family: Roboto;
+	font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #keyboardDiv .keyCaps, #keyboardDiv .keyBackspace, #keyboardDiv .keyDelete, #keyboardDiv .keyShift, #keyboardDiv .keyEnter, #keyboardDiv #close{
 	font-family: "Function Symbols";
 }
 
 /*********************      BASIC        *********************************/
-#keyboardDiv{	
+#keyboardDiv{
   box-sizing: border-box;
 	position: fixed !important;
 	z-index: 1000000000000;
@@ -69,7 +61,7 @@
 
 
 /*************      Black      *************/
-#keyboardDiv[color="black"]{	
+#keyboardDiv[color="black"]{
 	color: #fcfcfc;
 }
 #keyboardDiv[color="black"] #aftan-keyboard{
@@ -252,7 +244,7 @@
 #keyboardDiv[color="black"][size="large"] .keyAdditLong{ text-decoration: underline }
 
 /*************      WHITE      *************/
-#keyboardDiv[color="white"]{	
+#keyboardDiv[color="white"]{
 	color: #424242;
   border: 1px solid #cdcdcd;
 }

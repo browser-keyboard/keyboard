@@ -3,59 +3,59 @@ ENGISHLAYOUT = {
 	"name" : "English",
 	"shortName": "en",
 	"letterSet" : [
-		[
-				[{}, "`", "~","~","~"],
-				[{"caps": false}, "1", "!","@","@"],
-				[{"caps": false}, "2", "@","",""],
-				[{"caps": false}, "3", "#","",""],
-				[{"caps": false}, "4", "$","",""],
-				[{"caps": false}, "5", "%","",""],
-				[{"caps": false}, "6", "^","",""],
-				[{"caps": false}, "7", "&","",""],
-				[{"caps": false}, "8", "*","",""],
-				[{"caps": false}, "9", "(","",""],
-				[{"caps": false}, "0", ")","",""],
-				[{"caps": false}, "-", "_","",""],
-				[{"caps": false}, "=", "+","",""]
-		],[
-				[{}, "q", "Q","",""],
-				[{}, "w", "W","",""],
-				[{}, "e", "E","",""],
-				[{}, "r", "R","",""],
-				[{}, "t", "T","",""],
-				[{}, "y", "Y","",""],
-				[{}, "u", "U","",""],
-				[{}, "i", "I","",""],
-				[{}, "o", "O","",""],
-				[{}, "p", "P","",""],
-				[{}, "[", "}","",""],
-				[{}, "]", "{","",""],
-				[{}, "\\", "|","",""]
-		],[
-				[{}, "a", "A","",""],
-				[{}, "s", "S","",""],
-				[{}, "d", "D","",""],
-				[{}, "f", "F","",""],
-				[{}, "g", "G","",""],
-				[{}, "h", "H","",""],
-				[{}, "j", "J","",""],
-				[{}, "k", "K","",""],
-				[{}, "l", "L","",""],
-				[{}, ";", ":","",""],
-				[{}, "'", "\"","",""]
-		],[
-				[{}, "z", "Z","",""],
-				[{}, "x", "X","",""],
-				[{}, "c", "C","",""],
-				[{}, "v", "V","",""],
-				[{}, "b", "B","",""],
-				[{}, "n", "N","",""],
-				[{}, "m", "M","",""],
-				[{}, ",", "<","",""],
-				[{}, ".", ">","",""],
-				[{}, "/", "?","",""]
-		]
-	]
+				[
+						[{}, "`", "~","~","~"],
+						[{"caps": false}, "1", "!","1","!"],
+						[{"caps": false}, "2", "@","2","@"],
+						[{"caps": false}, "3", "#","3","#"],
+						[{"caps": false}, "4", "$","4","$"],
+						[{"caps": false}, "5", "%","5","%"],
+						[{"caps": false}, "6", "^","6","^"],
+						[{"caps": false}, "7", "&","7","&"],
+						[{"caps": false}, "8", "*","8","*"],
+						[{"caps": false}, "9", "(","9","("],
+						[{"caps": false}, "0", ")","0",")"],
+						[{"caps": false}, "-", "_","-","_"],
+						[{"caps": false}, "=", "+","=","+"]
+				],[
+						[{}, "q", "Q","!",""],
+						[{}, "w", "W","@",""],
+						[{}, "e", "E","#",""],
+						[{}, "r", "R","$",""],
+						[{}, "t", "T","%",""],
+						[{}, "y", "Y","^",""],
+						[{}, "u", "U","&",""],
+						[{}, "i", "I","*",""],
+						[{}, "o", "O","(",""],
+						[{}, "p", "P",")",""],
+						[{}, "[", "}","_",""],
+						[{}, "]", "{","+",""],
+						[{}, "\\", "|","",""]
+				],[
+						[{}, "a", "A","«",""],
+						[{}, "s", "S","»",""],
+						[{}, "d", "D","€",""],
+						[{}, "f", "F","£",""],
+						[{}, "g", "G","¥",""],
+						[{}, "h", "H","©",""],
+						[{}, "j", "J","®",""],
+						[{}, "k", "K","÷",""],
+						[{}, "l", "L","",""],
+						[{}, ";", ":","",""],
+						[{}, "'", "\"","",""]
+				],[
+						[{}, "z", "Z","",""],
+						[{}, "x", "X","",""],
+						[{}, "c", "C","",""],
+						[{}, "v", "V","",""],
+						[{}, "b", "B","",""],
+						[{}, "n", "N","",""],
+						[{}, "m", "M","",""],
+						[{}, ",", "<","",""],
+						[{}, ".", ">","",""],
+						[{}, "/", "?","",""]
+				]
+			]
 };
 
 //	подключение api браузера для рассширения
@@ -68,49 +68,58 @@ var windows = require("sdk/windows").browserWindows;
 var tabs = require("sdk/tabs");
 
 //	восстановление настройкей клавиатуры из storage: текуший язык, видимость и активность
-	if(ss.isActive === undefined){
-		ss.isActive = true;
-	}
+if(ss.isActive === undefined){
+	ss.isActive = true;
+}
 
-	if(ss.userOptions === undefined){
-		var userOptions = {};
-		userOptions.show = 'always';
-		userOptions.capture = true;
-		userOptions.langToSave = true;
-		userOptions.size = "standart";
-		userOptions.color = "white";
-		ss.userOptions = userOptions;
-	}
-	
-	if((ss.languageList === undefined) || (!ss.languageList[0])){
-		ss.languageList = [ENGISHLAYOUT];
-	}
-	var kStatus = {
-	shift:{
-			physical: false,
-			active: false
-		},
-		caps: {
+if(ss.userOptions === undefined){
+	var userOptions = {};
+	userOptions.show = 'always';
+	userOptions.capture = true;
+	userOptions.langToSave = true;
+	userOptions.size = "standart";
+	userOptions.color = "white";
+	ss.userOptions = userOptions;
+}
+
+if((ss.languageList === undefined) || (!ss.languageList[0])){
+	ss.languageList = [ENGISHLAYOUT];
+}
+var kStatus = {
+shift:{
+		physical: false,
 		active: false
-		},
-		addit: {
-			physical: false,
-			active: false    		
-		},
-		additLong: {
-			active: false
-		},
-		language: {
-			value: 0
-		}
-	};
-	if(ss.currentLanguage === undefined){
-		ss.currentLanguage = 0;
+	},
+	caps: {
+	active: false
+	},
+	addit: {
+		physical: false,
+		active: false    		
+	},
+	additLong: {
+		active: false
+	},
+	language: {
+		value: 0
 	}
-	kStatus.language.count = ss.languageList.length;
-	if(!ss.userOptions.langToSave)
-		kStatus.language.value = ss.currentLanguage;
+};
+if(ss.currentLanguage === undefined){
+	ss.currentLanguage = 0;
+}
+kStatus.language.count = ss.languageList.length;
+if(!ss.userOptions.langToSave)
+	kStatus.language.value = ss.currentLanguage;
 
+var createLangList = function(){
+	var list = [];
+	var langs = ss.languageList;
+	for(var i=0; i<langs.length; i++){
+		list.push(langs[i].shortName);
+	}
+	return list;
+}
+var langsNames = createLangList();
 
 var currentTab;
 //	состояние функциональных клавиш
@@ -118,7 +127,7 @@ var currentTab;
 // горячая клавиша для влючения/отключения клавиатуры
 var { Hotkey } = require("sdk/hotkeys");
 var hotKeyToActivate = Hotkey({
-	combo: "accel-k",
+	combo: "alt-k",
 	onPress: function() {
 		factivision(!ss.isActive);
 	}
@@ -127,8 +136,14 @@ var hotKeyToActivate = Hotkey({
 //	кнопка и панель на адрес баре браузера
 var button = ToggleButton({
 	id: "style-tab",
-	label: "Style Tab",
-	icon: "./icon-16.png",  
+	label: "Browser Keyboard",
+	icon: "icons/16.png",
+	icon: {
+		"16": "./icons/16.png",
+		"32": "./icons/32.png",
+	},
+	badgeColor: "#111",
+	badge: langsNames[kStatus.language.value],
 	onChange: handleChange
 });
 // функция для показа понели настроек при нажатии на кнопку
@@ -149,12 +164,17 @@ var panel = panels.Panel({
 	width: 180,
 	height: (90 + 45 * (ss.languageList.length))
 });
-function handleHide() {
+function handleHide(){
 	button.state('window', {checked: false});
 }
 panel.port.on('changeLanguage', function(params){
 	ss.currentLanguage = params;
-	fChangeLanguage(params);
+	kStatus.language.value = params;
+	fChangeSymbols(kStatus);
+	if(!ss.active){
+		ss.active = true;
+		factivision(true);
+	}
 });
 panel.port.on('openOptions', function(){
 	fOpenOptions();
@@ -256,6 +276,7 @@ f_turnOn = function(){
 		workers[i].port.emit('create', {userOptions: ss.userOptions, languageList: ss.languageList});
 		workers[i].port.emit('changeSymbols', kStatus);
 	}
+	button.badge = langsNames[kStatus.language.value];
 }
 f_turnOff = function(){
 	for(var i=0; i < topPages.length; i++){
@@ -264,6 +285,7 @@ f_turnOff = function(){
 	for(var i=0; i < workers.length; i++){
 		workers[i].port.emit('destroy');
 	}
+	button.badge = "";
 }
 
 //	включает/отключает клавиатуры
@@ -293,6 +315,7 @@ fChangeSymbols = function(params){
 	}finally {}
 	kStatus = params;
 	ss.currentLanguage = params.language.value;
+	button.badge = langsNames[params.language.value];
 }
 
 fFunctional = function(params){
@@ -395,6 +418,8 @@ f_saveOptions = function(params){
 	
 	if (ss.isActive)
 		f_turnOn();
+	langsNames = createLangList();
+	button.badge = langsNames[0];
 }
 var optionPage;
 fOpenOptions = function(){

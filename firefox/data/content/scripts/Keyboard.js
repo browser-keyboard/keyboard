@@ -120,7 +120,7 @@ Keyboard.prototype.sendKStutus = function(){
 Keyboard.prototype.keyDown = function(event){
 	if(!this.capture)
 		return;
-	var code = event.keyCode;
+	var code = event.originalEvent.code;
 	var isHappened = false;
 	for(var i = this.hotKeys.length-1; i > -1 ; i--){
 		if(this.checkKeyHot(event, this.hotKeys[i], code, "down")){
@@ -172,7 +172,7 @@ Keyboard.prototype.keyDown = function(event){
 Keyboard.prototype.keyUp = function(event){
 	if(!this.capture)
 		return;
-	var code = event.keyCode;
+	var code = event.originalEvent.code;
 	var isHappened = false;
 	for(var i = this.hotKeys.length-1; i > -1 ; i--){
 		if(this.checkKeyHot(event, this.hotKeys[i], code, "upNoAction")){
@@ -209,23 +209,26 @@ Keyboard.prototype.keyUp = function(event){
 
 Keyboard.prototype.checkKeyHot = function(event, keyHot, code, downOrUp){
 	var ans = false;
+	var isShift = (code.indexOf("Shift") > -1);
+	var isAlt = (code.indexOf("Alt") > -1);
+	var isCtrl = (code.indexOf("Ctrl") > -1);
 	switch (downOrUp) {
 	case "down":
 		if(
 				(code == keyHot.code) ||
 				((keyHot.code == 0)
-				&& ((code==16) || (code==17) || (code==18)))
+				&& (isShift || isCtrl || isAlt))
 			)
 			{
 				var ans = true;
 				if (keyHot.alt){
-					ans = ans && (event.altKey || (code==18));
+					ans = ans && (event.altKey || isAlt);
 				}
 				if (keyHot.ctrl){
-					ans = ans && (event.ctrlKey || (code==17));
+					ans = ans && (event.ctrlKey || isCtrl);
 				}
 				if (keyHot.shift){
-					ans = ans && (event.shiftKey || (code==16));
+					ans = ans && (event.shiftKey || isShift);
 				}
 				
 			}
@@ -236,34 +239,34 @@ Keyboard.prototype.checkKeyHot = function(event, keyHot, code, downOrUp){
 		if(
 				(code == keyHot.code) ||
 				((keyHot.code == 0)
-				&& ((code==16) || (code==17) || (code==18)))
+				&& (isShift || isCtrl || isAlt))
 			)
 			{
 				var ans = false;
 				if (keyHot.alt){
-					ans = ans ||(code==18);
+					ans = ans ||isAlt;
 				}
 				if (keyHot.ctrl){
-					ans = ans || (code==17);
+					ans = ans || isCtrl;
 				}
 				if (keyHot.shift){
-					ans = ans || (code==16);
+					ans = ans || isShift;
 				}
 			}
 	case "upNoAction":
 		if(
-			(code == keyHot.code) || (code==16) || (code==17) || (code==18)
+			(code == keyHot.code) || isShift || isCtrl || isAlt
 		)
 		{
 			var ans = false;
 			if (keyHot.alt){
-				ans = ans ||(code==18);
+				ans = ans ||isAlt;
 			}
 			if (keyHot.ctrl){
-				ans = ans || (code==17);
+				ans = ans || isCtrl;
 			}
 			if (keyHot.shift){
-				ans = ans || (code==16);
+				ans = ans || isShift;
 			}
 		}
 		break;
