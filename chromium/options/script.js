@@ -194,7 +194,7 @@ angular.module('optionApp', [])
 			};			
 		}		
 		
-		setInterval(function(){
+		var interval = setInterval(function(){
 			if(!saveBool)
 				return;
 			if($scope.netConnected)
@@ -218,6 +218,8 @@ angular.module('optionApp', [])
 						chrome.tabs.sendMessage(tabs[i].id, data);
 				});
 			});
+			
+			clearInterval(interval);
 			saveBool = false;
 			$scope.alertNotNetOnSave = "hided";
 			$scope.alertShowSaved = "showed";

@@ -36,7 +36,7 @@
 		"description": "alert on options shows on user does not select any language"	
 	},
 	"alert_on_save": {
-		"message": "Changes saved",
+		"message": "Изменения сохранены",
 		"description": "alert after successfully save button click"	
 	},
 	
