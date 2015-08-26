@@ -210,8 +210,10 @@ angular.module('optionApp', [])
 					chrome.runtime.sendMessage({eve: "updateBadgeList"});	
 				}
 				chrome.storage.local.set({userOptions: $scope.userOptions});
-				data = {
-					eve: "rebult"
+				if($scope.isActive){
+						data = {
+						eve: "rebult"
+					}
 				}
 				chrome.tabs.query({}, function(tabs) {
 					for (var i=0; i<tabs.length; ++i)

@@ -36,6 +36,11 @@
 		"description": "alert on options shows on Internet does not enable on 'Save' button click"	
 	},
 	
+	"alert_on_save": {
+		"message": "Changes saved successfully",
+		"description": "alert after successfully save button click"	
+	},
+	
 	"main_options": {
 		"message": "Main options",
 		"description": "title of checkbox options group"	
