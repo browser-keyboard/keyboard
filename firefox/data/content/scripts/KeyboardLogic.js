@@ -1,6 +1,7 @@
 var KeyboardLogic = function(kb, field, options){
 	this.kb = kb;
 	this.field = field;
+
 	// keys
 	this.kStatus = {
 		shift:{
@@ -12,17 +13,13 @@ var KeyboardLogic = function(kb, field, options){
 		},
 		addit: {
 			physical: false,
-			active: false    		
-		},
-		additLong: {
 			active: false
 		},
 		language: {
 			value: 0,
 			count: options.languageSet.length
-		}   		
+		}
 	}
-	
 }
 
 KeyboardLogic.prototype.addLetter = function(letter){
@@ -48,20 +45,16 @@ KeyboardLogic.prototype.keyAddit = function(param){
 			break;
 		case "up":
 			status.active = false;
-			status.physical = false;		
+			status.physical = false;
 			break;
 		}
 	};
 	this.kStatus.addit = status;
 }
 
-KeyboardLogic.prototype.keyAdditLong = function(){
-	this.kStatus.additLong.active = !this.kStatus.additLong.active;
-}
-
 KeyboardLogic.prototype.keyBackspace = function(){
 	this.field.backspacing();
-} 
+}
 
 KeyboardLogic.prototype.keyCaps = function(){
 	this.kStatus.caps.active = !this.kStatus.caps.active;
@@ -73,11 +66,7 @@ KeyboardLogic.prototype.keyDelete = function(){
 }
 
 KeyboardLogic.prototype.keyEnter = function(){
-	this.field.simpleEnter();
-}
-
-KeyboardLogic.prototype.keyShiftEnter = function(){
-	this.field.shiftEnter();
+	this.field.enter();
 }
 
 KeyboardLogic.prototype.keyNextLanguage = function(){
@@ -111,7 +100,7 @@ KeyboardLogic.prototype.keyShift = function(param){
 			break;
 		case "up":
 			status.active = false;
-			status.physical = false;				
+			status.physical = false;
 			break;
 		}
 	};
@@ -121,14 +110,13 @@ KeyboardLogic.prototype.additObserve = function(){
 	if(this.kStatus.addit.active && !this.kStatus.addit.physical){
 		this.kStatus.addit.active = false;
 		return true;
-	}  	
+	}
 	return false;
 }
 KeyboardLogic.prototype.shiftObserve = function(){
 	if(this.kStatus.shift.active && !this.kStatus.shift.physical){
 		this.kStatus.shift.active = false;
 		return true;
-	}  	
+	}
 	return false;
 }
-

@@ -10,33 +10,33 @@
   <link href="style.css" rel="stylesheet">
 </head>
   <body ng-controller="OptionController">
-		
+
 		<div class="container alerted" >
-			<div class="animated-show"  ng-class="alertNotNetOnReset"> 
+			<div class="animated-show"  ng-class="alertNotNetOnReset">
 				<div class="alert alert-dismissible alert-warning">
 					<strong>{{locale.alert_not_net_on_reset}}</strong>
 				</div>
 			</div>
-			<div class="animated-show"  ng-class="alertNotNetOnSave"> 
+			<div class="animated-show"  ng-class="alertNotNetOnSave">
 				<div class="alert alert-dismissible alert-danger">
 					<strong>{{locale.alert_not_net_on_save}}</strong>
 				</div>
 			</div>
-			<div class="animated-show"  ng-class="alertLangCount"> 
+			<div class="animated-show"  ng-class="alertLangCount">
 				<div class="alert alert-dismissible alert-danger">
 					<button type="button" class="close" data-dismiss="alert" ng-click="alertLangCountClose()">×</button>
 					<strong>{{locale.alert_on_lang_count}}</strong>
 				</div>
 			</div>
-			<div class="animated-show" ng-class="alertShowSaved"> 
+			<div class="animated-show" ng-class="alertShowSaved">
 				<div class="alert alert-dismissible alert-success">
 					<button type="button" class="close" data-dismiss="alert" ng-click="alertShowSavedClose()">×</button>
 					<strong>{{locale.alert_on_save}}</strong>
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 		<div class="container" >
 			<div class="form-horizontal row" style="margin:auto">
 				<div class="col-lg-6">
@@ -44,10 +44,10 @@
 						<h6>{{locale.main_options}}</h6>
 						<div class="checkbox">
 							<label><input type="checkbox"  ng-model="isActive">{{locale.option_active}}</label>
-						</div>						
+						</div>
 						<div class="checkbox">
 							<label><input type="checkbox" ng-model="userOptions.capture">{{locale.option_capture}}</label>
-						</div>				
+						</div>
 						<div class="checkbox">
 							<label><input type="checkbox" ng-model="userOptions.langToSave">{{locale.option_langToSave}}</label>
 						</div>
@@ -77,8 +77,8 @@
 					</div>
 				</div>
 			</div>
-			
-			
+
+
 			<div class="form-horizontal row" style="margin:auto">
 				<div class="col-lg-6">
 					<div class="form-group">
@@ -102,7 +102,7 @@
 						<h6>{{locale.onsreen_size}}</h6>
 							<div class="radio">
 							<label>
-								<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="normal">
+								<input name="optionsRadios3" ng-model="userOptions.size" type="radio" value="standart">
 								{{locale.onsreen_size_normal}}
 							</label>
 						</div>
@@ -121,27 +121,27 @@
 					</div>
 				</div>
 			</div>
-			
-			
+
+
 			<div class="panel panel-primary">
 				<div class="panel-heading">{{locale.language_options}}</div>
 				<div class="panel-body" style="padding-top:0; padding-bottom: 0px;">
-				
-				
+
+
 				<div class="row bg-primary" style="color: white">
 					<div class="col-xs-5">{{locale.languages_enable}}</div>
 					<div class="col-xs-1" ></div>
 					<div class="col-xs-5">{{locale.language_selected}}</div>
 					<div class="col-xs-1" ></div>
-				</div>  
-					
+				</div>
+
 				<div class="row" id="mytable" style="height: 360px"  >
 					<div class="col-xs-5">
 					<input type="text" class="search-input" placeholder="{{locale.search_placehold}}" ng-model="searchEnable">
 					 <div class='radiobox-div' ng-repeat="layout in layoutsEnable = (layoutsAll | filter : {$: searchEnable, toUse: false} | orderBy : 'shortName': reverse)">
 							<label class='radiobox'><input type="radio" name="selectedIdEneble" ng-model="$parent.selectedIdEneble" ng-value="{{layout.id}}"><span class="item"><span class="badge">{{layout.shortName}}</span>{{layout.name}}</span></label>
 					 </div>
-					 
+
 					</div>
 					<div class="col-xs-1">
 						<div class="btn-group-vertical" role="group" aria-label="...">
@@ -152,7 +152,7 @@
 					<div class="col-xs-5" style="padding: 0;  height: 100%">
 					 <div class='radiobox-div' ng-repeat="layout in layoutsUsed  = (layoutsAll | filter : {toUse: true} | orderBy : 'order': reverse)">
 							<label class='radiobox'><input type="radio" name="selectedIdUsed" ng-model="$parent.selectedIdUsed" ng-value="{{layout.id}}"><span class="item">{{layout.name}}</span></label>
-					 </div>     
+					 </div>
 					</div>
 					<div class="col-xs-1" style="text-align: center;  height: 100%"">
 						<div class="btn-group-vertical" role="group" aria-label="...">
@@ -164,14 +164,12 @@
 			</div>
 
 		</div>
-			
-			
+
+
 		<div class="btn-group" role="group" aria-label="...">
 			<button type="button" class="btn btn-primary" ng-click="reset()">{{locale.cancel_button}}</button>
-			<button type="button" class="btn btn-primary" ng-click="save()">{{locale.save_button}}</button>			
+			<button type="button" class="btn btn-primary" ng-click="save()">{{locale.save_button}}</button>
 		</div>
 
 	</body>
 </html>
-
-

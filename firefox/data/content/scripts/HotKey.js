@@ -4,6 +4,7 @@ var HotKey = function(kb, combo){
 		alt: false,
 		ctrl: false,
 		shift: false,
+		meta: false,
 		code: 0,
 		keyFunction: '',
 		func: ''
@@ -13,15 +14,15 @@ var HotKey = function(kb, combo){
 	this.ctrl = combo.ctrl;
 	this.shift = combo.shift;
 	this.code = combo.code;
+	this.meta = combo.meta;
 	this.keyFunction = combo.keyFunction;
+	this.func = combo.func;
 	this.when = combo.when;
 	this.active = false;
 	this.thisSesson = false;
-	
-	var that = this;
-	this.action = function(downOrUp){
-		downOrUp = downOrUp ? downOrUp : '';
-		that.kb.keyFunctionalAction(combo.func,{from: "physical", status: downOrUp} );
-		//self.port.emit('keyFunctional', [combo.func,{from: "physical", status: downOrUp}]);
-	}
+}
+
+HotKey.prototype.action = function(downOrUp){
+	downOrUp = downOrUp ? downOrUp : '';
+	this.kb.keyFunctionalAction(this.func,{from: "physical", status: downOrUp} );
 }

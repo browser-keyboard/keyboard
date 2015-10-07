@@ -1,80 +1,59 @@
-var Keyboard;
 Keyboard = function(options, userOptions){
+	this.isToCapturePhysicalKeyPress = userOptions.capture;
+	this.createButtons(options);
+	this.createhotKeys(options);
+
 	this.field = new Field();
-	this.logic = new KeyboardLogic(this, this.field, options);
-	
-	/* capture - option: Handle key press on physical keyboard
-	* it could be true or false
-	* capture - опция: Обрабатывать нажатия клавиш на физической клавиатуре
-	* может быть true или false
-	*/
-	this.capture = userOptions.capture;
-	this.visualOption = userOptions.show;
-	
-// create hotkey combinations
-	this.keyHots = [];
-	for (var i = 0; i < options.combos.length; i++){
-		this.keyHots[i] = new KeyHot(this, options.combos[i]);
-	}
-	
-/*****  create keys logic  *****/
+	this.logic = new KeyboardLogic(this, options);
+	this.visual = new KeyboardVisual(this, options, userOptions);
+	this.physical = new KeyboardPhysical(this);
+	this.browserFocused = true;
+}
+
+Keyboard.prototype.createButtons = function(options){
 	this.keyLetters = [];
 	this.keyFunctionals = [];
-	var keyWordCount = 0;
-	var keyFunctionalCount = 0;
 	var languageCount =  options.languageSet.length;
+	var keyWordCount = 0;
 
-	//keyboardOption.keySet по строкам 
-	for (var i1 = 0; i1 < options.keySet.length; i1++) {
-
-		//keyboardOption.keySet по элементам
-		for (var i2 = 0; i2 < options.keySet[i1].length; i2++) {
+	for (var i1 = 0; i1 < options.keySet.length; i1++)
+		for (var i2 = 0; i2 < options.keySet[i1].length; i2++)
 			if(options.keySet[i1][i2] == 'layout'){
-	
-	// по колличеству элементов в первой расскладке
-	for (var i3 = 0; i3 < options.languageSet[0].letterSet[i1].length; i3++) {
-		var symbols = [];
-		
-		// по колличеству расскладок
-		for (var i4 = 0; i4 < languageCount; i4++) {
-			var keySymbols = options.languageSet[i4].letterSet[i1][i3];
-			symbols[i4] = {
-				lowerCase: keySymbols[1],
-				upperCase: keySymbols[2],
-				lowerAdd: keySymbols[3],
-				upperAdd: keySymbols[4],
-				options: keySymbols[0]
-			};
-		}
-		this.keyLetters[keyWordCount] = new KeyLetter(this, options.keyCodes[keyWordCount], symbols, {});
-		keyWordCount++;            
-	}
-	
+				// по колличеству элементов в первой расскладке
+				for (var i3 = 0; i3 < options.languageSet[0].letterSet[i1].length; i3++) {
+					var symbols = [];
+
+					for (var i4 = 0; i4 < languageCount; i4++) {
+						var keySymbols = options.languageSet[i4].letterSet[i1][i3];
+						symbols.push({
+							lowerCase: keySymbols[1],
+							upperCase: keySymbols[2],
+							lowerAdd: keySymbols[3],
+							upperAdd: keySymbols[4],
+							options: keySymbols[0]
+						});
+					}
+					this.keyLetters.push(new KeyLetter(this, options.keyCodes[keyWordCount], symbols));
+					keyWordCount++;
+				}
+
 			}else{
-	this.keyFunctionals[keyFunctionalCount] = new KeyFunctional(this, options.keySet[i1][i2]);
-	keyFunctionalCount++;
-			}        
-		}
-	}
-	if(this.visualOption != 'newer')
-		this.visual = new KeyboardVisual(this, options, userOptions);
-	//this.visual.setLanguageTitles(0);
-	this.browserFocused = true;
-} 
+				this.keyFunctionals.push(new KeyFunctional(this, options.keySet[i1][i2]));
+			}
+}
 
+Keyboard.prototype.createhotKeys = function(options){
+	this.hotKeys = [];
+	for (var i = 0; i < options.combos.length; i++)
+		this.hotKeys[i] = new HotKey(this, options.combos[i]);
+}
 
-Keyboard.prototype.changeKStutus = function(newStatus){
-	// its used to get synchronization data between tabs of browser from background
-	// синхрониция между вкладками браузера. здесь устанавиваются данные полученные с background
+Keyboard.prototype.synchronize = function(newStatus){
 	this.logic.kStatus = newStatus;
 	this.changeLanguage();
 	this.changeSymbols();
-	this.visualKeyFunct('keyShift', this.logic.kStatus.shift.active);
-	this.visualKeyFunct('keyCaps', this.logic.kStatus.caps.active);
-	this.visualKeyFunct('keyAddit', this.logic.kStatus.addit.active);
-	this.visualKeyFunct('keyAdditLong', this.logic.kStatus.additLong.active);
+	this.visual.keyFunctSyncByKStatus(this.logic.kStatus);
 }
-
 
 Keyboard.prototype.setField = function(newField, newWindow, params){
 	params = $.extend({
@@ -82,22 +61,19 @@ Keyboard.prototype.setField = function(newField, newWindow, params){
 	}, params);
 	this.animate = params.animate;
 	this.field.focus(newField, newWindow);
-	
-	if(this.visualOption == 'on-active')
+
+	if(this.visual.toShowOption == 'on-active')
 		this.visual.show();
 };
 
-Keyboard.prototype.destroy = function(status){
-	if(this.visualOption != 'newer')
-		this.visual.container.remove();
+Keyboard.prototype.destroy = function(){
+	this.visual.destroy();
 }
 
 Keyboard.prototype.fieldBlur = function(){
 	this.field.blur();
-	var that = this;
-	if(!that.field.active)
-		if(that.visualOption == 'on-active')
-			that.visual.hide();
+	if(!this.field.active && (this.visual.toShowOption == 'on-active'))
+			this.visual.hide();
 };
 
 Keyboard.prototype.browserFocus = function(){
@@ -112,14 +88,14 @@ Keyboard.prototype.browserBlur = function(){
 			return;
 		if(that.logic.kStatus.shift.physical){
 			that.logic.keyShift({from: "physical", status: "up"});
-			that.visualKeyFunct('keyShift', false);  
+			that.visual.keyFunctPress('keyShift', false);
 			that.changeSymbols();
 		}
 		if(that.logic.kStatus.addit.physical){
 			that.logic.keyAddit({from: "physical", status: "up"});
-			that.visualKeyFunct('keyAddit', false);
+			that.visual.keyFunctPress('keyAddit', false);
 			that.changeSymbols();
-		}      
+		}
 	}, 12);
 }
 
@@ -127,66 +103,53 @@ Keyboard.prototype.addLetter = function(keyLetter){
 	if(!this.field.active)
 		return;
 	this.logic.addLetter(keyLetter.currentSymbol);
-	if(this.animate && (this.visualOption != 'newer'))
+	if(this.animate && (this.visual.toShowOption != 'newer'))
 		keyLetter.visual.down();
 	if(this.logic.additObserve()){
 		this.changeSymbols();
-		this.visualKeyFunct('keyAddit', false);  
+		this.visual.keyFunctPress('keyAddit', false);
 	}
 	if(this.logic.shiftObserve()){
 		this.changeSymbols();
-		this.visualKeyFunct('keyShift', false);  
+		this.visual.keyFunctPress('keyShift', false);
 	}
 	chrome.runtime.sendMessage({eve: "changeKStatus", kStatus: this.logic.kStatus});
 }
 
 Keyboard.prototype.keyFunctionalAction = function(func, params){
-	/*if(!this.field.active)
-		return;*/
 	switch(func){
 		case "keyAddit":
 			this.logic.keyAddit(params);
 			this.changeSymbols();
-			this.visualKeyFunct('keyAddit', this.logic.kStatus.addit.active);  
+			this.visual.keyFunctPress('keyAddit', this.logic.kStatus.addit.active);
 			break;
-		case "keyAdditLong":
-			this.logic.keyAdditLong(params);
-			this.changeSymbols();
-			this.visualKeyFunct('keyAdditLong', this.logic.kStatus.additLong.active);  
 			break;
 		case "keyBackspace":
 			this.logic.keyBackspace();
 			break;
-		case "keyCaps": 
+		case "keyCaps":
 			this.logic.keyCaps();
 			this.changeSymbols();
-			this.visualKeyFunct('keyCaps', this.logic.kStatus.caps.active);  
+			this.visual.keyFunctPress('keyCaps', this.logic.kStatus.caps.active);
 			break;
-		case "keyDelete": 
+		case "keyDelete":
 			this.logic.keyDelete();
-			break;    
-		case "keyEnter": 
+			break;
+		case "keyEnter":
 			this.logic.keyEnter();
-			break;   
-		case "keyShiftEnter": 
-			this.logic.keyShiftEnter();
-			break;   
+			break;
 		case "keyNextLanguage":
 			this.logic.keyNextLanguage();
-			this.changeLanguage();	
-			this.visualKeyFunct('keyNextLanguage', true);
-			var that = this;
-			setTimeout(function(){
-				that.visualKeyFunct('keyNextLanguage', false);
-			}, 250);      
+			this.changeLanguage();
+			this.visual.keyLangaugeNextPressing();
 			break;
-		case "keySpace": 
+		case "keySpace":
 			this.logic.keySpace();
 			break;
-		case "keyShift": 
+		case "keyShift":
 			this.logic.keyShift(params);
 			this.changeSymbols();
-			this.visualKeyFunct('keyShift', this.logic.kStatus.shift.active);  
+			this.visual.keyFunctPress('keyShift', this.logic.kStatus.shift.active);
 			break;
 	}
 	chrome.runtime.sendMessage({eve: "changeKStatus", kStatus: this.logic.kStatus});
@@ -197,224 +160,30 @@ Keyboard.prototype.changeLanguage = function(){
 	var status = {
 			shift: this.logic.kStatus.shift.active,
 			caps: this.logic.kStatus.caps.active,
-			addit:  this.logic.kStatus.addit.active       
+			addit:  (this.logic.kStatus.addit.active)
 		};
 	for(var i = this.keyLetters.length-1; i > -1; i--){
 		this.keyLetters[i].changeLayout(value, status);
 	}
-	if(this.visualOption != 'newer')
-		this.visual.setLanguageTitles(this.logic.kStatus.language.value);
+	this.visual.setLanguageTitles(this.logic.kStatus.language.value);
 }
 
 Keyboard.prototype.changeSymbols = function(){
 	var value = {
 		shift: this.logic.kStatus.shift.active,
 		caps: this.logic.kStatus.caps.active,
-		addit:  (this.logic.kStatus.addit.active ^ this.logic.kStatus.additLong.active)       
+		addit:  (this.logic.kStatus.addit.active)
 	};
 	for(var i = this.keyLetters.length-1; i > -1; i--){
 		this.keyLetters[i].changeStatus(value);
-	}    
-}
-
-Keyboard.prototype.visualKeyFunct = function(func, bool){
-	if(this.visualOption == 'newer')
-		return;
-	if(bool){
-		for(var i = this.keyFunctionals.length-1; i > -1 ; i--){
-			if( this.keyFunctionals[i].func == func){
-				this.keyFunctionals[i].visual.down();
-			};
-		}
-	}else{
-		for(var i = this.keyFunctionals.length-1; i > -1 ; i--){
-			if( this.keyFunctionals[i].func == func){
-				this.keyFunctionals[i].visual.up();
-			};
-		}
 	}
 }
 
 //*******Physical Key Actions******************************************************
 Keyboard.prototype.keyDown = function(event){
-	if(!this.capture)
-		return;
-	var code = event.keyCode;
-	var isHappened = false;
-	for(var i = this.keyHots.length-1; i > -1 ; i--){
-		if(this.checkKeyHot(event, this.keyHots[i], code, "down")){
-			if(!this.keyHots[i].thisSesson){
-	if(this.keyHots[i].when == 'down')
-		this.keyHots[i].active = !this.keyHots[i].active;
-	else
-		this.keyHots[i].active = true;
-	this.keyHots[i].action("down");
-	this.keyHots[i].thisSesson = true;
-			}
-			isHappened =  true;
-		}
-	}
-	if(isHappened){       
-		event.preventDefault();
-		event.stopPropagation();
-		return;
-	}
-	
-	if(!this.checkIsUsedSCANormal(event))
-		return false;
-
-	if(!this.field.active)
-		return;
-	
-	if(this.visualOption != 'newer')
-		for(var i = this.keyFunctionals.length-1; i > -1 ; i--){
-			if( this.keyFunctionals[i].code == code ){
-				this.keyFunctionals[i].visual.down();
-			};
-		}
-	
-	for(var i = this.keyLetters.length-1; i > -1 ; i--){      
-		if( this.keyLetters[i].code == code ){
-			this.keyLetters[i].action();
-			isHappened =  true;
-		};
-	}
-
-	if(isHappened){       
-		event.preventDefault();
-		event.stopPropagation();
-		return;
-	}
-	
-};  
-
-Keyboard.prototype.keyUp = function(event){
-	if(!this.capture)
-		return;
-	var code = event.keyCode;
-	var isHappened = false;
-	for(var i = this.keyHots.length-1; i > -1 ; i--){
-		if(this.checkKeyHot(event, this.keyHots[i], code, "upNoAction")){
-			if(this.keyHots[i].when == 'down'){
-				this.keyHots[i].active = false;
-			}
-		}
-		if(this.checkKeyHot(event, this.keyHots[i], code, "up")){
-			this.keyHots[i].action("up");
-			this.keyHots[i].active = false;
-			isHappened =  true;
-		}
-		this.keyHots[i].thisSesson = false;      
-	}
-	
-	
-	if(this.visualOption == 'newer')
-		return;
-	for(var i = this.keyLetters.length-1; i > -1 ; i--){
-		if( this.keyLetters[i].code == code ){
-			this.keyLetters[i].visual.up();
-			isHappened =  true;
-		};
-	}
-	for(var i = this.keyFunctionals.length-1; i > -1 ; i--){
-		if( this.keyFunctionals[i].code == code ){
-			this.keyFunctionals[i].visual.up();
-		};
-	}
-}
-
-Keyboard.prototype.checkKeyHot = function(event, keyHot, code, downOrUp){
-	// its check hotkey using in current key combination
-	// проверяет подходит ли горячия клавиша к текущей комбинаций клавиш
-	var ans = false;
-	switch (downOrUp) {
-		case "down":
-			if(
-				(code == keyHot.code) ||
-				((keyHot.code == 0)
-				&& ((code==16) || (code==17) || (code==18)))
-			){
-				var ans = true;
-				if (keyHot.alt){
-					ans = ans && (event.altKey || (code==18));
-				}
-				if (keyHot.ctrl){
-					ans = ans && (event.ctrlKey || (code==17));
-				}
-				if (keyHot.shift){
-					ans = ans && (event.shiftKey || (code==16));
-				}
-		
-			}
-			break;
-		case "up":
-			if(!keyHot.active)
-				return false;
-			if(
-				(code == keyHot.code) ||
-				((keyHot.code == 0)
-				&& ((code==16) || (code==17) || (code==18)))
-			){
-				var ans = false;
-				if (keyHot.alt){
-					ans = ans ||(code==18);
-				}
-				if (keyHot.ctrl){
-					ans = ans || (code==17);
-				}
-				if (keyHot.shift){
-					ans = ans || (code==16);
-				}
-			}
-			break;
-		case "upNoAction":
-			if(
-				(code == keyHot.code) || (code==16) || (code==17) || (code==18)
-			){
-				var ans = false;
-				if (keyHot.alt){
-					ans = ans ||(code==18);
-				}
-				if (keyHot.ctrl){
-					ans = ans || (code==17);
-				}
-				if (keyHot.shift){
-					ans = ans || (code==16);
-				}
-			}
-			break;
-		}
-	return ans;
+	this.physical.keyDown(event);
 };
 
-Keyboard.prototype.checkIsUsedSCANormal = function(event){
-	// SCA - shift ctrl alt
-	// check is current key cumbition in range of extention keys
-	// проверяет является ли тукущая комбинация клавиш обрабатываемами расширением
-	// shift + a : true
-	// ctrl + a: false
-	var ctrl = false;
-	var shift = false;
-	var alt = false;
-	for(var i = this.keyHots.length-1; i > -1 ; i--){
-		if(this.keyHots[i].active){
-			if (this.keyHots[i].alt){
-				alt = true;
-			}
-			if (this.keyHots[i].ctrl){
-				ctrl = true;
-			}
-			if (this.keyHots[i].shift){
-				shift = true;
-			}
-		}
-	}
-	if(event.ctrlKey && !ctrl)
-		return false;
-	if(event.altKey && !alt)
-		return false;
-	if(event.shiftKey && !shift)
-		return false;
-
-	return true;
+Keyboard.prototype.keyUp = function(event){
+	this.physical.keyUp(event);
 }

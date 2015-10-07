@@ -6,15 +6,17 @@ var Field = function(){
 }
 
 Field.prototype.focus = function(newField, newDoc){
+  this.active = true;
 	this.field = newField;
 	this.document = newDoc;
 	this.type = $(this.field).is('textarea, input') ? 'input' : 'contentEditable' ;
 };
 
 Field.prototype.blur = function(){
+  this.active = false;
 	this.field = null;
 	this.document = null;
-	this.type = undefined;		
+	this.type = undefined;
 }
 
 Field.prototype.addSymbol = function(word){
@@ -33,7 +35,7 @@ Field.prototype.addSymbol = function(word){
 		var textBegin = this.field.value.substring(0,selectStart);
 		var textEnd = this.field.value.substring(selectEnd,this.field.value.length);
 		this.field.value = textBegin + word + textEnd;
-		this.field.setSelectionRange(selectStart+1,selectStart+1); 		
+		this.field.setSelectionRange(selectStart+1,selectStart+1);
 	};
 }
 
@@ -78,7 +80,7 @@ Field.prototype.deleting = function(){
 		var selectEnd = this.field.selectionEnd;
 		var textBegin = this.field.value.substring(0,selectStart);
 		var textEnd = this.field.value.substring(selectEnd,this.field.value.length);
-		
+
 		if(selectStart == selectEnd){
 			this.field.value = textBegin + textEnd.substring(1,textBegin.length);
 			this.field.setSelectionRange(selectStart,selectStart);
@@ -89,13 +91,9 @@ Field.prototype.deleting = function(){
 	};
 }
 
-Field.prototype.simpleEnter = function(){
+Field.prototype.enter = function(){
 	if($(this.field).is('textarea, input'))
 		this.document.execCommand("insertText", false, '\n');
 	else
 		this.document.execCommand("insertParagraph");
-}
-
-Field.prototype.shiftEnter = function(){
-	this.document.execCommand("formatBlock", false, '<br>');
 }

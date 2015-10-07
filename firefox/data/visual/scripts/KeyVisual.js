@@ -1,11 +1,9 @@
 var VirtualKeyLetter, VirtualKeyFuncts;
 VirtualKey = function(key, options){
-	option = $.extend({
-		width: 30
-	},options);
 	this.logic = key; // Key class
 	this.visual = $('<div data-clicked=\'false\' class=\'aftan-keyboard-key\'/>');
 	this.setDisplayKeyText(options.title);
+	this.MOUSE_LEFT_CLICK = 1;
 	switch (options.sideIn) {
 	case "left":
 		this.visual.attr('sideIn', 'left');
@@ -14,7 +12,7 @@ VirtualKey = function(key, options){
 		this.visual.attr('sideIn', 'right');
 		break;
 	}
-	
+
 	this.fromMouse = false;
 	var that = this;
 	this.visual.bind('mousedown', function(e){
@@ -23,7 +21,7 @@ VirtualKey = function(key, options){
 		that.logic.action();
 		that.fromMouse = true;
 	});
-	this.setDisplayKeyText(key.currentSymbol);    
+	this.setDisplayKeyText(key.currentSymbol);
 }
 
 VirtualKey.prototype.setDisplayKeyText = function(text){
@@ -31,7 +29,7 @@ VirtualKey.prototype.setDisplayKeyText = function(text){
 }
 
 VirtualKey.prototype.down = function(){
-	this.visual.attr('clicked', 'true');    
+	this.visual.attr('clicked', 'true');
 }
 
 VirtualKey.prototype.up = function(){
@@ -39,9 +37,9 @@ VirtualKey.prototype.up = function(){
 	this.fromMouse = false;
 }
 
-VirtualKeyLetter = function(key, options){
-	VirtualKey.apply(this,[key, options]);
-	
+VirtualKeyLetter = function(key){
+	VirtualKey.apply(this,[key, {}]);
+
 	var that = this;
 	this.visual.bind('mousedown', function(e){
 		if (e.which != 1)
@@ -64,12 +62,12 @@ VirtualKeyFuncts = function(key, func, options){
 	this.visual.bind('mousedown', function(e){
 		if((that.logic.code == 0) || (e.which != 1))
 			return;
-		that.logic.kb.visualKeyFunct(that.logic.func, true);
+		that.logic.kb.visual.keyFunctPress(that.logic.func, true);
 	});
 	this.visual.bind('mouseup mouseleave', function(e){
 		if((that.logic.code == 0) || (e.which != 1))
 			return;
-		that.logic.kb.visualKeyFunct(that.logic.func, false);
+		that.logic.kb.visual.keyFunctPress(that.logic.func, false);
 	});
 }
 

@@ -1,9 +1,7 @@
 var VirtualKeyLetter, VirtualKeyFuncts;
-			VirtualKey = function(key, options){
-				option = $.extend({
-					width: 30
-				},options);
+VirtualKey = function(key, options){
 				this.logic = key; // Key class
+				this.MOUSE_LEFT_CLICK = 1;
 				this.visual = $('<div data-clicked=\'false\' class=\'aftan-keyboard-key\'/>');
 				this.setDisplayKeyText(options.title);
 				switch (options.sideIn) {
@@ -14,42 +12,41 @@ var VirtualKeyLetter, VirtualKeyFuncts;
 					this.visual.attr('sideIn', 'right');
 					break;
 				}
-				
+
 				this.fromMouse = false;
 	var that = this;
 	this.visual.bind('mousedown', function(e){
-			if (e.which != 1)
+			if (e.which != that.MOUSE_LEFT_CLICK)
 				return;
-		that.logic.action();
+			that.logic.action();
 			that.fromMouse = true;
 	});
-	this.setDisplayKeyText(key.currentSymbol);    
-			}
-			
-			VirtualKey.prototype.setDisplayKeyText = function(text){
+	this.setDisplayKeyText(key.currentSymbol);
+}
+
+VirtualKey.prototype.setDisplayKeyText = function(text){
 	this.visual.text(text);
 }
 
-			VirtualKey.prototype.down = function(){
-	this.visual.attr('clicked', 'true');    
+VirtualKey.prototype.down = function(){
+	this.visual.attr('clicked', 'true');
 }
 
-			VirtualKey.prototype.up = function(){
+VirtualKey.prototype.up = function(){
 	this.visual.attr('clicked', 'false');
 	this.fromMouse = false;
 }
 
-			VirtualKeyLetter = function(key, options){
-			VirtualKey.apply(this,[key, options]);
-			
-			var that = this;
+VirtualKeyLetter = function(key, options){
+	VirtualKey.apply(this,[key, options]);
+	var that = this;
 	this.visual.bind('mousedown', function(e){
-			if (e.which != 1)
+			if (e.which != that.MOUSE_LEFT_CLICK)
 				return;
-			this.fromMouse = true;
+				that.fromMouse = true;
 	});
 	this.visual.bind('mouseup mouseleave', function(e){
-			if ((e.which != 1) || (!that.fromMouse))
+			if ((e.which != that.MOUSE_LEFT_CLICK) || (!that.fromMouse))
 				return;
 			that.up();
 	});
@@ -62,14 +59,14 @@ VirtualKeyFuncts = function(key, func, options){
 	this.visual.addClass(func);
 	var that = this;
 	this.visual.bind('mousedown', function(e){
-			if((that.logic.code == 0) || (e.which != 1))
+			if((that.logic.code == 0) || (e.which != that.MOUSE_LEFT_CLICK))
 				return;
-			that.logic.kb.visualKeyFunct(that.logic.func, true);
+			that.logic.kb.visual.keyFunctPress(that.logic.func, true);
 	});
 	this.visual.bind('mouseup mouseleave', function(e){
-			if((that.logic.code == 0) || (e.which != 1))
+			if((that.logic.code == 0) || (e.which != that.MOUSE_LEFT_CLICK))
 				return;
-			that.logic.kb.visualKeyFunct(that.logic.func, false);
+			that.logic.kb.visual.keyFunctPress(that.logic.func, false);
 	});
 }
 

@@ -3,14 +3,9 @@ var Key, KeyLetter, KeyFunctional;
 Key = function(kb, code){
   this.kb = kb;
   this.code = code ? code : 0;
-  
 }
 
-KeyLetter = function(kb, physicalKeyCode, symbols, options){
-  options = $.extend({
-    width: 35
-  }, options);
-
+KeyLetter = function(kb, physicalKeyCode, symbols){
   Key.apply(this,[kb, physicalKeyCode]);
   /*    example of symbols array
 	symbols = [
@@ -18,7 +13,7 @@ KeyLetter = function(kb, physicalKeyCode, symbols, options){
 	    lowerCase: 'q',
 	    upperCase: 'Q',
 	    lowerAdd: '&',
-	    upperAdd: '*'              
+	    upperAdd: '*'
 	  },{
 	    lowerCase: 'й',
 	    upperCase: 'Й',
@@ -31,26 +26,24 @@ KeyLetter = function(kb, physicalKeyCode, symbols, options){
       caps: true
     },symbols[i].options);
 	}
-  
+
   this.symbols = symbols;
   this.currentLayout = 0;
   this.status = 'lowerCase';
   this.currentSymbol = this.symbols[this.currentLayout].lowerCase;
 }
 
-KeyLetter.prototype = Object.create(Key.prototype);
-
 KeyLetter.prototype.changeStatus = function(options){
   if(this.symbols[this.currentLayout].options.caps){
-    if(!options.shift ^ !options.caps){// shift XOR caps 
+    if(!options.shift ^ !options.caps){// shift XOR caps
 	    this.status = options.addit ? "upperAdd" : "upperCase" ;
-    }else{ 
+    }else{
 	    this.status = options.addit ? "lowerAdd" : "lowerCase" ;
     };
 	}else{
-    if(options.shift){// shift XOR caps 
+    if(options.shift){// shift XOR caps
       this.status = options.addit ? "upperAdd" : "upperCase" ;
-    }else{ 
+    }else{
       this.status = options.addit ? "lowerAdd" : "lowerCase" ;
     };
   }
@@ -68,14 +61,14 @@ KeyLetter.prototype.changeStatus = function(options){
       this.currentSymbol = this.symbols[this.currentLayout].upperAdd;
       break;
     }
-    
-  if(this.kb.visualOption != 'newer')
+
+  if(this.kb.visual.toShowOption != 'newer')
     this.visual.setDisplayKeyText(this.currentSymbol);
 }
 
-KeyLetter.prototype.changeLayout = function(num){
+KeyLetter.prototype.changeLayout = function(num, status){
   this.currentLayout = num;
-  this.changeStatus(this.status);
+  this.changeStatus(status);
 }
 
 KeyLetter.prototype.action = function(){
@@ -92,13 +85,10 @@ KeyLetter.prototype.createVisual = function(){
 }
 
 KeyFunctional = function(kb, options){
-  options = $.extend({
-    width: 35
-  }, options);
   Key.apply(this,[kb, options.code]);
   this.func = options.func;
   this.action = function(){
-      this.kb.keyFunctionalAction(this.func, {from:"virtual"});
+    this.kb.keyFunctionalAction(this.func, {from:"visual"});
   }
 }
 

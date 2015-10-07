@@ -4,25 +4,25 @@ Field = function(){
   this.field = null;
   this.window = null;
 }
-      
+
 Field.prototype.focus = function(newField, newWindow){
   this.active = true;
   this.field = newField;
   this.window = newWindow;
 };
-      
+
 Field.prototype.blur = function(){
   this.active = false;
   this.field = null;
-  this.window = null;	
+  this.window = null;
 }
-      
+
 Field.prototype.addSymbol = function(word){
   if (!this.active)
     return;
   this.window.document.execCommand("insertText", false, word)
 }
-      
+
 Field.prototype.backspacing = function(){
   if (!this.active)
     return;
@@ -79,7 +79,7 @@ Field.prototype.deleting = function(){
   };
 }
 
-Field.prototype.simpleEnter = function(){
+Field.prototype.enter = function(){
   if (!this.active)
     return;
   if($(this.field).is('textarea, input'))
@@ -87,12 +87,3 @@ Field.prototype.simpleEnter = function(){
   else
     this.window.document.execCommand("insertParagraph");
 }
-
-Field.prototype.shiftEnter = function(){
-	// its not used on current buld and its not worked think
-	// это функция не рабочия и не используется в текущей версии
-  if (!this.active)
-    return;
-  this.window.document.execCommand("formatBlock", false, '<br>');
-}
-      

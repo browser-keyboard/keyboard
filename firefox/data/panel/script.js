@@ -11,7 +11,8 @@ self.port.on('languageList', function(languageList){
 	var languageNames = [];
 	var ul = $('#lang');
 	ul.empty();
-	
+	list.length = 0;
+
 	for (var i = 0; i < languageList.length; i++) {
 		languageNames[i] = languageList[i].name;
 		var li = $('<li>');
@@ -30,6 +31,7 @@ self.port.on('languageList', function(languageList){
 		list.push(li);
 		ul.append(li);
 	}
+	list[0].attr('active', 'true');
 });
 
 self.port.on('changeLanguage', function(i){

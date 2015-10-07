@@ -1,10 +1,11 @@
 var HotKey;
-KeyHot = function(kb, combo){
+HotKey = function(kb, combo){
 	combo = $.extend({
 		when: "while",
 		alt: false,
 		ctrl: false,
 		shift: false,
+		meta: false,
 		code: 0,
 		keyFunction: '',
 		func: ''
@@ -13,6 +14,7 @@ KeyHot = function(kb, combo){
 	this.alt = combo.alt;
 	this.ctrl = combo.ctrl;
 	this.shift = combo.shift;
+	this.meta = combo.meta;
 	this.code = combo.code;
 	this.keyFunction = combo.keyFunction;
 	this.func = combo.func;
@@ -21,7 +23,7 @@ KeyHot = function(kb, combo){
 	this.thisSesson = false;
 }
 
-KeyHot.prototype.action = function(downOrUp){
+HotKey.prototype.action = function(downOrUp){
 	downOrUp = downOrUp ? downOrUp : '';
 	this.kb.keyFunctionalAction(this.func,{from: "physical", status: downOrUp} );
 }

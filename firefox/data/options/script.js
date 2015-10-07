@@ -1,6 +1,6 @@
 angular.module('optionApp', [])
-  .controller('OptionController', ['$scope', '$http', '$document', function($scope, $http, $document) {  
-    
+  .controller('OptionController', ['$scope', '$http', '$document', function($scope, $http, $document) {
+
     // functions
     var sortByShortName = function(a,b) {
       if (a.shortName < b.shortName)
@@ -9,11 +9,11 @@ angular.module('optionApp', [])
 	    return 1;
 	return 0;
     }
-    
+
     /*********************      RESET        *********************************/
-		
-		
-		
+
+
+
 		var layoutsFromServer;
 		var layoutsIdUsed = [];
     $scope.reset = function(){
@@ -28,9 +28,9 @@ angular.module('optionApp', [])
 			self.port.on('setInfo', function (params) { // Addon SDK API
 				$scope.setInfo(params);
 			});
-			
+
 		}
-    
+
     $scope.setInfo = function(result){
 			$scope.isActive = result.isActive;
 			$scope.userOptions = {};
@@ -39,10 +39,10 @@ angular.module('optionApp', [])
 			$scope.userOptions.langToSave = result.userOptions.langToSave;
 			$scope.userOptions.size = result.userOptions.size;
 			$scope.userOptions.color = result.userOptions.color;
-			
+
 			for(var i = 0; i < result.languageList.length; i++){
 				layoutsIdUsed.push(result.languageList[i].id);
-				
+
 				$http.get('http://browser-keyboard.github.io/languages/list.json').success(function(data){
 					$scope.netConnected = true;
 					layoutsFromServer = data;
@@ -58,16 +58,15 @@ angular.module('optionApp', [])
 							$scope.toUseLength++;
 						}
 					});
-					
+
 					$scope.selectedIdEneble = -1;
-					$scope.layoutsEnable = -1; 
+					$scope.layoutsEnable = -1;
 				}).error(function(){
-					console.log('ошибка');
 					$scope.alertNotNetOnReset = "showed";
 				});
 			}
 		}
-    
+
     /*********************      ADD TO USE         *********************************/
     $scope.addToUsed = function(){
       if($scope.selectedIdEneble == -1)
@@ -88,7 +87,7 @@ angular.module('optionApp', [])
       a = (a < len+1) ? a : len - 1;
       $scope.selectedIdEneble = (a == -1) ? -1 : $scope.layoutsEnable[a].id;
     };
-    
+
     /*********************      REMOVE FROM USED         *********************************/
     $scope.removeFromUsed = function(){
       if($scope.selectedIdUsed == -1)
@@ -99,7 +98,7 @@ angular.module('optionApp', [])
 	  var order = $scope.layoutsAll[i].order;
 	  delete $scope.layoutsAll[i].order;
 	  $scope.toUseLength--;
-	}      
+	}
       switch($scope.layoutsUsed.length) {
 	case 1:
 	  $scope.selectedIdUsed = -1;
@@ -108,7 +107,7 @@ angular.module('optionApp', [])
 	  for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
 	    if($scope.layoutsUsed[i].order+1 ==  order)
 	      $scope.selectedIdUsed = $scope.layoutsUsed[i].id;
-	  }	
+	  }
 	  break;
 	default:
 	  for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
@@ -117,10 +116,10 @@ angular.module('optionApp', [])
 	      if($scope.layoutsUsed[i].order ==  order)
 		$scope.selectedIdUsed = $scope.layoutsUsed[i].id;
 	    }
-	  }	
+	  }
       }
     };
-    
+
     /*********************      ORDER         *********************************/
     $scope.orderUp = function(){
       if($scope.selectedIdUsed == -1)
@@ -132,7 +131,7 @@ angular.module('optionApp', [])
       var order = $scope.layoutsUsed[a].order;
       if(order == 1)
 	return;
-      
+
       for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
 	if($scope.layoutsUsed[i].order == order - 1)
 	  b = i;
@@ -140,11 +139,11 @@ angular.module('optionApp', [])
       var objectC = $scope.layoutsUsed[a];
       $scope.layoutsUsed[a] = $scope.layoutsUsed[b];
       $scope.layoutsUsed[b] = objectC;
-      
+
       $scope.layoutsUsed[a].order = order ;
       $scope.layoutsUsed[b].order = order - 1;
     };
-    
+
     $scope.orderDown = function(){
       if($scope.selectedIdUsed == -1)
 	return;
@@ -155,41 +154,41 @@ angular.module('optionApp', [])
       var order = $scope.layoutsUsed[a].order;
       if(order == $scope.layoutsUsed.length)
 	return;
-      
+
       for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
 	if($scope.layoutsUsed[i].order == order + 1)
 	  b = i;
       }
-      
+
       var objectC = $scope.layoutsUsed[a];
       $scope.layoutsUsed[a] = $scope.layoutsUsed[b];
       $scope.layoutsUsed[b] = objectC;
-      
+
       $scope.layoutsUsed[a].order = order;
       $scope.layoutsUsed[b].order = order + 1;
     };
-    
-    
+
+
     /*********************      SAVE         *********************************/
-    
+
 	$scope.save = function(){
 		var saveBool = true;
-		
+
 		if($scope.netConnected){
 			if($scope.layoutsUsed.length == 0){
 				$scope.alertLangCount = "showed";
 				return;
 			}else
 				$scope.alertLangCount = "hided";
-			
+
 			$scope.layoutsUsed.sort(function(a,b) {
 				if (a.order < b.order)
 					return -1;
 						if (a.order > b.order)
 							return 1;
-				return 0;	
+				return 0;
 			});
-			
+
 			var toSave = [];
 			for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
 				$http.get('http://browser-keyboard.github.io/languages/' + $scope.layoutsUsed[i].id + '.json')
@@ -199,28 +198,28 @@ angular.module('optionApp', [])
 						$scope.alertNotNetOnSave = "showen";
 						saveBool = false;
 					});
-			};			
-		}		
-		
+			};
+		}
+
 		setInterval(function(){
 			if(!saveBool)
 				return;
 			if($scope.netConnected)
 				if(toSave.length != $scope.layoutsUsed.length)
 					return;
-			self.port.emit("save", {languageList: toSave, isActive: $scope.isActive, userOptions: $scope.userOptions});				
+			self.port.emit("save", {languageList: toSave, isActive: $scope.isActive, userOptions: $scope.userOptions});
 			saveBool = false;
 			$scope.alertNotNetOnSave = "hided";
 			$scope.alertShowSaved = "showed";
 			setTimeout(function(){
 				$scope.canHideAlertShowSaved = true;
 			}, 300);
-		}, 120);	
+		}, 120);
 	}
-  
+
     /*********************      ALERTS         *********************************/
-	
-  $scope.$watch(function() { 
+
+  $scope.$watch(function() {
 		if($scope.canHideAlertShowSaved){
 			$scope.alertShowSaved = "hided";
 		}
@@ -231,7 +230,6 @@ angular.module('optionApp', [])
 	$scope.alertLangCountClose = function(){
 		$scope.alertLangCount = "hided";
 	}
-	
-  $scope.reset(); 
-}]);
 
+  $scope.reset();
+}]);

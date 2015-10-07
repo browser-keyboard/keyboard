@@ -1,9 +1,19 @@
 var keyboardOption;
 var languageList;
 
-	/*[`, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, =, q, w, e, r, t, y, u, i, o, p, [, ], a, s, d, f, g, h, j, k, l, ;, ', ", z, x, c, v, b, n, m, ',', '.', /  ];*/
-	var keyCodes = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash"];
-  
+	/*[
+		`, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, =,
+		q, w, e, r, t, y, u, i, o, p, [, ],
+		a, s, d, f, g, h, j, k, l, ;, ', ",
+		z, x, c, v, b, n, m, ',', '.', /
+	];*/
+	var keyCodes = [
+		"Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal",
+		"KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "KeyA",
+		"KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote",
+		"KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash"
+	];
+
   var keyBackspace = {
   	func: 'keyBackspace',
   	title: 'A',
@@ -35,31 +45,12 @@ var languageList;
 		title: 'F',
   	code: 'Enter'
   }
-  var keyShiftEnter = {
-		func: 'keyShiftEnter',
-		title: 'Shift+Enter'
-  }
-  
   var keyDelete = {
 		func: 'keyDelete',
 		title: 'B',
   	code: 'Delete'
   };
 
-  var keyAdditLong = {
-  	func: 'keyAdditLong',
-  	title: '!@#$'
-  };
-  
-  var comboAdditLong = {
-  		when: 'down',
-  		ctrl: true,
-  		alt: true,
-  		code: 'Space',
-  		keyFunction: 'keyAdditLong',
-    	func: 'keyAdditLong',
-  };
-  
   var comboNextLanguage = {
   	when: 'down',
   	shift: true,
@@ -90,16 +81,13 @@ var languageList;
 
 
 keyboardOption = {
-  //languageSet: [languageList],
-
   keySet : [
     ['layout', keyBackspace],
     ['layout', keyDelete],
     [keyCaps, 'layout', keyEnter ],
     [keyShift, 'layout', keyShift],
-    [keyNextLanguage, keySpace, keyAddit, keyAdditLong]
+    [keyNextLanguage, keySpace, keyAddit]
   ],
   keyCodes: keyCodes,
-  combos: [comboNextLanguage, comboCaps, comboShift, comboAddit, comboAdditLong]
+  combos: [comboNextLanguage, comboCaps, comboShift, comboAddit]
 }
-

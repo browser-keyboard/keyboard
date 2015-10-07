@@ -1,10 +1,6 @@
-
-
 $('#momon').text(chrome.i18n.getMessage("keyboard"));
 $('#open-options').text(chrome.i18n.getMessage("options"));
-	
-	
-	
+
 var switches = document.querySelectorAll('input[type="checkbox"].ios-switch');
 
 for (var i=0, sw; sw = switches[i++]; ) {
@@ -43,7 +39,7 @@ chrome.storage.local.get(["languageList", "kStatus"], function(data){
 });
 
 chrome.storage.local.get(["isActive"], function(data){
-  $('#isActive').prop('checked', data.isActive);  
+  $('#isActive').prop('checked', data.isActive);
   $('#isActive').change(function(){
     f_active($(this).is(':checked'));
   });

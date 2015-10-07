@@ -3,11 +3,11 @@
 
   "name": "Browser Keyboard(Beta)",
   "description": "__MSG_ext_description__",
-  "version": "0.7.6",
-  "icons": { 
+  "version": "0.8.0",
+  "icons": {
 		"48": "icons/icon48.png",
 		"64": "icons/icon64.png",
-		"128": "icons/icon128.png" 
+		"128": "icons/icon128.png"
 	},
 "browser_action": {
     "default_icon": "icons/19.png",
@@ -36,8 +36,9 @@
 	      "content/scripts/HotKey.js",
 	      "content/scripts/KeyboardVisual.js",
 	      "content/scripts/KeyboardLogic.js",
+	      "content/scripts/KeyboardPhysical.js",
 	      "content/scripts/Keyboard.js",
-	      "content/scripts/connect_extention.js"
+	      "content/scripts/connect.js"
       ],
       "css": [
 	      "content/style.css"
@@ -50,7 +51,7 @@
     "*"
   ],
 	"default_locale": "ru",
-	
+
 "commands": {
 	"toggle-feature-activision": {
 		"suggested_key": {
@@ -63,6 +64,6 @@
 		"description": "Acive/disactive keyboard extention"
 	}
 }
-	
-	
+
+
 }

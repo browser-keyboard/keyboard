@@ -3,14 +3,10 @@ var Key, KeyLetter, KeyFunctional;
   Key = function(kb, code){
     this.kb = kb;
     this.code = code ? code : 0;
-    
+
   }
 
-  KeyLetter = function(kb, physicalKeyCode, symbols, options){
-    options = $.extend({
-      width: 35
-    }, options);
-
+  KeyLetter = function(kb, physicalKeyCode, symbols){
     Key.apply(this,[kb, physicalKeyCode]);
     /*    example of symbols array
           symbols = [
@@ -18,7 +14,7 @@ var Key, KeyLetter, KeyFunctional;
               lowerCase: 'a',
               upperCase: 'A',
               lowerAdd: '&',
-              upperAdd: '*'              
+              upperAdd: '*'
             },{
               lowerCase: 'й',
               upperCase: 'Й',
@@ -31,7 +27,7 @@ var Key, KeyLetter, KeyFunctional;
       	caps: true
       },symbols[i].options);
 		}
-    
+
     this.symbols = symbols;
     this.currentLayout = 0;
     this.status = 'lowerCase';
@@ -39,19 +35,19 @@ var Key, KeyLetter, KeyFunctional;
   }
 
   KeyLetter.prototype = Object.create(Key.prototype);
-  
+
   KeyLetter.prototype.changeSymbols = function(options){
 		this.currentLayout = options.language;
   	if(this.symbols[this.currentLayout].options.caps){
-    	if(!options.shift ^ !options.caps){// shift XOR caps 
+    	if(!options.shift ^ !options.caps){// shift XOR caps
     		this.status = options.addit ? "upperAdd" : "upperCase" ;
-    	}else{ 
+    	}else{
     		this.status = options.addit ? "lowerAdd" : "lowerCase" ;
     	};
   	}else{
-    	if(options.shift){// shift XOR caps 
+    	if(options.shift){// shift XOR caps
     		this.status = options.addit ? "upperAdd" : "upperCase" ;
-    	}else{ 
+    	}else{
     		this.status = options.addit ? "lowerAdd" : "lowerCase" ;
     	};
   	}
@@ -76,7 +72,7 @@ var Key, KeyLetter, KeyFunctional;
   		return;
     this.kb.addLetter(this);
   }
-    
+
   KeyFunctional = function(kb, options){
     options = $.extend({
       width: 35
@@ -89,4 +85,3 @@ var Key, KeyLetter, KeyFunctional;
   }
 
   KeyFunctional.prototype = Object.create(Key.prototype);
-

@@ -7,64 +7,47 @@ var getKeyParams = function(e){
 	return params;
 }
 
-var ifKeyboard;
+var contentKeyboard;
 self.port.on('create', function(params){
 	keyboardOption.languageSet = params.languageList;
-	ifKeyboard = new Keyboard(keyboardOption, params.userOptions);
-	$('html').on('focus', selector, f_focus);    
-	$('html').on('focus', 'input:password',f_focusPassport);    
+	contentKeyboard = new Keyboard(keyboardOption, params.userOptions);
+	$('html').on('focus', selector, f_focus);
+	$('html').on('focus', 'input:password',f_focusPassport);
 	$('html').on('blur', selector, f_blur);
 	$('html').on('keydown', selector, f_keyDown);
 	$('html').on('keyup', selector, f_keyUp);
-	$(function() {
-		if(document.activeElement != document.getElementsByTagName('body')[0]){
-			// если при загрузки странницы установлен автофокус на текстовом поле
-			if($(document.activeElement).is('input:password')){
-				ifKeyboard.setField(document.activeElement, document);
-				self.port.emit('setField', {animate: false});
-				return;
-			}
-			if($(document.activeElement).is(nonSelector)){
-				return false;
-			}
-			ifKeyboard.setField(document.activeElement, document);    
-			self.port.emit('setField', {});
-		}
-	});
-});	
+	$(setFocusIfIsAutofocusField);
+});
 self.port.on('destroy', function(){
-	$('html').off('focus', selector, f_focus);    
-	$('html').off('focus', 'input:password',f_focusPassport);    
+	$('html').off('focus', selector, f_focus);
+	$('html').off('focus', 'input:password',f_focusPassport);
 	$('html').off('blur', selector, f_blur);
 	$('html').off('keydown', selector, f_keyDown);
 	$('html').off('keyup', selector, f_keyUp);
-  delete ifKeyboard;
-});	
+  delete contentKeyboard;
+});
 
 self.port.on('changeSymbols', function(params){
-	if(ifKeyboard.active){
-		ifKeyboard.setKStutus(params);
+	if(contentKeyboard.isActive()){
+		contentKeyboard.setKStutus(params);
 	}
 });
 self.port.on('functional', function(params){
-	switch(func){
+	switch(params){
 		case "keyBackspace":
-			ifKeyboard.field.backspacing();
+			contentKeyboard.field.backspacing();
 			break;
-		case "keyDelete": 
-			ifKeyboard.field.deleting();
-			break;    
-		case "keyEnter": 
-			ifKeyboard.field.simpleEnter();
-			break;   
-		case "keyShiftEnter": 
-			ifKeyboard.field.shiftEnter();
+		case "keyDelete":
+			contentKeyboard.field.deleting();
+			break;
+		case "keyEnter":
+			contentKeyboard.field.keyEnter();
 			break;
 	}
 })
 self.port.on('addLetter', function(massage){
 	setTimeout(function(){
-		ifKeyboard.field.addSymbol(massage[0]);
+		contentKeyboard.field.addSymbol(massage[0]);
 	},12);
 });
 
@@ -74,23 +57,38 @@ var nonSelector = ':password, :button, :checkbox, :file, :hidden, :image, :radio
 var f_focus = function(e){
 	if($(this).is(nonSelector))
 		return false;
-	ifKeyboard.setField(this, document);
+	contentKeyboard.setField(this, document);
 	self.port.emit('setField', {});
 }
 var f_focusPassport = function(e){
-	ifKeyboard.setField(this, document);
+	contentKeyboard.setField(this, document);
 	self.port.emit('setField', {animate: false});
 }
 var f_blur = function(e){
-	ifKeyboard.fieldBlur();
+	contentKeyboard.fieldBlur();
 	self.port.emit('blurField');
 
 }
 var f_keyDown =  function(e){
-	ifKeyboard.keyDown(e);
+	contentKeyboard.keyDown(e);
 	self.port.emit('keyDown', getKeyParams(e));
 }
 var f_keyUp = function(e){
-	ifKeyboard.keyUp(e);
+	contentKeyboard.keyUp(e);
 	self.port.emit('keyUp', getKeyParams(e));
+}
+
+var setFocusIfIsAutofocusField = function(){
+	if(document.activeElement != document.getElementsByTagName('body')[0]){
+		// если при загрузки странницы установлен автофокус на текстовом поле
+		if($(document.activeElement).is('input:password')){
+			contentKeyboard.setField(document.activeElement, document);
+			self.port.emit('setField', {animate: false});
+			setTimeout(function(){self.port.emit('setField', {animate: false});}, 600);
+		}else if(!$(document.activeElement).is(nonSelector)){
+			contentKeyboard.setField(document.activeElement, document);
+			self.port.emit('setField', {});
+			setTimeout(function(){self.port.emit('setField', {});}, 600);
+		}
+	}
 }
