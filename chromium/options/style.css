@@ -118,3 +118,12 @@ body{
 }
 
 
+.languages-eneble{
+	overflow-y: scroll;
+	height: 320px;
+}
+
+.languages-used{
+	overflow-y: scroll;
+	height: 360px;
+}

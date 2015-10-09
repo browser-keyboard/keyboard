@@ -14,7 +14,7 @@ var KeyboardLogic = function(kb, options){
 		addit: {
 			physical: false,
 			active: false
-		}
+		},
 		language: {
 			value: 0,
 			count: options.languageSet.length
