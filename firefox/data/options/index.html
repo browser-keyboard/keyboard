@@ -96,6 +96,12 @@
 								<span data-l10n-id="onsreen_color_black"></span>
 							</label>
 						</div>
+						<div class="radio">
+							<label>
+								<input name="optionsRadios2" ng-model="userOptions.color" type="radio" value="transperent_blue">
+								<span data-l10n-id="onsreen_color_transperent_blue"></span>
+							</label>
+						</div>
 					</div>
 				</div>
 					<div class="col-lg-6">
@@ -139,9 +145,11 @@
 				<div class="row" id="mytable" style="height: 360px"  >
 					<div class="col-xs-5">
 					<input type="text" class="search-input" data-l10n-id="search_placehold" ng-model="searchEnable">
-					 <div class='radiobox-div' ng-repeat="layout in layoutsEnable = (layoutsAll | filter : {$: searchEnable, toUse: false} | orderBy : 'shortName': reverse)">
-							<label class='radiobox'><input type="radio" name="selectedIdEneble" ng-model="$parent.selectedIdEneble" ng-value="{{layout.id}}"><span class="item"><span class="badge">{{layout.shortName}}</span>{{layout.name}}</span></label>
-					 </div>
+          <div class="languages-eneble">
+					  <div class='radiobox-div' ng-repeat="layout in layoutsEnable = (layoutsAll | filter : {$: searchEnable, toUse: false} | orderBy : 'shortName': reverse)">
+						  <label class='radiobox'><input type="radio" name="selectedIdEneble" ng-model="$parent.selectedIdEneble" ng-value="{{layout.id}}"><span class="item"><span class="badge">{{layout.shortName}}</span>{{layout.name}}</span></label>
+					   </div>
+           </div>
 
 					</div>
 					<div class="col-xs-1">
@@ -151,11 +159,13 @@
 						</div>
 					</div>
 					<div class="col-xs-5" style="padding: 0;  height: 100%">
-					 <div class='radiobox-div' ng-repeat="layout in layoutsUsed  = (layoutsAll | filter : {toUse: true} | orderBy : 'order': reverse)">
-							<label class='radiobox'><input type="radio" name="selectedIdUsed" ng-model="$parent.selectedIdUsed" ng-value="{{layout.id}}"><span class="item"><span class="badge">{{layout.shortName}}</span>{{layout.name}}</span></label>
-					 </div>
+            <div class="languages-used">
+					    <div class='radiobox-div' ng-repeat="layout in layoutsUsed  = (layoutsAll | filter : {toUse: true} | orderBy : 'order': reverse)">
+						    <label class='radiobox'><input type="radio" name="selectedIdUsed" ng-model="$parent.selectedIdUsed" ng-value="{{layout.id}}"><span class="item"><span class="badge">{{layout.shortName}}</span>{{layout.name}}</span></label>
+					    </div>
+            </div>
 					</div>
-					<div class="col-xs-1" style="text-align: center;  height: 100%"">
+					<div class="col-xs-1" style="text-align: center;  height: 100%">
 						<div class="btn-group-vertical" role="group" aria-label="...">
 							<button type="button" class="btn btn-primary" ng-click="orderUp()" ng-if="selectedIdUsed!=-1"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
 							<button type="button" class="btn btn-primary" ng-click="orderDown()" ng-if="selectedIdUsed!=-1"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>

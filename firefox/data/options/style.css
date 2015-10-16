@@ -120,3 +120,13 @@ body{
 .checkbox-span{
 	padding-left: 5px !important;
 }
+
+.languages-eneble{
+	overflow-y: scroll;
+	height: 320px;
+}
+
+.languages-used{
+	overflow-y: scroll;
+	height: 360px;
+}

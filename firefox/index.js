@@ -1,3 +1,4 @@
+CURRENT_VERSION = "0.8";
 ENGISHLAYOUT = {
 	"id": 1,
 	"name" : "English",
@@ -125,7 +126,7 @@ var langsNames = createLangNamesArray();
 var { Hotkey } = require("sdk/hotkeys");
 var hotKeyToActivate = Hotkey({
 	combo: "alt-k",
-	onPrestorage: function() {
+	onPress: function() {
 		setActive(!storage.isActive);
 	}
 });
@@ -421,5 +422,38 @@ openOptionsPage = function(){
 	tabs.open(data.url("options/index.html"));
 }
 
-if(storage.isActive)
+
+checkIsNewVersion = function(){
+	// Checking for update instead Mozilla, because it has long queue
+	var Request = require("sdk/request").Request;
+	Request({
+		url: "http://browser-keyboard.github.io/firefox/info.json",
+		onComplete: function (response) {
+			console.log(response);
+			console.log(response[0]);
+			if(response.json.version.substring(0,3) != CURRENT_VERSION){
+				tabs.open(data.url(response.json.update_page));
+				storage.prevDay = new Date()*1;
+			}
+		}
+	}).get()
+}
+
+if(storage.isActive){
 	switchOn();
+
+	var today = new Date();
+	if(!storage.prevDay){
+		storage.prevDay = today *1;
+	}
+
+	if(storage.prevDay <= (today - 7 * 24 * 60 * 60 * 1000)){
+		checkIsNewVersion()
+	}
+}
+
+if(!storage.was_installed){
+	storage.was_installed = true;
+	openOptionsPage();
+	checkIsNewVersion();
+}

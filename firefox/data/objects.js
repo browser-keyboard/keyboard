@@ -13,15 +13,15 @@ var languageList;
 		"KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote",
 		"KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash"
 	];
-
+	
   var keyBackspace = {
   	func: 'keyBackspace',
-  	title: 'A',
+  	title: '⇦',
   	code: 'Backspace'
   }
   var keyCaps = {
 		func: 'keyCaps',
-		title: 'D'
+		title: '⇪'
   }
   var keyNextLanguage = {
 		func: 'keyNextLanguage',
@@ -34,20 +34,20 @@ var languageList;
   }
   var keyAddit = {
 		func: 'keyAddit',
-		title: '!@#$'
+		title: 'Ctrl+Alt'
   }
   var keyShift = {
 		func: 'keyShift',
-		title: 'C'
+		title: '⇧'
 	}
   var keyEnter = {
 		func: 'keyEnter',
-		title: 'F',
+		title: '↵',
   	code: 'Enter'
   }
   var keyDelete = {
 		func: 'keyDelete',
-		title: 'B',
+		title: '⇨',
   	code: 'Delete'
   };
 

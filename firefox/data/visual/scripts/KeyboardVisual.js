@@ -24,7 +24,7 @@ KeyboardVisual.prototype.createContainer = function(options, userOptions){
   dragger.append(this.languageTitle);
 
   var controlsDiv = $('<div id=\'controlsDiv\'></div>');
-  var closeControl = $('<div id=\'close\'>E</div>');
+  var closeControl = $('<div id=\'close\'>×</div>');
   closeControl.click(function(){
 		self.port.emit("activision", false);
   });
