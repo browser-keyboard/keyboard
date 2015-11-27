@@ -49,8 +49,10 @@ var turnOff = function(){
 var childActive = function(){
   if(created)
     return;
-  if(parent.window.created)
-    childCreate();
+  try{
+    if(parent.window.created)
+      childCreate();
+  }catch(e){}
 }
 
 var childCreate = function(){
@@ -130,12 +132,12 @@ var ckeditorKludge = function(){
   // if script was not run on iframe (its for ckeditor)
   setTimeout(function(){
     setInterval(function(){
+      try{
       if(!created)
         return;
       for(var i = 0; i < window.frames.length ; i++){
         if(!window.frames[i].virtualKeyboard){
           window.frames[i].virtualKeyboard = true;
-          try {
             content = $(window.frames[i].document).contents().find('body').parent();
             content.on('focus', HANDLE_SELECTORS, function(e){
               if(!created) return;
@@ -167,9 +169,9 @@ var ckeditorKludge = function(){
               if(!created) return;
               virtualKeyboard.browserFocus();
             });
-          } catch(e){}
+          }
         }
-      }
+      } catch(e){}
     }, 500);
   }, 500);
 }

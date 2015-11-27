@@ -3,7 +3,7 @@ Virtual keyboard extensoin for browsers
 
 Расширение виртуальная клавитура для браузеров
 
-# Features
+# Features 
 * convert physical key press to extensoin layout symbols
 * type text by on-screen keyboard
 * choose diferent languages behind system settings
@@ -29,11 +29,15 @@ Virtual keyboard extensoin for browsers
 * также возможна комбинация горячих клашив, пример: shift + ctrl + alt — переключение на дополнительные прописные символы* наэкранная клавиатура перетаскиваемая
 
 # Developing Status
+Extensions for Chrome and Opera are ready. Porting to Firefox is going now. Port to Safari will be.
+
 Extension is not work on some sites:  mail.google.com, keep.google.com, mail.yahoo.com. Issues are becouse of scripts of this sites now allow to extension handle key pressing. My scills not well to fix this bug so I leave everything as it is until somebody help with it or new browsers API come.
 
-I will glad to get advices about keyboard archeture.
+I will glad to get tips about keyboard archeture.
 
 # Статус разработки
+Расширения под Chrome и Opera готовы. Сейчас идет портирование расширения под Firefox, по возможности будет порт под Safari.
+
 Расширение не работает на некоторых сайтах: mail.google.com, keep.google.com, mail.yahoo.com. Ошибки в работе происходят, потому что скрипты этих сайтов не дают расширению обработать события нажатий на клавиши. Так как моих навыков недосточно для исправления этих багов, я оставляю все как есть, до тех времен пока не появятся люди готовые помочь или новые API браузеров.
 
 Также я буду рад получить советы по архетиктуре клавиатуры (но вряд ли я изменю ее).

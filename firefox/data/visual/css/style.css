@@ -79,162 +79,209 @@
 }
 #keyboardDiv[color="black"] .aftan-keyboard-key{
   background-color: #444;
-  /*transition: font-size 0.4s, box-shadow 0.4s;*/
 }
 #keyboardDiv[color="black"] .aftan-keyboard-key[clicked = 'true'] {
   box-shadow: inset 1px 1px 2px #323232, inset -1px -1px 2px #323232;
-/*  background-color: rgb(94, 94, 94);*/
   color: #fff;
 }
 
-/*************      STANDART  BLACK    *************/
-#keyboardDiv[color="black"][size="standart"]{
+/*************      1x  BLACK    *************/
+#keyboardDiv[color="black"][size="1x"]{
 	width: 451px;
 }
-#keyboardDiv[color="black"][size="standart"] #aftan-keyboard{
+#keyboardDiv[color="black"][size="1x"] #aftan-keyboard{
 	height: 156px;
 	font-size: 15px;
 	padding-top: 1px;
 }
-#keyboardDiv[color="black"][size="standart"] #keyboardDragger{
+#keyboardDiv[color="black"][size="1x"] #keyboardDragger{
   height: 25px;
   position: relative;
   font-size: 14px;
 }
-#keyboardDiv[color="black"][size="standart"]  #languageTitle{
+#keyboardDiv[color="black"][size="1x"]  #languageTitle{
 	letter-spacing: 3px;
   line-height: 27px;
   padding-left: 10px;
 	width: 400px;
 }
-#keyboardDiv[color="black"][size="standart"]  #controlsDiv{
+#keyboardDiv[color="black"][size="1x"]  #controlsDiv{
 	width: 25px;
 }
-#keyboardDiv[color="black"][size="standart"]  #close{
+#keyboardDiv[color="black"][size="1x"]  #close{
 	line-height: 25px;
 	width: 25px;
 }
-#keyboardDiv[color="black"][size="standart"] .aftan-keyboard-line{
+#keyboardDiv[color="black"][size="1x"] .aftan-keyboard-line{
   margin-top: 1px;
   margin-left: 1px;
 }
-#keyboardDiv[color="black"][size="standart"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
-#keyboardDiv[color="black"][size="standart"] .aftan-keyboard-key{
+#keyboardDiv[color="black"][size="1x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="black"][size="1x"] .aftan-keyboard-key{
   margin-left: 1px;
   width: 30px;
   height: 30px;
   line-height: 27px;
 }
-#keyboardDiv[color="black"][size="standart"] .aftan-keyboard-key[clicked = 'true'] { font-size: 14px; }
-#keyboardDiv[color="black"][size="standart"] .aftan-keyboard-key:first-child{ margin-left: 0 }
-#keyboardDiv[color="black"][size="standart"] .aftan-keyboard-key[sidein="left"]{	padding-left: 10px }
-#keyboardDiv[color="black"][size="standart"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 10px }
-#keyboardDiv[color="black"][size="standart"] .keyBackspace,
-	#keyboardDiv[color="black"][size="standart"] .keyDelete{	width: 46px }
-#keyboardDiv[color="black"][size="standart"] .keySpace{	width: 247px }
-#keyboardDiv[color="black"][size="standart"] .keyNextLanguage,
-  #keyboardDiv[color="black"][size="standart"] .keyAddit{	width: 100px }
-#keyboardDiv[color="black"][size="standart"] .keyCaps{	width: 53px }
-#keyboardDiv[color="black"][size="standart"] .keyEnter{	width: 54px }
-#keyboardDiv[color="black"][size="standart"] .keyShift{ width: 69px }
+#keyboardDiv[color="black"][size="1x"] .aftan-keyboard-key[clicked = 'true'] { font-size: 14px; }
+#keyboardDiv[color="black"][size="1x"] .aftan-keyboard-key:first-child{ margin-left: 0 }
+#keyboardDiv[color="black"][size="1x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 10px }
+#keyboardDiv[color="black"][size="1x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 10px }
+#keyboardDiv[color="black"][size="1x"] .keyBackspace,
+	#keyboardDiv[color="black"][size="1x"] .keyDelete{	width: 46px }
+#keyboardDiv[color="black"][size="1x"] .keySpace{	width: 247px }
+#keyboardDiv[color="black"][size="1x"] .keyNextLanguage,
+  #keyboardDiv[color="black"][size="1x"] .keyAddit{	width: 100px }
+#keyboardDiv[color="black"][size="1x"] .keyCaps{	width: 53px }
+#keyboardDiv[color="black"][size="1x"] .keyEnter{	width: 54px }
+#keyboardDiv[color="black"][size="1x"] .keyShift{ width: 69px }
 
-/*************      BIG  BLACK    *************/
-#keyboardDiv[color="black"][size="big"]{
+/*************      1.5x  BLACK    *************/
+#keyboardDiv[color="black"][size="1.5x"]{
 	width: 680px;
 }
-#keyboardDiv[color="black"][size="big"] #aftan-keyboard{
+#keyboardDiv[color="black"][size="1.5x"] #aftan-keyboard{
 	height: 233px;
 	font-size: 24px;
 }
-#keyboardDiv[color="black"][size="big"] #keyboardDragger{
+#keyboardDiv[color="black"][size="1.5x"] #keyboardDragger{
   height: 38px;
   position: relative;
   font-size: 21px;
   border-bottom: 2px solid #000;
 }
-#keyboardDiv[color="black"][size="big"]  #languageTitle{
+#keyboardDiv[color="black"][size="1.5x"]  #languageTitle{
 	letter-spacing: 4px;
   line-height: 41px;
   padding-left: 15px;
 	width: 43px;
 }
-#keyboardDiv[color="black"][size="big"]  #controlsDiv{
+#keyboardDiv[color="black"][size="1.5x"]  #controlsDiv{
 	width: 38px;
 }
-#keyboardDiv[color="black"][size="big"]  #close{
+#keyboardDiv[color="black"][size="1.5x"]  #close{
 	line-height: 38px;
 	width: 38px;
 }
-#keyboardDiv[color="black"][size="big"] .aftan-keyboard-line{
+#keyboardDiv[color="black"][size="1.5x"] .aftan-keyboard-line{
   margin-top: 2px;
 }
-#keyboardDiv[color="black"][size="big"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
-#keyboardDiv[color="black"][size="big"] .aftan-keyboard-key{
+#keyboardDiv[color="black"][size="1.5x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="black"][size="1.5x"] .aftan-keyboard-key{
   margin-left: 2px;
   width: 45px;
   height: 45px;
   line-height: 41px;
 }
-#keyboardDiv[color="black"][size="big"] .aftan-keyboard-key:first-child{ margin-left: 0 }
-#keyboardDiv[color="black"][size="big"] .aftan-keyboard-key[sidein="left"]{	padding-left: 15px }
-#keyboardDiv[color="black"][size="big"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 15px }
-#keyboardDiv[color="black"][size="big"] .keyBackspace,
-	#keyboardDiv[color="black"][size="big"] .keyDelete{	width: 69px }
-#keyboardDiv[color="black"][size="big"] .keyNextLanguage,
-  #keyboardDiv[color="black"][size="big"] .keyAddit{	width:151px }
-#keyboardDiv[color="black"][size="big"] .keySpace{	width: 374px }
-#keyboardDiv[color="black"][size="big"] .keyCaps{	width: 80px }
-#keyboardDiv[color="black"][size="big"] .keyEnter{	width: 81px }
-#keyboardDiv[color="black"][size="big"] .keyShift{ width: 104px }
+#keyboardDiv[color="black"][size="1.5x"] .aftan-keyboard-key:first-child{ margin-left: 0 }
+#keyboardDiv[color="black"][size="1.5x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 15px }
+#keyboardDiv[color="black"][size="1.5x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 15px }
+#keyboardDiv[color="black"][size="1.5x"] .keyBackspace,
+	#keyboardDiv[color="black"][size="1.5x"] .keyDelete{	width: 69px }
+#keyboardDiv[color="black"][size="1.5x"] .keyNextLanguage,
+  #keyboardDiv[color="black"][size="1.5x"] .keyAddit{	width:151px }
+#keyboardDiv[color="black"][size="1.5x"] .keySpace{	width: 374px }
+#keyboardDiv[color="black"][size="1.5x"] .keyCaps{	width: 80px }
+#keyboardDiv[color="black"][size="1.5x"] .keyEnter{	width: 81px }
+#keyboardDiv[color="black"][size="1.5x"] .keyShift{ width: 104px }
 
-/*************      LARGE  BLACK    *************/
-#keyboardDiv[color="black"][size="large"]{
+/*************      1.7x  BLACK    *************/
+#keyboardDiv[color="black"][size="1.7x"]{
+	width: 810px;
+}
+#keyboardDiv[color="black"][size="1.7x"] #aftan-keyboard{
+	height: 278px;
+	font-size: 28px;
+}
+#keyboardDiv[color="black"][size="1.7x"] #keyboardDragger{
+  height: 45px;
+  position: relative;
+  font-size: 25px;
+  border-bottom: 2px solid #000;
+}
+#keyboardDiv[color="black"][size="1.7x"]  #languageTitle{
+	letter-spacing: 5px;
+  line-height: 49px;
+  padding-left: 18px;
+	width: 49px;
+}
+#keyboardDiv[color="black"][size="1.7x"]  #controlsDiv{
+	width: 45px;
+}
+#keyboardDiv[color="black"][size="1.7x"]  #close{
+	line-height: 45px;
+	width: 45px;
+}
+#keyboardDiv[color="black"][size="1.7x"] .aftan-keyboard-line{
+  margin-top: 2px;
+}
+#keyboardDiv[color="black"][size="1.7x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="black"][size="1.7x"] .aftan-keyboard-key{
+  margin-left: 2px;
+  width: 54px;
+  height: 54px;
+  line-height: 49px;
+}
+#keyboardDiv[color="black"][size="1.7x"] .aftan-keyboard-key:first-child{ margin-left: 0 }
+#keyboardDiv[color="black"][size="1.7x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 15px }
+#keyboardDiv[color="black"][size="1.7x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 15px }
+#keyboardDiv[color="black"][size="1.7x"] .keyBackspace,
+	#keyboardDiv[color="black"][size="1.7x"] .keyDelete{	width: 82px }
+#keyboardDiv[color="black"][size="1.7x"] .keyNextLanguage,
+  #keyboardDiv[color="black"][size="1.7x"] .keyAddit{	width:180px }
+#keyboardDiv[color="black"][size="1.7x"] .keySpace{	width: 446px }
+#keyboardDiv[color="black"][size="1.7x"] .keyCaps{	width: 96px }
+#keyboardDiv[color="black"][size="1.7x"] .keyEnter{	width: 96px }
+#keyboardDiv[color="black"][size="1.7x"] .keyShift{ width: 124px }
+
+/*************      2x  BLACK    *************/
+#keyboardDiv[color="black"][size="2x"]{
 	width: 898px;
 }
-#keyboardDiv[color="black"][size="large"] #aftan-keyboard{
+#keyboardDiv[color="black"][size="2x"] #aftan-keyboard{
 	height: 308px;
 	font-size: 30px;
 }
-#keyboardDiv[color="black"][size="large"] #keyboardDragger{
+#keyboardDiv[color="black"][size="2x"] #keyboardDragger{
   height: 50px;
   position: relative;
   font-size: 28px;
   border-bottom: 2px solid #000;;
 }
-#keyboardDiv[color="black"][size="large"]  #languageTitle{
+#keyboardDiv[color="black"][size="2x"]  #languageTitle{
 	letter-spacing: 6px;
   line-height: 54px;
   padding-left: 20px;
 	width: 86px;
 }
-#keyboardDiv[color="black"][size="large"]  #controlsDiv{
+#keyboardDiv[color="black"][size="2x"]  #controlsDiv{
 	width: 50px;
 }
-#keyboardDiv[color="black"][size="large"]  #close{
+#keyboardDiv[color="black"][size="2x"]  #close{
 	line-height: 50px;
 	width: 50px;
 }
-#keyboardDiv[color="black"][size="large"] .aftan-keyboard-line{
+#keyboardDiv[color="black"][size="2x"] .aftan-keyboard-line{
   margin-top: 2px;
 }
-#keyboardDiv[color="black"][size="large"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
-#keyboardDiv[color="black"][size="large"] .aftan-keyboard-key{
+#keyboardDiv[color="black"][size="2x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="black"][size="2x"] .aftan-keyboard-key{
   margin-left: 2px;
   width: 60px;
   height: 60px;
   line-height: 54px;
 }
-#keyboardDiv[color="black"][size="large"] .aftan-keyboard-key:first-child{ margin-left: 0 }
-#keyboardDiv[color="black"][size="large"] .aftan-keyboard-key[sidein="left"]{	padding-left: 20px }
-#keyboardDiv[color="black"][size="large"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 20px }
-#keyboardDiv[color="black"][size="large"] .keyBackspace,
-	#keyboardDiv[color="black"][size="large"] .keyDelete{	width: 92px }
-#keyboardDiv[color="black"][size="large"] .keyNextLanguage{	width: 200px }
-#keyboardDiv[color="black"][size="large"] .keySpace{	width: 494px }
-#keyboardDiv[color="black"][size="large"] .keyAddit{	width: 200px }
-#keyboardDiv[color="black"][size="large"] .keyCaps,
-  #keyboardDiv[color="black"][size="large"] .keyEnter{	width: 107px }
-#keyboardDiv[color="black"][size="large"] .keyShift{ width: 138px }
+#keyboardDiv[color="black"][size="2x"] .aftan-keyboard-key:first-child{ margin-left: 0 }
+#keyboardDiv[color="black"][size="2x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 20px }
+#keyboardDiv[color="black"][size="2x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 20px }
+#keyboardDiv[color="black"][size="2x"] .keyBackspace,
+	#keyboardDiv[color="black"][size="2x"] .keyDelete{	width: 92px }
+#keyboardDiv[color="black"][size="2x"] .keyNextLanguage{	width: 200px }
+#keyboardDiv[color="black"][size="2x"] .keySpace{	width: 494px }
+#keyboardDiv[color="black"][size="2x"] .keyAddit{	width: 200px }
+#keyboardDiv[color="black"][size="2x"] .keyCaps,
+  #keyboardDiv[color="black"][size="2x"] .keyEnter{	width: 107px }
+#keyboardDiv[color="black"][size="2x"] .keyShift{ width: 138px }
 
 /*************      WHITE      *************/
 #keyboardDiv[color="white"]{
@@ -256,39 +303,39 @@
   color: #000;
 }
 
-/*************      STANDART  WHITE    *************/
-#keyboardDiv[color="white"][size="standart"]{
+/*************      1x  WHITE    *************/
+#keyboardDiv[color="white"][size="1x"]{
 	width: 485px;
 }
-#keyboardDiv[color="white"][size="standart"] #aftan-keyboard{
+#keyboardDiv[color="white"][size="1x"] #aftan-keyboard{
 	padding-top: 2px;
 	height: 170px;
 	font-size: 15px;
 }
-#keyboardDiv[color="white"][size="standart"] #keyboardDragger{
+#keyboardDiv[color="white"][size="1x"] #keyboardDragger{
   height: 25px;
   position: relative;
   font-size: 14px;
 }
-#keyboardDiv[color="white"][size="standart"]  #languageTitle{
+#keyboardDiv[color="white"][size="1x"]  #languageTitle{
 	letter-spacing: 3px;
   line-height: 27px;
   padding-left: 10px;
 	width: 43px;
 }
-#keyboardDiv[color="white"][size="standart"]  #controlsDiv{
+#keyboardDiv[color="white"][size="1x"]  #controlsDiv{
 	width: 25px;
 }
-#keyboardDiv[color="white"][size="standart"]  #close{
+#keyboardDiv[color="white"][size="1x"]  #close{
 	line-height: 25px;
 	width: 25px;
 }
-#keyboardDiv[color="white"][size="standart"] .aftan-keyboard-line{
+#keyboardDiv[color="white"][size="1x"] .aftan-keyboard-line{
   margin-top: 2px;
   margin-left: 4px;
 }
-#keyboardDiv[color="white"][size="standart"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
-#keyboardDiv[color="white"][size="standart"] .aftan-keyboard-key{
+#keyboardDiv[color="white"][size="1x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="white"][size="1x"] .aftan-keyboard-key{
   margin-left: 2px;
   width: 31px;
   height: 31px;
@@ -296,55 +343,55 @@
 	border: 1px solid #cdcdcd;
 	border-radius: 1px;
 }
-#keyboardDiv[color="white"][size="standart"] .aftan-keyboard-key[clicked = 'true'] { font-size: 14px; }
-#keyboardDiv[color="white"][size="standart"] .aftan-keyboard-key:first-child{ margin-left: 0 }
-#keyboardDiv[color="white"][size="standart"] .aftan-keyboard-key[sidein="left"]{	padding-left: 10px }
-#keyboardDiv[color="white"][size="standart"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 10px }
-#keyboardDiv[color="white"][size="standart"] .keyBackspace,
-	#keyboardDiv[color="white"][size="standart"] .keyDelete{	width: 46px }
-#keyboardDiv[color="white"][size="standart"] .keyNextLanguage{	width: 105px }
-#keyboardDiv[color="white"][size="standart"] .keySpace{	width: 262px }
-#keyboardDiv[color="white"][size="standart"] .keyAddit{	width: 104px }
-#keyboardDiv[color="white"][size="standart"] .keyCaps,
-  #keyboardDiv[color="white"][size="standart"] .keyEnter{	width: 55px }
-#keyboardDiv[color="white"][size="standart"] .keyShift[sidein="left"]{ width: 72px }
-#keyboardDiv[color="white"][size="standart"] .keyShift[sidein="right"]{ width: 71px }
+#keyboardDiv[color="white"][size="1x"] .aftan-keyboard-key[clicked = 'true'] { font-size: 14px; }
+#keyboardDiv[color="white"][size="1x"] .aftan-keyboard-key:first-child{ margin-left: 0 }
+#keyboardDiv[color="white"][size="1x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 10px }
+#keyboardDiv[color="white"][size="1x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 10px }
+#keyboardDiv[color="white"][size="1x"] .keyBackspace,
+	#keyboardDiv[color="white"][size="1x"] .keyDelete{	width: 46px }
+#keyboardDiv[color="white"][size="1x"] .keyNextLanguage{	width: 105px }
+#keyboardDiv[color="white"][size="1x"] .keySpace{	width: 262px }
+#keyboardDiv[color="white"][size="1x"] .keyAddit{	width: 104px }
+#keyboardDiv[color="white"][size="1x"] .keyCaps,
+  #keyboardDiv[color="white"][size="1x"] .keyEnter{	width: 55px }
+#keyboardDiv[color="white"][size="1x"] .keyShift[sidein="left"]{ width: 72px }
+#keyboardDiv[color="white"][size="1x"] .keyShift[sidein="right"]{ width: 71px }
 
 
-/*************      BIG  WHITE    *************/
-#keyboardDiv[color="white"][size="big"]{
+/*************      1.5x  WHITE    *************/
+#keyboardDiv[color="white"][size="1.5x"]{
 	width: 733px;
 }
-#keyboardDiv[color="white"][size="big"] #aftan-keyboard{
+#keyboardDiv[color="white"][size="1.5x"] #aftan-keyboard{
 	padding-top: 3px;
 	height: 262px;
 	font-size: 21px;
 }
-#keyboardDiv[color="white"][size="big"] #keyboardDragger{
+#keyboardDiv[color="white"][size="1.5x"] #keyboardDragger{
   height: 38px;
   position: relative;
   font-size: 21px;
 }
-#keyboardDiv[color="white"][size="big"]  #languageTitle{
+#keyboardDiv[color="white"][size="1.5x"]  #languageTitle{
 	letter-spacing: 5px;
   line-height: 38px;
   padding-left: 14px;
 	width: 43px;
 }
-#keyboardDiv[color="white"][size="big"]  #controlsDiv{
+#keyboardDiv[color="white"][size="1.5x"]  #controlsDiv{
 	width: 25px;
 }
-#keyboardDiv[color="white"][size="big"]  #close{
+#keyboardDiv[color="white"][size="1.5x"]  #close{
 	line-height: 38px;
 	width: 25px;
   padding-right: 14px;
 }
-#keyboardDiv[color="white"][size="big"] .aftan-keyboard-line{
+#keyboardDiv[color="white"][size="1.5x"] .aftan-keyboard-line{
   margin-top: 5px;
   margin-left: 9px;
 }
-#keyboardDiv[color="white"][size="big"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
-#keyboardDiv[color="white"][size="big"] .aftan-keyboard-key{
+#keyboardDiv[color="white"][size="1.5x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="white"][size="1.5x"] .aftan-keyboard-key{
   margin-left: 4px;
   width: 46px;
   height: 46px;
@@ -352,52 +399,105 @@
 	border: 2px solid #cdcdcd;
 	border-radius: 3px;
 }
-#keyboardDiv[color="white"][size="big"] .aftan-keyboard-key:first-child{ margin-left: 0 }
-#keyboardDiv[color="white"][size="big"] .aftan-keyboard-key[sidein="left"]{	padding-left: 10px }
-#keyboardDiv[color="white"][size="big"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 10px }
-#keyboardDiv[color="white"][size="big"] .keyBackspace,
-	#keyboardDiv[color="white"][size="big"] .keyDelete{	width: 61px }
-#keyboardDiv[color="white"][size="big"] .keySpace{	width: 396px }
-#keyboardDiv[color="white"][size="big"] .keyNextLanguage,
-  #keyboardDiv[color="white"][size="big"] .keyAddit{	width: 154px }
-  #keyboardDiv[color="white"][size="big"] .keyCaps{	width: 78px }
-#keyboardDiv[color="white"][size="big"] .keyEnter{	width: 79px }
-#keyboardDiv[color="white"][size="big"] .keyShift{ width: 104px }
+#keyboardDiv[color="white"][size="1.5x"] .aftan-keyboard-key:first-child{ margin-left: 0 }
+#keyboardDiv[color="white"][size="1.5x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 10px }
+#keyboardDiv[color="white"][size="1.5x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 10px }
+#keyboardDiv[color="white"][size="1.5x"] .keyBackspace,
+	#keyboardDiv[color="white"][size="1.5x"] .keyDelete{	width: 61px }
+#keyboardDiv[color="white"][size="1.5x"] .keySpace{	width: 396px }
+#keyboardDiv[color="white"][size="1.5x"] .keyNextLanguage,
+  #keyboardDiv[color="white"][size="1.5x"] .keyAddit{	width: 154px }
+  #keyboardDiv[color="white"][size="1.5x"] .keyCaps{	width: 78px }
+#keyboardDiv[color="white"][size="1.5x"] .keyEnter{	width: 79px }
+#keyboardDiv[color="white"][size="1.5x"] .keyShift{ width: 104px }
 
 
-/*************      LARGE  WHITE    *************/
-#keyboardDiv[color="white"][size="large"]{
+/*************      1.7x  WHITE    *************/
+#keyboardDiv[color="white"][size="1.7x"]{
+	width: 863px;
+}
+#keyboardDiv[color="white"][size="1.7x"] #aftan-keyboard{
+	padding-top: 3px;
+	height: 306px;
+	font-size: 26px;
+}
+#keyboardDiv[color="white"][size="1.7x"] #keyboardDragger{
+  height: 45px;
+  position: relative;
+  font-size: 28px;
+}
+#keyboardDiv[color="white"][size="1.7x"]  #languageTitle{
+	letter-spacing: 6px;
+  line-height: 45px;
+  padding-left: 16px;
+	width: 51px;
+}
+#keyboardDiv[color="white"][size="1.7x"]  #controlsDiv{
+	width: 30px;
+}
+#keyboardDiv[color="white"][size="1.7x"]  #close{
+	line-height: 45px;
+	width: 30px;
+  padding-right: 16px;
+}
+#keyboardDiv[color="white"][size="1.7x"] .aftan-keyboard-line{
+  margin-top: 3px;
+  margin-left: 9px;
+}
+#keyboardDiv[color="white"][size="1.7x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="white"][size="1.7x"] .aftan-keyboard-key{
+  margin-left: 3px;
+  width: 56px;
+  height: 56px;
+  line-height: 55px;
+	border: 2px solid #cdcdcd;
+	border-radius: 3px;
+}
+#keyboardDiv[color="white"][size="1.7x"] .aftan-keyboard-key:first-child{ margin-left: 0 }
+#keyboardDiv[color="white"][size="1.7x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 10px }
+#keyboardDiv[color="white"][size="1.7x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 10px }
+#keyboardDiv[color="white"][size="1.7x"] .keyBackspace,
+	#keyboardDiv[color="white"][size="1.7x"] .keyDelete{	width: 74px }
+#keyboardDiv[color="white"][size="1.7x"] .keySpace{	width: 468px }
+#keyboardDiv[color="white"][size="1.7x"] .keyNextLanguage{	width: 184px }
+#keyboardDiv[color="white"][size="1.7x"] .keyAddit{	width: 183px }
+#keyboardDiv[color="white"][size="1.7x"] .keyCaps{	width: 94px }
+#keyboardDiv[color="white"][size="1.7x"] .keyEnter{	width: 95px }
+#keyboardDiv[color="white"][size="1.7x"] .keyShift{ width: 124px }
+
+/*************      2x  WHITE    *************/
+#keyboardDiv[color="white"][size="2x"]{
 	width: 1017px;
 }
-#keyboardDiv[color="white"][size="large"] #aftan-keyboard{
+#keyboardDiv[color="white"][size="2x"] #aftan-keyboard{
 	padding-top: 4px;
 	height: 350px;
 	font-size: 30px;
 }
-#keyboardDiv[color="white"][size="large"] #keyboardDragger{
+#keyboardDiv[color="white"][size="2x"] #keyboardDragger{
   height: 50px;
   position: relative;
   font-size: 28px;
 }
-#keyboardDiv[color="white"][size="large"]  #languageTitle{
+#keyboardDiv[color="white"][size="2x"]  #languageTitle{
 	letter-spacing: 6px;
   line-height: 54px;
   padding-left: 20px;
 	width: 83px;
 }
-#keyboardDiv[color="white"][size="large"]  #controlsDiv{
+#keyboardDiv[color="white"][size="2x"]  #controlsDiv{
 	width: 50px;
 }
-#keyboardDiv[color="white"][size="large"]  #close{
+#keyboardDiv[color="white"][size="2x"]  #close{
 	line-height: 50px;
 	width: 50px;
 }
-#keyboardDiv[color="white"][size="large"] .aftan-keyboard-line{
+#keyboardDiv[color="white"][size="2x"] .aftan-keyboard-line{
   margin-top: 4px;
   margin-left: 12px;
 }
-#keyboardDiv[color="white"][size="large"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
-#keyboardDiv[color="white"][size="large"] .aftan-keyboard-key{
+#keyboardDiv[color="white"][size="2x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="white"][size="2x"] .aftan-keyboard-key{
   margin-left: 5px;
   width: 64px;
   height: 64px;
@@ -405,180 +505,222 @@
 	border: 2px solid #cdcdcd;
 	border-radius: 5px;
 }
-#keyboardDiv[color="white"][size="large"] .aftan-keyboard-key:first-child{ margin-left: 0 }
-#keyboardDiv[color="white"][size="large"] .aftan-keyboard-key[sidein="left"]{	padding-left: 20px }
-#keyboardDiv[color="white"][size="large"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 20px }
-#keyboardDiv[color="white"][size="large"] .keyBackspace,
-	#keyboardDiv[color="white"][size="large"] .keyDelete{	width: 92px }
-#keyboardDiv[color="white"][size="large"] .keySpace{	width: 547px }
-#keyboardDiv[color="white"][size="large"] .keyNextLanguage,
-  #keyboardDiv[color="white"][size="large"] .keyAddit{	width: 216px }
-#keyboardDiv[color="white"][size="large"] .keyCaps{	width: 112px }
-  #keyboardDiv[color="white"][size="large"] .keyEnter{	width: 113px }
-#keyboardDiv[color="white"][size="large"] .keyShift{ width: 147px }
+#keyboardDiv[color="white"][size="2x"] .aftan-keyboard-key:first-child{ margin-left: 0 }
+#keyboardDiv[color="white"][size="2x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 20px }
+#keyboardDiv[color="white"][size="2x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 20px }
+#keyboardDiv[color="white"][size="2x"] .keyBackspace,
+	#keyboardDiv[color="white"][size="2x"] .keyDelete{	width: 92px }
+#keyboardDiv[color="white"][size="2x"] .keySpace{	width: 547px }
+#keyboardDiv[color="white"][size="2x"] .keyNextLanguage,
+  #keyboardDiv[color="white"][size="2x"] .keyAddit{	width: 216px }
+#keyboardDiv[color="white"][size="2x"] .keyCaps{	width: 112px }
+  #keyboardDiv[color="white"][size="2x"] .keyEnter{	width: 113px }
+#keyboardDiv[color="white"][size="2x"] .keyShift{ width: 147px }
 
 
-/*************      transperent_blue      *************/
+/*************    TRANSPERENT BLUE    *************/
 #keyboardDiv[color="transperent_blue"]{
 	color: #fcfcfc;
-}
-#keyboardDiv[color="transperent_blue"] #aftan-keyboard{
-	background-color: rgba(46, 70, 242, 0.85);
-}
-#keyboardDiv[color="transperent_blue"] #keyboardDragger{
-  background: rgba(46, 70, 242, 0.9);;
+  background: rgba(46, 70, 242, 0.8);
+  border: 1px solid #4570FC;
 }
 #keyboardDiv[color="transperent_blue"] .aftan-keyboard-key[clicked = 'true'] {
-  box-shadow: inset 1px 1px 2px #4570FC, inset -1px -1px 2px #4570FC;
+  /*box-shadow: inset 1px 1px 2px #4570FC, inset -1px -1px 2px #4570FC;*/
+  background: #4570FC;
   color: #fff;
 }
 #keyboardDiv[color="transperent_blue"] .aftan-keyboard-key{
+  background: rgba(46, 70, 242, 0.2);
   border: 1px solid #4570FC;
 }
 
-/*************      STANDART  transperent_blue    *************/
-#keyboardDiv[color="transperent_blue"][size="standart"]{
-	width: 451px;
+/*************      1x TRANSPERENT BLUE  *************/
+#keyboardDiv[color="transperent_blue"][size="1x"]{
+	width: 453px;
 }
-#keyboardDiv[color="transperent_blue"][size="standart"] #aftan-keyboard{
+#keyboardDiv[color="transperent_blue"][size="1x"] #aftan-keyboard{
 	height: 156px;
 	font-size: 15px;
 	padding-top: 1px;
 }
-#keyboardDiv[color="transperent_blue"][size="standart"] #keyboardDragger{
+#keyboardDiv[color="transperent_blue"][size="1x"] #keyboardDragger{
   height: 25px;
   position: relative;
   font-size: 14px;
 }
-#keyboardDiv[color="transperent_blue"][size="standart"]  #languageTitle{
+#keyboardDiv[color="transperent_blue"][size="1x"]  #languageTitle{
 	letter-spacing: 3px;
   line-height: 27px;
   padding-left: 10px;
 	width: 400px;
 }
-#keyboardDiv[color="transperent_blue"][size="standart"]  #controlsDiv{
+#keyboardDiv[color="transperent_blue"][size="1x"]  #controlsDiv{
 	width: 25px;
 }
-#keyboardDiv[color="transperent_blue"][size="standart"]  #close{
+#keyboardDiv[color="transperent_blue"][size="1x"]  #close{
 	line-height: 25px;
 	width: 25px;
 }
-#keyboardDiv[color="transperent_blue"][size="standart"] .aftan-keyboard-line{
+#keyboardDiv[color="transperent_blue"][size="1x"] .aftan-keyboard-line{
   margin-top: 1px;
-  margin-left: 1px;
 }
-#keyboardDiv[color="transperent_blue"][size="standart"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
-#keyboardDiv[color="transperent_blue"][size="standart"] .aftan-keyboard-key{
+#keyboardDiv[color="transperent_blue"][size="1x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="transperent_blue"][size="1x"] .aftan-keyboard-key{
   margin-left: 1px;
   width: 30px;
   height: 30px;
   line-height: 27px;
 }
-#keyboardDiv[color="transperent_blue"][size="standart"] .aftan-keyboard-key[clicked = 'true'] { font-size: 14px; }
-#keyboardDiv[color="transperent_blue"][size="standart"] .aftan-keyboard-key:first-child{ margin-left: 0 }
-#keyboardDiv[color="transperent_blue"][size="standart"] .aftan-keyboard-key[sidein="left"]{	padding-left: 10px }
-#keyboardDiv[color="transperent_blue"][size="standart"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 10px }
-#keyboardDiv[color="transperent_blue"][size="standart"] .keyBackspace,
-	#keyboardDiv[color="transperent_blue"][size="standart"] .keyDelete{	width: 46px }
-#keyboardDiv[color="transperent_blue"][size="standart"] .keySpace{	width: 247px }
-#keyboardDiv[color="transperent_blue"][size="standart"] .keyNextLanguage,
-  #keyboardDiv[color="transperent_blue"][size="standart"] .keyAddit{	width: 100px }
-#keyboardDiv[color="transperent_blue"][size="standart"] .keyCaps{	width: 53px }
-#keyboardDiv[color="transperent_blue"][size="standart"] .keyEnter{	width: 54px }
-#keyboardDiv[color="transperent_blue"][size="standart"] .keyShift{ width: 69px }
+#keyboardDiv[color="transperent_blue"][size="1x"] .aftan-keyboard-key[clicked = 'true'] { font-size: 14px; }
+#keyboardDiv[color="transperent_blue"][size="1x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 10px }
+#keyboardDiv[color="transperent_blue"][size="1x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 10px }
+#keyboardDiv[color="transperent_blue"][size="1x"] .keyBackspace,
+	#keyboardDiv[color="transperent_blue"][size="1x"] .keyDelete{	width: 46px }
+#keyboardDiv[color="transperent_blue"][size="1x"] .keySpace{	width: 247px }
+#keyboardDiv[color="transperent_blue"][size="1x"] .keyNextLanguage,
+  #keyboardDiv[color="transperent_blue"][size="1x"] .keyAddit{	width: 100px }
+#keyboardDiv[color="transperent_blue"][size="1x"] .keyCaps{	width: 53px }
+#keyboardDiv[color="transperent_blue"][size="1x"] .keyEnter{	width: 54px }
+#keyboardDiv[color="transperent_blue"][size="1x"] .keyShift{ width: 69px }
 
-/*************      BIG  transperent_blue    *************/
-#keyboardDiv[color="transperent_blue"][size="big"]{
-	width: 680px;
+/*************      1.5x TRANSPERENT BLUE  *************/
+#keyboardDiv[color="transperent_blue"][size="1.5x"]{
+	width: 684px;
 }
-#keyboardDiv[color="transperent_blue"][size="big"] #aftan-keyboard{
-	height: 233px;
+#keyboardDiv[color="transperent_blue"][size="1.5x"] #aftan-keyboard{
+	height: 235px;
 	font-size: 24px;
 }
-#keyboardDiv[color="transperent_blue"][size="big"] #keyboardDragger{
+#keyboardDiv[color="transperent_blue"][size="1.5x"] #keyboardDragger{
   height: 38px;
   position: relative;
   font-size: 21px;
 }
-#keyboardDiv[color="transperent_blue"][size="big"]  #languageTitle{
+#keyboardDiv[color="transperent_blue"][size="1.5x"]  #languageTitle{
 	letter-spacing: 4px;
   line-height: 41px;
   padding-left: 15px;
 	width: 43px;
 }
-#keyboardDiv[color="transperent_blue"][size="big"]  #controlsDiv{
+#keyboardDiv[color="transperent_blue"][size="1.5x"]  #controlsDiv{
 	width: 38px;
 }
-#keyboardDiv[color="transperent_blue"][size="big"]  #close{
+#keyboardDiv[color="transperent_blue"][size="1.5x"]  #close{
 	line-height: 38px;
 	width: 38px;
 }
-#keyboardDiv[color="transperent_blue"][size="big"] .aftan-keyboard-line{
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .aftan-keyboard-line{
   margin-top: 2px;
 }
-#keyboardDiv[color="transperent_blue"][size="big"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
-#keyboardDiv[color="transperent_blue"][size="big"] .aftan-keyboard-key{
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .aftan-keyboard-key{
   margin-left: 2px;
   width: 45px;
   height: 45px;
   line-height: 41px;
 }
-#keyboardDiv[color="transperent_blue"][size="big"] .aftan-keyboard-key:first-child{ margin-left: 0 }
-#keyboardDiv[color="transperent_blue"][size="big"] .aftan-keyboard-key[sidein="left"]{	padding-left: 15px }
-#keyboardDiv[color="transperent_blue"][size="big"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 15px }
-#keyboardDiv[color="transperent_blue"][size="big"] .keyBackspace,
-	#keyboardDiv[color="transperent_blue"][size="big"] .keyDelete{	width: 69px }
-#keyboardDiv[color="transperent_blue"][size="big"] .keyNextLanguage,
-  #keyboardDiv[color="transperent_blue"][size="big"] .keyAddit{	width:151px }
-#keyboardDiv[color="transperent_blue"][size="big"] .keySpace{	width: 374px }
-#keyboardDiv[color="transperent_blue"][size="big"] .keyCaps{	width: 80px }
-#keyboardDiv[color="transperent_blue"][size="big"] .keyEnter{	width: 81px }
-#keyboardDiv[color="transperent_blue"][size="big"] .keyShift{ width: 104px }
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .aftan-keyboard-key:first-child{ margin-left: 1px }
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 15px }
+#keyboardDiv[color="transperent_blue"][size="1.5x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 15px }
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .keyBackspace,
+	#keyboardDiv[color="transperent_blue"][size="1.5x"] .keyDelete{	width: 69px }
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .keyNextLanguage,
+  #keyboardDiv[color="transperent_blue"][size="1.5x"] .keyAddit{	width:151px }
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .keySpace{	width: 374px }
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .keyCaps{	width: 80px }
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .keyEnter{	width: 81px }
+#keyboardDiv[color="transperent_blue"][size="1.5x"] .keyShift{ width: 104px }
 
-/*************      LARGE  transperent_blue    *************/
-#keyboardDiv[color="transperent_blue"][size="large"]{
-	width: 898px;
+/*************      1.7x TRANSPERENT BLUE  *************/
+#keyboardDiv[color="transperent_blue"][size="1.7x"]{
+	width: 816px;
 }
-#keyboardDiv[color="transperent_blue"][size="large"] #aftan-keyboard{
-	height: 308px;
+#keyboardDiv[color="transperent_blue"][size="1.7x"] #aftan-keyboard{
+	height: 280px;
+	font-size: 29px;
+}
+#keyboardDiv[color="transperent_blue"][size="1.7x"] #keyboardDragger{
+  height: 46px;
+  position: relative;
+  font-size: 25px;
+}
+#keyboardDiv[color="transperent_blue"][size="1.7x"]  #languageTitle{
+	letter-spacing: 4px;
+  line-height: 49px;
+  padding-left: 15px;
+	width: 51px;
+}
+#keyboardDiv[color="transperent_blue"][size="1.7x"]  #controlsDiv{
+	width: 45px;
+}
+#keyboardDiv[color="transperent_blue"][size="1.7x"]  #close{
+	line-height: 45px;
+	width: 45px;
+}
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .aftan-keyboard-line{
+  margin-top: 2px;
+}
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .aftan-keyboard-key{
+  margin-left: 2px;
+  width: 54px;
+  height: 54px;
+  line-height: 49px;
+}
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 15px }
+#keyboardDiv[color="transperent_blue"][size="1.7x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 15px }
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .keyBackspace,
+	#keyboardDiv[color="transperent_blue"][size="1.7x"] .keyDelete{	width: 82px }
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .keyNextLanguage,
+  #keyboardDiv[color="transperent_blue"][size="1.7x"] .keyAddit{	width:180px }
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .keySpace{	width: 446px }
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .keyCaps{	width: 95px }
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .keyEnter{	width: 97px }
+#keyboardDiv[color="transperent_blue"][size="1.7x"] .keyShift{ width: 124px }
+
+/*************      2x TRANSPERENT BLUE  *************/
+#keyboardDiv[color="transperent_blue"][size="2x"]{
+	width: 904px;
+}
+#keyboardDiv[color="transperent_blue"][size="2x"] #aftan-keyboard{
+	height: 310px;
 	font-size: 30px;
 }
-#keyboardDiv[color="transperent_blue"][size="large"] #keyboardDragger{
+#keyboardDiv[color="transperent_blue"][size="2x"] #keyboardDragger{
   height: 50px;
   position: relative;
   font-size: 28px;
 }
-#keyboardDiv[color="transperent_blue"][size="large"]  #languageTitle{
+#keyboardDiv[color="transperent_blue"][size="2x"]  #languageTitle{
 	letter-spacing: 6px;
   line-height: 54px;
   padding-left: 20px;
 	width: 86px;
 }
-#keyboardDiv[color="transperent_blue"][size="large"]  #controlsDiv{
+#keyboardDiv[color="transperent_blue"][size="2x"]  #controlsDiv{
 	width: 50px;
 }
-#keyboardDiv[color="transperent_blue"][size="large"]  #close{
+#keyboardDiv[color="transperent_blue"][size="2x"]  #close{
 	line-height: 50px;
 	width: 50px;
 }
-#keyboardDiv[color="transperent_blue"][size="large"] .aftan-keyboard-line{
+#keyboardDiv[color="transperent_blue"][size="2x"] .aftan-keyboard-line{
   margin-top: 2px;
 }
-#keyboardDiv[color="transperent_blue"][size="large"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
-#keyboardDiv[color="transperent_blue"][size="large"] .aftan-keyboard-key{
+#keyboardDiv[color="transperent_blue"][size="2x"] .aftan-keyboard-line:first-child{  margin-top: 0px; }
+#keyboardDiv[color="transperent_blue"][size="2x"] .aftan-keyboard-key{
   margin-left: 2px;
   width: 60px;
   height: 60px;
   line-height: 54px;
 }
-#keyboardDiv[color="transperent_blue"][size="large"] .aftan-keyboard-key:first-child{ margin-left: 0 }
-#keyboardDiv[color="transperent_blue"][size="large"] .aftan-keyboard-key[sidein="left"]{	padding-left: 20px }
-#keyboardDiv[color="transperent_blue"][size="large"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 20px }
-#keyboardDiv[color="transperent_blue"][size="large"] .keyBackspace,
-	#keyboardDiv[color="transperent_blue"][size="large"] .keyDelete{	width: 92px }
-#keyboardDiv[color="transperent_blue"][size="large"] .keyNextLanguage{	width: 200px }
-#keyboardDiv[color="transperent_blue"][size="large"] .keySpace{	width: 494px }
-#keyboardDiv[color="transperent_blue"][size="large"] .keyAddit{	width: 200px }
-#keyboardDiv[color="transperent_blue"][size="large"] .keyCaps,
-  #keyboardDiv[color="transperent_blue"][size="large"] .keyEnter{	width: 107px }
-#keyboardDiv[color="transperent_blue"][size="large"] .keyShift{ width: 138px }
+#keyboardDiv[color="transperent_blue"][size="2x"] .aftan-keyboard-key[sidein="left"]{	padding-left: 20px }
+#keyboardDiv[color="transperent_blue"][size="2x"]  .aftan-keyboard-key[sidein="right"]{	padding-right: 20px }
+#keyboardDiv[color="transperent_blue"][size="2x"] .keyBackspace,
+	#keyboardDiv[color="transperent_blue"][size="2x"] .keyDelete{	width: 92px }
+#keyboardDiv[color="transperent_blue"][size="2x"] .keyNextLanguage{	width: 200px }
+#keyboardDiv[color="transperent_blue"][size="2x"] .keySpace{	width: 494px }
+#keyboardDiv[color="transperent_blue"][size="2x"] .keyAddit{	width: 200px }
+#keyboardDiv[color="transperent_blue"][size="2x"] .keyCaps,
+  #keyboardDiv[color="transperent_blue"][size="2x"] .keyEnter{	width: 107px }
+#keyboardDiv[color="transperent_blue"][size="2x"] .keyShift{ width: 138px }

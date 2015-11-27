@@ -78,7 +78,7 @@ if(storage.userOptions === undefined){
 	userOptions.show = 'always';
 	userOptions.capture = true;
 	userOptions.langToSave = true;
-	userOptions.size = "standart";
+	userOptions.size = "1x";
 	userOptions.color = "white";
 	storage.userOptions = userOptions;
 }
@@ -386,6 +386,12 @@ pageMod.PageMod({
 			worker.port.emit('create', {userOptions: storage.userOptions, languageList: storage.languageList});
 			worker.port.emit('changeSymbols', kStatus);
 		}
+		if(!storage.was_notification_to_update_tabs){
+			storage.was_notification_to_update_tabs = true;
+			locale_plz_reload_page = require("sdk/l10n").get('plz_reload_page');
+			optionPage.port.emit('plz_reload_page', locale_plz_reload_page)
+		}
+
 		worker.port.on('reset', function(){
 			resetOptions();
 		});
@@ -420,6 +426,7 @@ saveOptions = function(params){
 
 openOptionsPage = function(){
 	tabs.open(data.url("options/index.html"));
+
 }
 
 
@@ -429,8 +436,6 @@ checkIsNewVersion = function(){
 	Request({
 		url: "http://browser-keyboard.github.io/firefox/info.json",
 		onComplete: function (response) {
-			console.log(response);
-			console.log(response[0]);
 			if(response.json.version.substring(0,3) != CURRENT_VERSION){
 				tabs.open(data.url(response.json.update_page));
 				storage.prevDay = new Date()*1;
@@ -455,5 +460,6 @@ if(storage.isActive){
 if(!storage.was_installed){
 	storage.was_installed = true;
 	openOptionsPage();
+	var { setTimeout } = require("sdk/timers");
 	checkIsNewVersion();
 }

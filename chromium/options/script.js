@@ -273,10 +273,8 @@ angular.module('optionApp', [])
 		$scope.locale.onsreen_color_sceme = chrome.i18n.getMessage("onsreen_color_sceme");
 		$scope.locale.onsreen_color_white = chrome.i18n.getMessage("onsreen_color_white");
 		$scope.locale.onsreen_color_black = chrome.i18n.getMessage("onsreen_color_black");
+		$scope.locale.onsreen_color_transperent_blue = chrome.i18n.getMessage("onsreen_color_transperent_blue");
 		$scope.locale.onsreen_size = chrome.i18n.getMessage("onsreen_size");
-		$scope.locale.onsreen_size_normal = chrome.i18n.getMessage("onsreen_size_normal");
-		$scope.locale.onsreen_size_big = chrome.i18n.getMessage("onsreen_size_big");
-		$scope.locale.onsreen_size_large = chrome.i18n.getMessage("onsreen_size_large");
 		$scope.locale.language_options = chrome.i18n.getMessage("language_options");
 		$scope.locale.languages_enable = chrome.i18n.getMessage("languages_enable");
 		$scope.locale.language_selected = chrome.i18n.getMessage("language_selected");
@@ -290,3 +288,12 @@ angular.module('optionApp', [])
 	/*********************      $scope.reset()         *********************************/
 	$scope.reset();
 }]);
+
+
+if (!localStorage.getItem('was_installed')){
+  localStorage.setItem('was_installed', true);
+	setTimeout(function(){
+			alert(chrome.i18n.getMessage("plz_reload_page"))
+	}, 500);
+
+}

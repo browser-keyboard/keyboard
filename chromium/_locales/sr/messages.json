@@ -1,118 +1,110 @@
-﻿{
-   "alert_not_net_on_reset": {
-      "description": "alert on options shows on Internet does not enable on option page load",
-      "message": "Грешка у повезивању: уверите се да је интернет омогућен и поново учитајте страницу"
-   },
-   "alert_not_net_on_save": {
-      "description": "alert on options shows on Internet does not enable on 'Save' button click",
-      "message": "Грешка у повезивању: уверите се да је интернет омогућен и кликните поново на 'Сачувај'"
-   },
-   "alert_on_lang_count": {
-      "description": "alert on options shows on user does not select any language",
-      "message": "Изаберите најмање један језик"
-   },
-   "cancel_button": {
-      "description": "cancel button",
-      "message": "Откажи"
-   },
-   "ext_description": {
-      "description": "extention description",
-      "message": "Виртуелна тастатура"
-   },
-   "keyboard": {
-      "description": "to show is virtual keyboard is active on popup menu",
-      "message": "Тастатура"
-   },
-   "language_options": {
-      "description": "title of language layout select option",
-      "message": "Опције језика"
-   },
-   "language_selected": {
-      "description": "header of selected languages list",
-      "message": "Изабрани језици"
-   },
-   "languages_enable": {
-      "description": "header of enable languages list",
-      "message": "Омогући језике"
-   },
-   "main_options": {
-      "description": "title of checkbox options group",
-      "message": "Главне опције"
-   },
-   "off": {
-      "description": "to show is virtual keyboard is active on popup menu",
-      "message": "Иск."
-   },
-   "on": {
-      "description": "to show is virtual keyboard is active on popup menu",
-      "message": "Укљ."
-   },
-   "onsreen_color_black": {
-      "description": "black color sceme",
-      "message": "Црна"
-   },
-   "onsreen_color_sceme": {
-      "description": "title of on-screen keyboard color sceme options group",
-      "message": "Боја шеме тастатуре на екрану"
-   },
-   "onsreen_color_white": {
-      "description": "white color sceme",
-      "message": "Бела"
-   },
-   "onsreen_keyboard_behavior": {
-      "description": "title of on-sreen keyboard behavior option",
-      "message": "Понашање тастатуре на екрану"
-   },
-   "onsreen_size": {
-      "description": "title of on-screen keyboard size options group",
-      "message": "Величина тастатуре на екрану"
-   },
-   "onsreen_size_big": {
-      "description": "big size of on-screen keyboard",
-      "message": "Велика"
-   },
-   "onsreen_size_large": {
-      "description": "large size of on-screen keyboard",
-      "message": "Веома велика"
-   },
-   "onsreen_size_standart": {
-      "description": "stadart size of on-screen keyboard",
-      "message": "Стандардна"
-   },
-   "option_active": {
-      "description": "option: to show is virtual keyboard is active",
-      "message": "Укључено"
-   },
-   "option_capture": {
-      "description": "option: Handle key press on physical keyboard",
-      "message": "Рукуј притиском тастера на физичкој тастатури"
-   },
-   "option_langToSave": {
-      "description": "option: Save current language on closing browser",
-      "message": "Сачувај тренутни језик при затварању интернет прегледача"
-   },
-   "options": {
-      "description": "options on popup menu",
-      "message": "Опције"
-   },
-   "save_button": {
-      "description": "save button",
-      "message": "Сачувај"
-   },
-   "search_placehold": {
-      "description": "plasehold: language search on enable languages list",
-      "message": "претрага"
-   },
-   "show_always": {
-      "description": "option: always to show on-screen keyboard",
-      "message": "Увек прикажи тастатуру на екрану"
-   },
-   "show_newer": {
-      "description": "option: hide on-screen keyboard",
-      "message": "Сакриј тастатуру на екрану"
-   },
-   "show_onactive": {
-      "description": "option: show on-screen keyboard only on active text field",
-      "message": "Прикажи тастатуру на екрану само када је поље за унос текста активно"
-   }
+{
+  "alert_not_net_on_save": {
+    "message": "Грешка у повезивању: уверите се да је интернет омогућен и кликните поново на 'Сачувај'",
+    "description": "alert on options shows on Internet does not enable on 'Save' button click"
+  },
+  "keyboard": {
+    "message": "Тастатура",
+    "description": "to show is virtual keyboard is active on popup menu"
+  },
+  "save_button": {
+    "message": "Сачувај",
+    "description": "save button"
+  },
+  "show_onactive": {
+    "message": "Прикажи тастатуру на екрану само када је поље за унос текста активно",
+    "description": "option: show on-screen keyboard only on active text field"
+  },
+  "show_always": {
+    "message": "Увек прикажи тастатуру на екрану",
+    "description": "option: always to show on-screen keyboard"
+  },
+  "onsreen_color_white": {
+    "message": "Бела",
+    "description": "white color sceme"
+  },
+  "alert_not_net_on_reset": {
+    "message": "Грешка у повезивању: уверите се да је интернет омогућен и поново учитајте страницу",
+    "description": "alert on options shows on Internet does not enable on option page load"
+  },
+  "language_selected": {
+    "message": "Изабрани језици",
+    "description": "header of selected languages list"
+  },
+  "onsreen_size": {
+    "message": "Величина тастатуре на екрану",
+    "description": "title of on-screen keyboard size options group"
+  },
+  "option_active": {
+    "message": "Укључено",
+    "description": "option: to show is virtual keyboard is active"
+  },
+  "language_options": {
+    "message": "Опције језика",
+    "description": "title of language layout select option"
+  },
+  "show_newer": {
+    "message": "Сакриј тастатуру на екрану",
+    "description": "option: hide on-screen keyboard"
+  },
+  "onsreen_color_sceme": {
+    "message": "Боја шеме тастатуре на екрану",
+    "description": "title of on-screen keyboard color sceme options group"
+  },
+  "search_placehold": {
+    "message": "претрага",
+    "description": "plasehold: language search on enable languages list"
+  },
+  "languages_enable": {
+    "message": "Омогући језике",
+    "description": "header of enable languages list"
+  },
+  "alert_on_lang_count": {
+    "message": "Изаберите најмање један језик",
+    "description": "alert on options shows on user does not select any language"
+  },
+  "onsreen_keyboard_behavior": {
+    "message": "Понашање тастатуре на екрану",
+    "description": "title of on-sreen keyboard behavior option"
+  },
+  "off": {
+    "message": "Иск.",
+    "description": "to show is virtual keyboard is active on popup menu"
+  },
+  "onsreen_size_standart": {
+    "message": "Стандардна",
+    "description": "stadart size of on-screen keyboard"
+  },
+  "on": {
+    "message": "Укљ.",
+    "description": "to show is virtual keyboard is active on popup menu"
+  },
+  "onsreen_color_black": {
+    "message": "Црна",
+    "description": "black color sceme"
+  },
+  "onsreen_color_transperent_blue": {
+    "message": "Провидно плава",
+    "description": "transparent blue colour scheme"
+  },
+  "main_options": {
+    "message": "Главне опције",
+    "description": "title of checkbox options group"
+  },
+  "cancel_button": {
+    "message": "Откажи",
+    "description": "cancel button"
+  },
+  "option_langToSave": {
+    "message": "Сачувај тренутни језик при затварању интернет прегледача",
+    "description": "option: Save current language on closing browser"
+  },
+  "option_capture": {
+    "message": "Рукуј притиском тастера на физичкој тастатури",
+    "description": "option: Handle key press on physical keyboard"
+  },
+  "ext_description": {
+    "message": "Виртуелна тастатура",
+    "description": "extention description"
+  }
 }

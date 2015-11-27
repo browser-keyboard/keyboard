@@ -233,3 +233,7 @@ angular.module('optionApp', [])
 
   $scope.reset();
 }]);
+
+self.port.on('plz_reload_page', function (locale_plz_reload_page) {
+  alert(locale_plz_reload_page);
+});

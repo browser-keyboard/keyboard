@@ -1,128 +1,118 @@
- {
-	"ext_description":{
-		"message": "Виртуальная клавиатура",
-		"description": "extension description"
-	},
-	
-	"keyboard":{
-		"message": "Клавиатура",
-		"description": "to show is virtual keyboard is active on popup menu"
-	},
-	
-	"options": {
-		"message": "Настройки",
-		"description": "options on popup menu"	
-	},
-	"on":{
-		"message": "Вкл",
-		"description": "to show is virtual keyboard is active on popup menu"
-	},
-	"off":{
-		"message": "Выкл",
-		"description": "to show is virtual keyboard is active on popup menu"
-	},
-	
-	
-	"alert_not_net_on_reset": {
-		"message": "Ошибка соодинения: проверьте подключение к интернету и обновите страницу",
-		"description": "alert on options shows on Internet does not enable on option page load"	
-	},
-	"alert_not_net_on_save": {
-		"message": "Ошибка соодинения: проверьте подключение к интернету и нажмите \"Сохранить\" снова",
-		"description": "alert on options shows on Internet does not enable on 'Save' button click"	
-	},
-	"alert_on_lang_count": {
-		"message": "Выбирете хотя бы один язык",
-		"description": "alert on options shows on user does not select any language"	
-	},
-	"alert_on_save": {
-		"message": "Изменения сохранены",
-		"description": "alert after successfully save button click"	
-	},
-	
-	"main_options": {
-		"message": "Основные настройки",
-		"description": "title of checkbox options group"	
-	},
-	"option_active":{
-		"message": "Включен",
-		"description": "option: to show is virtual keyboard is active"
-	},
-	"option_capture": {
-		"message": "Обрабатывать нажатия клавиш на физической клавиатуре",
-		"description": "option: Handle key press on physical keyboard"	
-	},
-	"option_langToSave": {
-		"message": "Сохранять текущий язык при закрытии браузера",
-		"description": "option: Save current language on closing browser"	
-	},
-	"onsreen_keyboard_behavior": {
-		"message": "Поведение на-экранной клавиатуры",
-		"description": "title of on-sreen keyboard behavior option"	
-	},
-	"show_always": {
-		"message": "Всегда показывать на-экранную клавиатуру",
-		"description": "option: always to show on-screen keyboard"	
-	},
-	"show_onactive": {
-		"message": "Показывать на-экранную клавиатуру только при активном текстовом поле",
-		"description": "option: show on-screen keyboard only on active text field"	
-	},
-	"show_newer": {
-		"message": "Скрыть на-экранную клавиатуру",
-		"description": "option: hide on-screen keyboard"	
-	},
-	"onsreen_color_sceme": {
-		"message": "Цветовая схема на-экранной клавиатуры",
-		"description": "title of on-screen keyboard color sceme options group"	
-	},
-	"onsreen_color_white": {
-		"message": "Белая",
-		"description": "white color sceme"	
-	},
-	"onsreen_color_black": {
-		"message": "Черная",
-		"description": "black color sceme"	
-	},
-	"onsreen_size": {
-		"message": "Размер на-экранной клавиатуры",
-		"description": "title of on-screen keyboard size options group"	
-	},
-	"onsreen_size_normal": {
-		"message": "Стандартный",
-		"description": "normal size of on-screen keyboard"	
-	},
-	"onsreen_size_big": {
-		"message": "Большой",
-		"description": "big size of on-screen keyboard"	
-	},
-	"onsreen_size_large": {
-		"message": "Огромный",
-		"description": "large size of on-screen keyboard"	
-	},
-	"language_options": {
-		"message": "Настройка языка",
-		"description": "title of language layout select option"	
-	},
-	"languages_enable": {
-		"message": "Доступные языки",
-		"description": "header of enable languages list"	
-	},
-	"language_selected": {
-		"message": "Добавленные языки",
-		"description": "header of selected languages list"	
-	},
-	"search_placehold": {
-		"message": "поиск",
-		"description": "plasehold: language search on enable languages list"	
-	},
-	"cancel_button": {
-		"message": "Отмена",
-		"description": "cancel button"	
-	},
-	"save_button": {
-		"message": "Сохранить",
-		"description": "save button"	
-	}
-	
- }
+{
+  "alert_not_net_on_save": {
+    "message": "Ошибка соодинения: проверьте подключение к интернету и нажмите \"Сохранить\" снова",
+    "description": "alert on options shows on Internet does not enable on 'Save' button click"
+  },
+  "keyboard": {
+    "message": "Клавиатура",
+    "description": "to show is virtual keyboard is active on popup menu"
+  },
+  "save_button": {
+    "message": "Сохранить",
+    "description": "save button"
+  },
+  "show_onactive": {
+    "message": "Показывать на-экранную клавиатуру только при активном текстовом поле",
+    "description": "option: show on-screen keyboard only on active text field"
+  },
+  "show_always": {
+    "message": "Всегда показывать на-экранную клавиатуру",
+    "description": "option: always to show on-screen keyboard"
+  },
+  "onsreen_color_white": {
+    "message": "Белая",
+    "description": "white color sceme"
+  },
+  "alert_not_net_on_reset": {
+    "message": "Ошибка соодинения: проверьте подключение к интернету и обновите страницу",
+    "description": "alert on options shows on Internet does not enable on option page load"
+  },
+  "option_langToSave": {
+    "message": "Сохранять текущий язык при закрытии браузера",
+    "description": "option: Save current language on closing browser"
+  },
+  "onsreen_size": {
+    "message": "Размер на-экранной клавиатуры",
+    "description": "title of on-screen keyboard size options group"
+  },
+  "option_active": {
+    "message": "Включен",
+    "description": "option: to show is virtual keyboard is active"
+  },
+  "language_options": {
+    "message": "Настройка языка",
+    "description": "title of language layout select option"
+  },
+  "show_newer": {
+    "message": "Скрыть на-экранную клавиатуру",
+    "description": "option: hide on-screen keyboard"
+  },
+  "search_placehold": {
+    "message": "поиск",
+    "description": "plasehold: language search on enable languages list"
+  },
+  "languages_enable": {
+    "message": "Доступные языки",
+    "description": "header of enable languages list"
+  },
+  "language_selected": {
+    "message": "Добавленные языки",
+    "description": "header of selected languages list"
+  },
+  "alert_on_lang_count": {
+    "message": "Выбирете хотя бы один язык",
+    "description": "alert on options shows on user does not select any language"
+  },
+  "onsreen_keyboard_behavior": {
+    "message": "Поведение на-экранной клавиатуры",
+    "description": "title of on-sreen keyboard behavior option"
+  },
+  "main_options": {
+    "message": "Основные настройки",
+    "description": "title of checkbox options group"
+  },
+  "onsreen_color_sceme": {
+    "message": "Цветовая схема на-экранной клавиатуры",
+    "description": "title of on-screen keyboard color sceme options group"
+  },
+  "on": {
+    "message": "Вкл",
+    "description": "to show is virtual keyboard is active on popup menu"
+  },
+  "onsreen_color_black": {
+    "message": "Черная",
+    "description": "black color sceme"
+  },
+  "onsreen_color_transperent_blue": {
+    "message": "Прозрачно-синий",
+    "description": "transparent blue colour scheme"
+  },
+  "off": {
+    "message": "Выкл",
+    "description": "to show is virtual keyboard is active on popup menu"
+  },
+  "alert_on_save": {
+    "message": "Изменения сохранены",
+    "description": "alert after successfully save button click"
+  },
+  "cancel_button": {
+    "message": "Отмена",
+    "description": "cancel button"
+  },
+  "option_capture": {
+    "message": "Обрабатывать нажатия клавиш на физической клавиатуре",
+    "description": "option: Handle key press on physical keyboard"
+  },
+  "options": {
+    "message": "Настройки",
+    "description": "options on popup menu"
+  },
+  "ext_description": {
+    "message": "Виртуальная клавиатура",
+    "description": "extension description"
+  },
+  "plz_reload_page": {
+    "message": "Обновите открытые вкладки после первой установки",
+    "description": "extension description"
+  }
+}

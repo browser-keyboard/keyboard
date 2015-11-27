@@ -12,7 +12,7 @@ chrome.storage.local.get(["userOptions", "isActive", "languageList", "kStatus" ]
     userOptions.show = 'always';
     userOptions.capture = true;
     userOptions.langToSave = true;
-    userOptions.size = "standart";
+    userOptions.size = "2x";
     userOptions.color = "white";
     chrome.storage.local.set({'userOptions': userOptions});
   }
@@ -83,7 +83,6 @@ chrome.runtime.onMessage.addListener(function(data, sender){
 
 function openOptionsOnFirstInstalling() {
     if (!localStorage.getItem('was_installed')){
-      localStorage.setItem('was_installed', true);
       chrome.tabs.create({ "url": "chrome-extension://" + chrome.runtime.id + "/options/index.html"});
       f_active(true);
     }
