@@ -12,7 +12,7 @@
 #keyboardDiv{
 	font-family: "Roboto Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-#keyboardDiv .keyCaps, #keyboardDiv .keyBackspace, #keyboardDiv .keyDelete, #keyboardDiv .keyShift, #keyboardDiv .keyEnter, #keyboardDiv #close{
+#keyboardDiv .keyCaps, #keyboardDiv .keyBackspace, #keyboardDiv .keyDelete, #keyboardDiv .keyShift, #keyboardDiv .keyEnter{
 	font-family: "Function Symbols";
 }
 
@@ -38,18 +38,6 @@
 	height: 100%;
 	display: inline-block;
 	word-wrap: normal !important;
-}
-#keyboardDiv #controlsDiv{
-	display: inline-block;
-	position: absolute;
-	right: 0;
-	height:  100%;
-}
-#keyboardDiv #close{
-	box-sizing: border-box;
-	display: inline-block;
-	height:  100%;
-	text-align: center;
 }
 #keyboardDiv .aftan-keyboard-key{
   box-sizing: border-box;
@@ -105,13 +93,6 @@
   padding-left: 10px;
 	width: 400px;
 }
-#keyboardDiv[color="black"][size="1x"]  #controlsDiv{
-	width: 25px;
-}
-#keyboardDiv[color="black"][size="1x"]  #close{
-	line-height: 25px;
-	width: 25px;
-}
 #keyboardDiv[color="black"][size="1x"] .aftan-keyboard-line{
   margin-top: 1px;
   margin-left: 1px;
@@ -156,13 +137,6 @@
   padding-left: 15px;
 	width: 43px;
 }
-#keyboardDiv[color="black"][size="1.5x"]  #controlsDiv{
-	width: 38px;
-}
-#keyboardDiv[color="black"][size="1.5x"]  #close{
-	line-height: 38px;
-	width: 38px;
-}
 #keyboardDiv[color="black"][size="1.5x"] .aftan-keyboard-line{
   margin-top: 2px;
 }
@@ -205,13 +179,6 @@
   padding-left: 18px;
 	width: 49px;
 }
-#keyboardDiv[color="black"][size="1.7x"]  #controlsDiv{
-	width: 45px;
-}
-#keyboardDiv[color="black"][size="1.7x"]  #close{
-	line-height: 45px;
-	width: 45px;
-}
 #keyboardDiv[color="black"][size="1.7x"] .aftan-keyboard-line{
   margin-top: 2px;
 }
@@ -253,13 +220,6 @@
   line-height: 54px;
   padding-left: 20px;
 	width: 86px;
-}
-#keyboardDiv[color="black"][size="2x"]  #controlsDiv{
-	width: 50px;
-}
-#keyboardDiv[color="black"][size="2x"]  #close{
-	line-height: 50px;
-	width: 50px;
 }
 #keyboardDiv[color="black"][size="2x"] .aftan-keyboard-line{
   margin-top: 2px;
@@ -323,13 +283,6 @@
   padding-left: 10px;
 	width: 43px;
 }
-#keyboardDiv[color="white"][size="1x"]  #controlsDiv{
-	width: 25px;
-}
-#keyboardDiv[color="white"][size="1x"]  #close{
-	line-height: 25px;
-	width: 25px;
-}
 #keyboardDiv[color="white"][size="1x"] .aftan-keyboard-line{
   margin-top: 2px;
   margin-left: 4px;
@@ -378,14 +331,6 @@
   padding-left: 14px;
 	width: 43px;
 }
-#keyboardDiv[color="white"][size="1.5x"]  #controlsDiv{
-	width: 25px;
-}
-#keyboardDiv[color="white"][size="1.5x"]  #close{
-	line-height: 38px;
-	width: 25px;
-  padding-right: 14px;
-}
 #keyboardDiv[color="white"][size="1.5x"] .aftan-keyboard-line{
   margin-top: 5px;
   margin-left: 9px;
@@ -432,14 +377,6 @@
   padding-left: 16px;
 	width: 51px;
 }
-#keyboardDiv[color="white"][size="1.7x"]  #controlsDiv{
-	width: 30px;
-}
-#keyboardDiv[color="white"][size="1.7x"]  #close{
-	line-height: 45px;
-	width: 30px;
-  padding-right: 16px;
-}
 #keyboardDiv[color="white"][size="1.7x"] .aftan-keyboard-line{
   margin-top: 3px;
   margin-left: 9px;
@@ -484,13 +421,6 @@
   line-height: 54px;
   padding-left: 20px;
 	width: 83px;
-}
-#keyboardDiv[color="white"][size="2x"]  #controlsDiv{
-	width: 50px;
-}
-#keyboardDiv[color="white"][size="2x"]  #close{
-	line-height: 50px;
-	width: 50px;
 }
 #keyboardDiv[color="white"][size="2x"] .aftan-keyboard-line{
   margin-top: 4px;
@@ -554,13 +484,6 @@
   padding-left: 10px;
 	width: 400px;
 }
-#keyboardDiv[color="transperent_blue"][size="1x"]  #controlsDiv{
-	width: 25px;
-}
-#keyboardDiv[color="transperent_blue"][size="1x"]  #close{
-	line-height: 25px;
-	width: 25px;
-}
 #keyboardDiv[color="transperent_blue"][size="1x"] .aftan-keyboard-line{
   margin-top: 1px;
 }
@@ -601,13 +524,6 @@
   line-height: 41px;
   padding-left: 15px;
 	width: 43px;
-}
-#keyboardDiv[color="transperent_blue"][size="1.5x"]  #controlsDiv{
-	width: 38px;
-}
-#keyboardDiv[color="transperent_blue"][size="1.5x"]  #close{
-	line-height: 38px;
-	width: 38px;
 }
 #keyboardDiv[color="transperent_blue"][size="1.5x"] .aftan-keyboard-line{
   margin-top: 2px;
@@ -650,13 +566,6 @@
   padding-left: 15px;
 	width: 51px;
 }
-#keyboardDiv[color="transperent_blue"][size="1.7x"]  #controlsDiv{
-	width: 45px;
-}
-#keyboardDiv[color="transperent_blue"][size="1.7x"]  #close{
-	line-height: 45px;
-	width: 45px;
-}
 #keyboardDiv[color="transperent_blue"][size="1.7x"] .aftan-keyboard-line{
   margin-top: 2px;
 }
@@ -696,13 +605,6 @@
   line-height: 54px;
   padding-left: 20px;
 	width: 86px;
-}
-#keyboardDiv[color="transperent_blue"][size="2x"]  #controlsDiv{
-	width: 50px;
-}
-#keyboardDiv[color="transperent_blue"][size="2x"]  #close{
-	line-height: 50px;
-	width: 50px;
 }
 #keyboardDiv[color="transperent_blue"][size="2x"] .aftan-keyboard-line{
   margin-top: 2px;

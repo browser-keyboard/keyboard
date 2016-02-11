@@ -23,8 +23,9 @@ KeyboardPhysical.prototype.keyDown = function(event){
 		};
 	}
 
-	if(this.keyLettersDown())
+	if(this.keyLettersDown()){
 		this.stopEvent();
+	}
 }
 
 KeyboardPhysical.prototype.keyUp = function(event){
@@ -43,7 +44,6 @@ KeyboardPhysical.prototype.keyUp = function(event){
 
 	this.keyLettersUp();
 }
-
 
 KeyboardPhysical.prototype.stopEvent = function(){
 	this.event.preventDefault();
@@ -102,9 +102,6 @@ KeyboardPhysical.prototype.keyLettersUp = function(){
 		};
 	return false;
 }
-
-
-
 
 
 KeyboardPhysical.prototype.isHotKeyInKeysCombinationDown = function(hotKey){

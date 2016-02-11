@@ -20,7 +20,7 @@ KeyboardPhysical.prototype.keyDown = function(event){
 	if((!this.isEventInKeysRange()) || (!this.kb.field.active))
 		return;
 
-	this.kb.visual.keyFunctDownByCode();
+	this.kb.visual.keyFunctDownByCode(this.code);
 
 	if(this.keyLettersDown())
 		this.stopEvent();

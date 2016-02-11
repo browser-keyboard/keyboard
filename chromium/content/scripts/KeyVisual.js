@@ -1,7 +1,11 @@
 var VirtualKeyLetter, VirtualKeyFuncts;
+var MOUSE_LEFT_CLICK = 1;
+var isPermittedEvent = function(e){
+  return !((e.which != MOUSE_LEFT_CLICK) && (!e.type.includes('touch')))
+}
+
 VirtualKey = function(key, options){
 				this.logic = key; // Key class
-				this.MOUSE_LEFT_CLICK = 1;
 				this.visual = $('<div data-clicked=\'false\' class=\'aftan-keyboard-key\'/>');
 				this.setDisplayKeyText(options.title);
 				switch (options.sideIn) {
@@ -15,8 +19,8 @@ VirtualKey = function(key, options){
 
 				this.fromMouse = false;
 	var that = this;
-	this.visual.bind('mousedown', function(e){
-			if (e.which != that.MOUSE_LEFT_CLICK)
+	this.visual.bind('mousedown touchstart', function(e){
+			if (!isPermittedEvent(e))
 				return;
 			that.logic.action();
 			that.fromMouse = true;
@@ -40,13 +44,13 @@ VirtualKey.prototype.up = function(){
 VirtualKeyLetter = function(key, options){
 	VirtualKey.apply(this,[key, options]);
 	var that = this;
-	this.visual.bind('mousedown', function(e){
-			if (e.which != that.MOUSE_LEFT_CLICK)
+	this.visual.bind('mousedown touchstart', function(e){
+			if (!isPermittedEvent(e))
 				return;
 				that.fromMouse = true;
 	});
-	this.visual.bind('mouseup mouseleave', function(e){
-			if ((e.which != that.MOUSE_LEFT_CLICK) || (!that.fromMouse))
+	this.visual.bind('mouseup mouseleave touchend', function(e){
+			if (!isPermittedEvent(e))
 				return;
 			that.up();
 	});
@@ -58,13 +62,13 @@ VirtualKeyFuncts = function(key, func, options){
 	VirtualKey.apply(this,[key, options]);
 	this.visual.addClass(func);
 	var that = this;
-	this.visual.bind('mousedown', function(e){
-			if((that.logic.code == 0) || (e.which != that.MOUSE_LEFT_CLICK))
+	this.visual.bind('mousedown touchstart', function(e){
+			if((that.logic.code == 0) || (!isPermittedEvent(e)))
 				return;
 			that.logic.kb.visual.keyFunctPress(that.logic.func, true);
 	});
-	this.visual.bind('mouseup mouseleave', function(e){
-			if((that.logic.code == 0) || (e.which != that.MOUSE_LEFT_CLICK))
+	this.visual.bind('mouseup mouseleave touchend', function(e){
+			if((that.logic.code == 0) || (!isPermittedEvent(e)))
 				return;
 			that.logic.kb.visual.keyFunctPress(that.logic.func, false);
 	});

@@ -23,14 +23,6 @@ KeyboardVisual.prototype.createContainer = function(options, userOptions){
   }
   dragger.append(this.languageTitle);
 
-  var controlsDiv = $('<div id=\'controlsDiv\'></div>');
-  var closeControl = $('<div id=\'close\'>×</div>');
-  closeControl.click(function(){
-		self.port.emit("activision", false);
-  });
-  controlsDiv.append(closeControl);
-  dragger.append(controlsDiv);
-
   this.visual = $('<div id=\'aftan-keyboard\'>');
   this.container.on("mousedown", function(e){
     // for not miss field focus
