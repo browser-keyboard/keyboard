@@ -19,7 +19,7 @@
   "permissions": [
     "storage",
     "tabs",
-    "https://raw.githubusercontent.com/zrupov/browser-keyboard.github.io/master/languages/*"
+    "http://browser-keyboard.github.io/languages/*"
   ],
   "options_page": "options/index.html",
   "content_scripts": [
