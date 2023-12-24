@@ -48,7 +48,7 @@
   "web_accessible_resources": [
     "*"
   ],
-	"default_locale": "ru",
+	"default_locale": "en",
 
 "commands": {
 	"toggle-feature-activision": {
