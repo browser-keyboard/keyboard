@@ -17,8 +17,6 @@ var tabActivate = function(){
 }
 
 topCreate = function(){
-  if((document.URL.indexOf("https://www.google.ru/_/chrome/newtab") != -1) || (document.URL.indexOf("https://docs.google.com") != -1))
-		return;
   if(created)
     return;
   created = 1;
