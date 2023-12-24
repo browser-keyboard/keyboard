@@ -18,8 +18,7 @@
   },
   "permissions": [
     "storage",
-    "tabs",
-    "http://browser-keyboard.github.io/languages/*"
+    "tabs"
   ],
   "options_page": "options/index.html",
   "content_scripts": [
