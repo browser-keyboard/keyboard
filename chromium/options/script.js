@@ -42,7 +42,7 @@ angular.module('optionApp', [])
 				for(var i = 0; i < result.languageList.length; i++){
 					layoutsIdUsed.push(result.languageList[i].id);
 
-					$http.get('http://browser-keyboard.github.io/languages/list.json').success(function(data){
+					$http.get('chrome-extension://' + chrome.runtime.id + '/content/languages/list.json').success(function(data){
 						$scope.netConnected = true;
 						layoutsFromServer = data;
 						$scope.layoutsAll = [];
@@ -187,7 +187,7 @@ angular.module('optionApp', [])
 
 			var toSave = [];
 			for (var i = 0, len = $scope.layoutsUsed.length; i < len; i++) {
-				$http.get('http://browser-keyboard.github.io/languages/' + $scope.layoutsUsed[i].id + '.json')
+				$http.get('chrome-extension://' + chrome.runtime.id + '/content/languages/' + $scope.layoutsUsed[i].id + '.json')
 					.success(function(data){
 						toSave.push(data);
 					}).error(function(){
