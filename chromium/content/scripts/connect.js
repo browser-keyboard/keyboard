@@ -19,17 +19,24 @@ var tabActivate = function(){
 topCreate = function(){
   if(created)
     return;
-  created = 1;
-	chrome.storage.local.get(['languageList', 'userOptions', 'kStatus'], function (result) {
-		keyboardOption.languageSet = result.languageList;
+  chrome.storage.local.get(['languageList', 'userOptions', 'kStatus'], function (result) {
+    console.log(result);
+    keyboardOption.languageSet = result.languageList;
+    console.log(keyboardOption.languageSet);
+    if(!keyboardOption.languageSet){
+      // default config not yet created
+      setTimeout(topCreate, 500);
+      return;
+    }
 		window.virtualKeyboard = new Keyboard(keyboardOption, result.userOptions);
 		window.virtualKeyboard.synchronize(result.kStatus);
 		keyboardConnectionOn();
 		created = true;
 		if(result.userOptions.toShowOption != 'newer')
-      $(window).on('resize',f_windowResize);
-		ckeditorKludge();
-    $(setFocusIfAutofocus);
+    $(window).on('resize',f_windowResize);
+  ckeditorKludge();
+  $(setFocusIfAutofocus);
+  created = 1;
 	});
 }
 
