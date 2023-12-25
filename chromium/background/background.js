@@ -52,7 +52,6 @@ async function defaultOptionsOnFirstInstalling() {
     ));
 
 
-    alert(languageList);
     chrome.storage.local.set({'languageList': languageList});
     
     chrome.storage.local.set({'isActive': true});
