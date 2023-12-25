@@ -55,14 +55,16 @@ async function defaultOptionsOnFirstInstalling() {
     chrome.storage.local.set({'languageList': languageList});
     
     chrome.storage.local.set({'isActive': true});
-    
-    userOptions = {};
-    userOptions.show = 'on-active';
-    userOptions.capture = true;
-    userOptions.langToSave = true;
-    userOptions.size = "2x";
-    userOptions.color = "white";
-    chrome.storage.local.set({'userOptions': userOptions});
+
+    fetch('chrome-extension://' + chrome.runtime.id + '/content/settings.json')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (options) {
+        chrome.storage.local.set({'userOptions': options});
+      })
+      .catch(function (error) {
+      })
     
     var kStatus = {
       shift:{
