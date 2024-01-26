@@ -255,7 +255,7 @@
   /*transition: font-size 0.4s, box-shadow 0.4s;*/
 }
 #keyboardDiv[color="white"] .aftan-keyboard-key[clicked = 'true'] {
-	box-shadow: inset 1px 1px 0px #ebebeb, inset -1px -1px 0px #ebebeb;
+	box-shadow: inset 1px 1px 0px #0b0b0b, inset -1px -1px 0px #0b0b0b;
   background-color: #f6f6f6;
   color: #000;
 }
